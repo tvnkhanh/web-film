@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <div th:fragment="html_head">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-grid.css}">
+        <link rel="stylesheet" th:href="@{/bootstrap/grid/bootstrap-grid.rtl.css.map}">
+        <link rel="stylesheet" th:href="@{/bootstrap/grid/bootstrap-grid.rtl.min.css.map}">
+        <link rel="stylesheet" th:href="@{/fonts/fontawesome-free-6.1.1-web/css/all.min.css}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    </div>
+
+</head>
+<body>
+  <header class="header" th:fragment="navbar">
+      <nav class="header_navbar">
+          <ul class="header_navbar_list">
+              <li class="header_navbar_item">
+                  <a href="/" class="home">
+                      <img th:src="@{img/logo2.png}" alt="" class="logo">
+                  </a>
+              </li>
+              <li class="header_navbar_item">
+                  <a href="" class="header_navbar_item_link">
+                      <span>Anime</span>
+                  </a>
+              </li>
+              <li class="header_navbar_item">
+                  <a href="" class="header_navbar_item_link">
+                      <span>Movie</span>
+                  </a>
+              </li>
+              <li class="header_navbar_item">
+                  <a href="" class="header_navbar_item_link">
+                      <span>Premium</span>
+                  </a>
+              </li>
+              <li class="header_navbar_item">
+                  <a href="" class="header_navbar_item_link">
+                      <span>Truyện</span>
+                  </a>
+              </li>
+              <li class="header_navbar_item">
+                  <a href="bxh" class="header_navbar_item_link">
+                      <span>BXH</span>
+                  </a>
+              </li>
+              <li class="header_navbar_item">
+                  <div class="header_search">
+                      <input type="text" class="header_search-input" placeholder="Nhập tên phim">
+                      <i class="header_search-icon fa-solid fa-magnifying-glass"></i>
+                  </div>
+              </li>
+          </ul>
+
+          <div class="header_option">
+              <div class="header_option-item header_option_notification">
+                  <i class="header_option-icon fa-regular fa-bell"></i>
+              </div>
+
+              <div class="header_option-item header_option-user">
+                  <!-- <i class="header_option-icon fa-regular fa-user"></i> -->
+                  <img th:src="@{img/avatar.jpg}" alt="" class="user-avatar">
+              </div>
+          </div>
+
+          <!-- Popup task -->
+
+          <div class="navbar_user">
+              <div class="navbar_user-close">
+                  <i class="fa-solid fa-xmark"></i>
+              </div>
+
+              <div class="navbar_user-header">
+                  <div class="user_avatar">
+                      <img th:src="@{img/avatar.jpg}" alt="" class="user_avatar-img">
+                  </div>
+                  <div class="navbar_user-profile">
+                      <span class="user_name">Hồ Quốc Đạt</span>
+                      <span class="user_role">Người xem</span>
+                  </div>
+                  <div class="navbar_user-header-tab">
+                      <div class="navbar_user-header-tab-item">
+                          THÔNG TIN
+                      </div>
+                      <div class="navbar_user-header-tab-item ">
+                          THÔNG BÁO
+                      </div>
+                  </div>
+              </div>
+              <div class="navbar_user-body">
+                  <!-- <ul class="user_notification-list">
+                      <li class="user_notification-item">
+                          <a href="#" class="user_notification-item-link">
+                              <div class="user_notification-img">
+                                  <img th:src="@{img/notification_logo.png" alt="">
+                              </div>
+                              <div class="user_notification-message">
+                                  Phim gì gì đó đã có tập mới vbvbbvbvbvbvbbvbvbvbvbvbvbvbv
+                              </div>
+                          </a>
+                      </li>
+                  </ul> -->
+                  <ul class="navbar_user-list">
+                      <li class="navbar_user-item">
+                          <a href="profile" class="navbar_user-item-link">
+                              <i class="navbar_user-icon fas fa-regular fa-user"></i>
+                              <span>Trang cá nhân</span>
+                          </a>
+
+                      </li>
+                      <li class="navbar_user-item">
+                          <a href="#" class="navbar_user-item-link">
+                              <i class="navbar_user-icon fas fa-regular fa-pen"></i>
+                              <span>Sửa thông tin</span>
+                          </a>
+
+                      </li>
+                      <li class="navbar_user-item">
+                          <a href="#" class="navbar_user-item-link">
+                              <i class=" navbar_user-icon fas fa-regular fa-lock"></i>
+                              <span>Đổi mật khẩu</span>
+                          </a>
+                      </li>
+
+                  </ul>
+                  <hr class="header_user--separator">
+                  <ul class="navbar_user-list">
+                      <li class="navbar_user-item">
+                          <a href="#" class="navbar_user-item-link">
+                              <i class="navbar_user-icon fas fa-light fa-heart"></i>
+                              <span>Phim đã thích</span>
+                          </a>
+
+                      </li>
+                      <li class="navbar_user-item">
+                          <a href="#" class="navbar_user-item-link">
+                              <i class="navbar_user-icon fas fa-regular fa-bell"></i>
+                              <span>Phim đang theo dõi</span>
+                          </a>
+
+                      </li>
+                      <li class="navbar_user-item">
+                          <a href="#" class="navbar_user-item-link">
+                              <i class=" navbar_user-icon fas fa-regular fa-money-bill"></i>
+                              <span>Nâng cấp premium</span>
+                          </a>
+                      </li>
+
+                  </ul>
+                  <hr class="header_user--separator">
+                  <div class="navbar_user-item">
+                      <a href="#" class="navbar_user-item-link">
+                          <i class="navbar_user-icon fas fa-light fa-power-off"></i>
+                          <span>Đăng xuất</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </nav>
+  </header>
+  <script th:fragment="navbar_js" th:src="@{js/user_navbar.js}"></script>
+</body>
+</html>

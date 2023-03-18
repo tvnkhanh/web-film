@@ -1,0 +1,41 @@
+.bxh_container {
+    margin: 0 auto;
+    margin-top: 120px;
+    margin-bottom: 60px;
+    max-width: 1200px;
+
+}
+
+.bxh_head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.bxh_head-title {
+    margin: auto 0;
+    color: #d52b2b;
+    font-size: 2.4rem;
+    line-height: 28px;
+}
+
+.bxh_option {
+    list-style: none;
+    display: flex;
+    justify-content: end;
+    padding-top: 10px;
+    margin: 0;
+}
+
+.bxh_option-item {
+    margin-left: 8px;
+    background-color: crimson;
+    border-radius: 4px;
+    color: #fff;
+    padding: 2px 12px;
+}
+
+.bxh_option-item:hover {
+    cursor: pointer;
+    background-color: #f76464;
+}

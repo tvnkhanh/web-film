@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="fragments::html_head"></div>
+
+    <title>HOME PAGE</title>
+</head>
+<body>
+    <div class="web_film">
+        <!-- Header -->
+        <header th:replace="fragments::navbar"></header>
+        <div class="web_container">
+            <!-- <section class="container_header">
+                <div class="container_slider">
+
+                </div>
+            </section> -->
+            <section class="container_child container">
+                <div>
+                    <a href="#" class="container_link">PHIM MỚI NHẤT</a>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class=" col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  film--complete">
+                                <div class="film_status">
+                                    <span>HOÀN THÀNH</span>
+                                </div>
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item   film--complete">
+                                <div class="film_status">
+                                    <span>HOÀN THÀNH</span>
+                                </div>
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item  ">
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="film_link">
+                            <div class="film_item    film--complete ">
+                                <div class="film_status">
+                                    <span>HOÀN THÀNH</span>
+                                </div>
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">Tập 8</span>
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Top phim -->
+            <section class="container_child container">
+                <div>
+                    <a href="#" class="container_link">BẢNG XẾP HẠNG</a>
+                </div>
+
+                <div class="row">
+                    <div class=" col-4">
+                        <a href="#" class="film_link">
+                            <div class="film_item film--top">
+                                <div class="film_status">
+                                    <span>1</span>
+                                </div>
+                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row col-8" style="padding-right: 0;">
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>2</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>3</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>4</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>5</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>6</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>7</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>8</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span>9</span>
+                                    </div>
+                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ANIME MOVIE -->
+            <section class="container_child container">
+                <div>
+                    <a href="#" class="container_link">ANIME MOVIE</a>
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+                                <div class="film_status">
+                                    <span>SẮP CHIẾU</span>
+                                </div>
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+                                <div class="film_status">
+                                    <span>SẮP CHIẾU</span>
+                                </div>
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+                                <div class="film_status">
+                                    <span>SẮP CHIẾU</span>
+                                </div>
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+                                <div class="film_status">
+                                    <span>SẮP CHIẾU</span>
+                                </div>
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+                                <div class="film_status">
+                                    <span>SẮP CHIẾU</span>
+                                </div>
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+                                <div class="film_status">
+                                    <span>SẮP CHIẾU</span>
+                                </div>
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Hôm nay xem gì-->
+            <section class="container_child container">
+                <div>
+                    <a href="#" class="container_link">HÔM NAY XEM GÌ</a>
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="" class="film_link">
+                            <div class="film_movie film--cm_soon">
+
+                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">567,890 lượt xem</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer_content">
+                    <div class="social_links">
+                        <a href="" class="social_link">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="" class="social_link">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="" class="social_link">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="" class="social_link">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3 class="footer__heading">Giới thiệu</h3>
+                            <ul class="footer-list">
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Giới thiệu</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Tuyển dụng</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Điều khoản</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-3">
+                            <h3 class="footer__heading">Giới thiệu</h3>
+                            <ul class="footer-list">
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Giới thiệu</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Tuyển dụng</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Điều khoản</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-3">
+                            <h3 class="footer__heading">Giới thiệu</h3>
+                            <ul class="footer-list">
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Giới thiệu</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Tuyển dụng</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Điều khoản</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-3">
+                            <h3 class="footer__heading">Giới thiệu</h3>
+                            <ul class="footer-list">
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Giới thiệu</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Tuyển dụng</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Điều khoản</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    <script th:replace="fragments::navbar_js"></script>
+</body>
+</html> 

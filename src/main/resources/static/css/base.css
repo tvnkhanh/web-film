@@ -1,0 +1,16 @@
+* {
+    box-sizing: inherit;
+
+}
+
+html {
+    /*16px*/
+    font-size: 62.5%;/*làm cho 1rem=10px*/
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;/*sans-serif là chủng chữ k có chân*/
+    box-sizing: border-box;
+}
+
+.body {
+    margin: 0;
+}

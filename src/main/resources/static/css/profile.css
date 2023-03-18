@@ -1,0 +1,180 @@
+
+.profile {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.profile_header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 26px;
+}
+
+.profile_cover {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.profile_cover-img {
+    width: 980px;
+}
+
+
+.profile_info {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 100;
+    bottom: 16px;
+    left: 132px;
+}
+
+.profile_info-img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.profile_info-name {
+    position: absolute;
+    bottom: 52px;
+    right: -82px;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+.profile_menu {
+    padding: 12px 204px;
+    border-bottom: 1px solid #ccc;
+}
+
+.profile_menu-item {
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin: 0 12px;
+    position: relative;
+}
+
+.profile_menu-item:nth-child(1)::after,
+.profile_menu-item:nth-child(2)::after {
+    position: absolute;
+    content: "";
+    right: -13px;
+    height: 16px;
+    border: 1px solid #ccc;
+}
+
+/*Container*/
+.profile_container {
+    max-width: 980px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+
+/*Post*/
+.border_class {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding-left: 22px !important;
+    height: 100%;
+}
+
+.profile_post {
+
+}
+
+.post_item-author {
+    display: flex;
+    margin: 12px 0;
+}
+
+.post_item-author-img {
+    width: 48px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.post_item-author-info {
+    margin: auto 12px;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.post_item-author-name {
+    display: block;
+    font-weight: 500;
+}
+
+.post_item-author-time {
+    margin-top: 4px;
+}
+
+.post_item-content {
+    font-size: 1.4rem;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.post_item-comment {
+    margin-top: 12px;
+}
+
+.post_item-comment-item {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+
+}
+
+.post_item-comment-avatar {
+    width: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.post_item-comment-content {
+    padding: 7px 12px;
+    background-color: #efefef;
+    border-radius: 12px;
+    font-size: 1.4rem;
+}
+
+.post_item-comment:last-child {
+    margin-bottom: 16px;
+}
+
+/*About*/
+
+.profile_about {
+    margin-top: 12px;
+}
+
+.profile_detail {
+    list-style: none;
+    padding: 0;
+}
+
+.profile_detail-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    padding: 8px;
+}
+
+.detail_name {
+    min-width: 82px;
+}
+
+.detail_data {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bxh.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Profile</title>
+</head>
+
+<body>
+    <header th:replace="fragments::navbar"></header>
+    <div class="profile">
+        <div class="container">
+            <div class="row">
+                <div class="profile_header col-12">
+                    <div class="profile_cover ">
+                        <img th:src="@{img/profile_cover.jpg}" alt="" class="profile_cover-img">
+                        <div class="profile_info">
+                            <img th:src="@{img/avatar.jpg}" alt="" class="profile_info-img">
+                            <span class="profile_info-name">Hồ Đạt</span>
+                        </div>
+                        <div class="profile_menu">
+                            <span class="profile_menu-item">Nhà</span>
+                            <span class="profile_menu-item">Hình</span>
+                            <span class="profile_menu-item">Video</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="profile_container ">
+                <div class="row">
+                    <div class="profile_post col-8">
+                        <div class="border_class">
+                            <div class="post_item-author">
+                                <img th:src="@{img/avatar.jpg}" alt="" class="post_item-author-img">
+                                <div class="post_item-author-info">
+                                    <div style="margin-bottom: 6px;">
+                                        <span class="post_item-author-name">Hồ Đạt</span>
+                                    </div>
+
+                                    <span class="post_item-author-time">1 tuần trước</span>
+                                </div>
+
+                            </div>
+                            <div class="post_item-content">
+                                Đã tham gia FilmBruh vào lúc 15:36 ngày 03/03/2023
+                            </div>
+
+                            <div class="post_item-comment">
+                                <div class="post_item-comment-item">
+
+                                    <img th:src="@{img/slime.jpeg}" alt="" class="post_item-comment-avatar">
+                                    <div class="post_item-comment-content">
+                                        <strong>FilmBurh</strong>
+                                        chào mừng thành viên
+                                        <strong>Đạt Hồ</strong>
+                                        gia nhập cùng mọi người!
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="post_item-comment">
+                                <div class="post_item-comment-item">
+
+                                    <img th:src="@{img/slime.jpeg}" alt="" class="post_item-comment-avatar">
+                                    <div class="post_item-comment-content">
+                                        <strong>FilmBurh</strong>
+                                        Đây là post mặc định của tất cả các thành viên
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="profile_about col-4">
+                        <div class="border_class">
+                            <ul class="profile_detail">
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">User ID</span>
+                                    <span class="detail_data">123344</span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">Username</span>
+                                    <span class="detail_data">dat1</span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">Email</span>
+                                    <span class="detail_data">datho@gmail.com</span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">Chức danh</span>
+                                    <span class="detail_data">Member VIP</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script th:replace="fragments::navbar_js"></script>
+</body>
+
+</html>
