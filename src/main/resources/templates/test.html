@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>username</th>
+      <th>pass</th>
+      <th>ngaytao</th>
+      <th>idrole</th>
+    </tr>
+    <tr th:each="accounts:${account}">
+      <td th:text = "${accounts.username}">
+      </td>
+      <td th:text = "${accounts.password}">
+      </td>
+      <td th:text = "${accounts.createDate}">
+      </td>
+      <td th:text = "${accounts.role.roleName}">
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
