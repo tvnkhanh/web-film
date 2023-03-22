@@ -16,12 +16,16 @@ public class UserService{
         userRepository.save(user);
     }
 
+
     public List<User> getUserList(){
         return userRepository.findAll();
     }
 
     public User findUserById(int id){
         return userRepository.findById(id);
+    }
+    public int findIDMax(){
+        return userRepository.findMaxId();
     }
 
     public User findUserByEmail(String email){return userRepository.findByEmail(email);}

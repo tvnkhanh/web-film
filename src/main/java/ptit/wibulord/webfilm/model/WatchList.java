@@ -27,5 +27,7 @@ public class WatchList {
                 inverseJoinColumns = {@JoinColumn(name = "ID_PHIM")})
     private Collection<Film> films;
 
-
+    public WatchList(User user) {
+        this.user = user;
+    }
 }

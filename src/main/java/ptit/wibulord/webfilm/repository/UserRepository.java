@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     public User findById(@Param("id")int id);
     @Query("select u from User u where u.email = :email")
     public User findByEmail(@Param("email")String email);
+    @Query("select maxindex() from User")
+    public int findMaxId();
 }

@@ -28,10 +28,10 @@ public class User {
     @JoinColumn(name = "TEN_TK")
     private Account account;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private WatchList watchList;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private FavoriteList favoriteList;
 
 }

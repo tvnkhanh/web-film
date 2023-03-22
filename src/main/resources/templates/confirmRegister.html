@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" th:href="@{/css/base.css}">
+  <link rel="stylesheet" th:href="@{/css/register.css}">
+  <div th:replace="fragments::html_head"></div>
+  <title>Document</title>
+</head>
+<body >
+<div class="main">
+  <form class="auth-form" id="confirm-form" method="post" th:action="@{/confirm}" >
+    <div class="auth-form_header">
+      <span class="auth-form_heading">Xác nhận</span>
+
+    </div>
+    <div class="auth-form_body">
+      <div class="auth-form_group">
+        <div class="auth-form_group-item">
+          <input id="username" th:name = "code" type="text" class="auth-form_group-item-input" placeholder="Mã xác nhận">
+        </div>
+        <span class="input_message"></span>
+      </div>
+      <span  class="error-message" th:text="${errorMessage}"></span>
+    </div>
+    <button class="btn form-submit">Xác nhận</button>
+  </form>
+</div>
+<script type="text/javascript" th:src="@{/js/validator.js}"></script>
+<script th:inline="javascript">
+  Validator({
+    form: "#confirm-form",
+    formGroupSelector: '.auth-form_group',
+    errorSelector: '.input_message',
+    rules:[
+      Validator.isRequired("#username"),
+      Validator.minLength("#username",6)
+    ]
+  });
+</script>
+</body>
+</html>

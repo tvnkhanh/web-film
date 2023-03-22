@@ -26,4 +26,8 @@ public class FavoriteList {
             joinColumns = {@JoinColumn(name = "ID_DSYT")},
             inverseJoinColumns = {@JoinColumn(name = "ID_PHIM")})
     private Collection<Film> films;
+
+    public FavoriteList(User user) {
+        this.user = user;
+    }
 }
