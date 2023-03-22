@@ -15,16 +15,17 @@
 
 <body>
     <header th:replace="fragments::navbar"></header>
-    <div class="profile">
+    <div class="profile" th:object="${user}">
         <div class="container">
             <div class="row">
                 <div class="profile_header col-12">
                     <div class="profile_cover ">
                         <img th:src="@{img/profile_cover.jpg}" alt="" class="profile_cover-img">
                         <div class="profile_info">
-                            <img th:src="@{img/avatar.jpg}" alt="" class="profile_info-img">
-                            <span class="profile_info-name">Hồ Đạt</span>
+                            <img th:src="@{${user.imgPath}}" alt="" class="profile_info-img">
+
                         </div>
+                        <span class="profile_info-name" th:text="${user.fullName}"></span>
                         <div class="profile_menu">
                             <span class="profile_menu-item">Nhà</span>
                             <span class="profile_menu-item">Hình</span>
@@ -39,10 +40,10 @@
                     <div class="profile_post col-8">
                         <div class="border_class">
                             <div class="post_item-author">
-                                <img th:src="@{img/avatar.jpg}" alt="" class="post_item-author-img">
+                                <img th:src="@{${user.imgPath}}" alt="" class="post_item-author-img">
                                 <div class="post_item-author-info">
                                     <div style="margin-bottom: 6px;">
-                                        <span class="post_item-author-name">Hồ Đạt</span>
+                                        <span class="post_item-author-name" th:text="${user.fullName}"></span>
                                     </div>
 
                                     <span class="post_item-author-time">1 tuần trước</span>
@@ -50,7 +51,7 @@
 
                             </div>
                             <div class="post_item-content">
-                                Đã tham gia FilmBruh vào lúc 15:36 ngày 03/03/2023
+                                Đã tham gia FilmBruh vào lúc 15:36 ngày <span th:text="${user.account.createDate}"></span>
                             </div>
 
                             <div class="post_item-comment">
@@ -60,7 +61,7 @@
                                     <div class="post_item-comment-content">
                                         <strong>FilmBurh</strong>
                                         chào mừng thành viên
-                                        <strong>Đạt Hồ</strong>
+                                        <strong th:text="${user.fullName}"></strong>
                                         gia nhập cùng mọi người!
                                     </div>
 
@@ -87,19 +88,19 @@
                             <ul class="profile_detail">
                                 <li class="profile_detail-item">
                                     <span class="detail_name">User ID</span>
-                                    <span class="detail_data">123344</span>
+                                    <span class="detail_data" th:text="${user.idUser}"></span>
                                 </li>
                                 <li class="profile_detail-item">
                                     <span class="detail_name">Username</span>
-                                    <span class="detail_data">dat1</span>
+                                    <span class="detail_data" th:text="${user.account.username}"></span>
                                 </li>
                                 <li class="profile_detail-item">
                                     <span class="detail_name">Email</span>
-                                    <span class="detail_data">datho@gmail.com</span>
+                                    <span class="detail_data" th:text="${user.email}"></span>
                                 </li>
                                 <li class="profile_detail-item">
                                     <span class="detail_name">Chức danh</span>
-                                    <span class="detail_data">Member VIP</span>
+                                    <span class="detail_data" th:text="${user.account.role.roleName}"></span>
                                 </li>
                             </ul>
                         </div>

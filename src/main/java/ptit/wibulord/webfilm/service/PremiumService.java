@@ -12,6 +12,9 @@ public class PremiumService {
     @Autowired
     private PremiumRepository premiumRepository;
 
+    public void addPack(Premium premium){
+        premiumRepository.save(premium);
+    }
     public List<Premium> getPremiumList(){
         return premiumRepository.findAll();
     }

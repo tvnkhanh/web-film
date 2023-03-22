@@ -3,14 +3,14 @@
 <head>
     <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <div th:replace="fragments::html_head"></div>
+    <div th:replace="~{fragments::html_head}"></div>
 
     <title>HOME PAGE</title>
 </head>
 <body>
     <div class="web_film">
         <!-- Header -->
-        <header th:replace="fragments::navbar"></header>
+        <header th:replace="~{fragments::navbar}"></header>
         <div class="web_container">
             <!-- <section class="container_header">
                 <div class="container_slider">

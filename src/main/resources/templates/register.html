@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Document</title>
+</head>
+<body >
+    <div class="main">
+        <form class="auth-form" id="register-form" method="post" th:action="@{/register}" >
+                <div class="auth-form_header">
+                    <span class="auth-form_heading">Đăng ký</span>
+                    <a href="/" class="auth-form_btn-switch">
+                        Đăng nhập
+                    </a>
+                    
+                </div>
+                <div class="auth-form_body">
+                        <div class="auth-form_group">
+                            <div class="auth-form_group-item">
+                                <i class="auth-form_group-item-icon fa-solid fa-user"></i>
+                                <input id="username" th:name = "username" type="text" class="auth-form_group-item-input" placeholder="Tên đăng nhập">
+                            </div>
+                            <span class="input_message"></span>
+                        </div>
+                        <div class="auth-form_group">
+                            <div class="auth-form_group-item">
+                                <i class="auth-form_group-item-icon fa-solid fa-lock"></i>
+                                <input id="password" th:name = "password" type="password" class="auth-form_group-item-input" placeholder="Mật khẩu">
+                            </div>
+                            <span class="input_message"></span>
+                        </div>
+                        <div class="auth-form_group">
+                            <div class="auth-form_group-item">
+                                <i class="auth-form_group-item-icon fa-solid fa-lock"></i>
+                                <input id="password-confirm" name = "password-confirm" type="password" class="auth-form_group-item-input" placeholder="Nhập lại mật khẩu">
+                            </div>
+                            <span class="input_message"></span>
+                        </div>
+                        <div class="auth-form_group">
+                            <div class="auth-form_group-item">
+                                <i class="auth-form_group-item-icon fa-solid fa-message"></i>
+                                <input id="name" th:name="name" type="text" class="auth-form_group-item-input" placeholder="Tên hiển thị">
+                            </div>
+                            <span class="input_message"></span>
+                        </div>
+
+                        <div class="auth-form_group">
+                            <div class="auth-form_group-item">
+                                <i class="auth-form_group-item-icon fa-solid fa-at"></i>
+                                <input id="email" th:name="email" type="text" class="auth-form_group-item-input" placeholder="Email">
+                            </div>
+                            <span class="input_message"></span>
+                        </div>
+                        <div class="auth-form_group">
+                            <div class="auth-form_group-item">
+                                <span style="font-size: 1.6rem;">Giới tính</span>
+                                <div class="auth-form_group-gender">
+                                    <div class="auth-form_group-item-gender">
+                                        <input type="radio" class="auth-form_group-item-radio"  th:name = "gender" th:value="0" >
+                                        <span class="gender_value">Nam</span>       
+                                    </div>
+                                    <div class="auth-form_group-item-gender">
+                                        <input type="radio" class="auth-form_group-item-radio"  th:name = "gender" th:value="1" >
+                                        <span class="gender_value">Nữ</span >                     
+                                    </div>
+                                    <div class="auth-form_group-item-gender">
+                                        <input type="radio" class="auth-form_group-item-radio"  th:name = "gender" th:value="2" checked>
+                                        <span class="gender_value">Không nói</span>                         
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                   <span  class="error-message" th:text="${errorMessage}"></span>
+                </div>
+                <button class="btn form-submit">Đăng ký</button>
+        </form>
+    </div>
+    <script type="text/javascript" th:src="@{/js/validator.js}"></script>
+    <script th:inline="javascript">
+      Validator({
+        form: "#register-form",
+        formGroupSelector: '.auth-form_group',
+        errorSelector: '.input_message',
+        rules:[
+            Validator.isRequired("#username"),
+            Validator.minLength("#username",6),
+            Validator.isRequired("#name"),
+            Validator.isRequired("#email"),
+            Validator.isEmail("#email"),
+            Validator.isRequired("#password"),
+            Validator.minLength("#password",6),
+            
+            Validator.isConfirmed("#password-confirm",function(){
+                return document.querySelector('#register-form #password').value
+            },'Mật khẩu nhập lại không chính xác.'),
+            Validator.isRequired("#password-confirm")
+        ]
+      });
+    </script>
+</body>
+</html>

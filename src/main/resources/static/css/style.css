@@ -117,6 +117,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 /* Header user*/
@@ -185,13 +186,14 @@
     position: absolute;
     top: 10%;
     right: 12px;
+    object-fit: cover;
 }
 
 .user_avatar-img {
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    object-fit: contain;
+    object-fit: cover;
 }
 .user_name {
     color:#333;

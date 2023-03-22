@@ -18,7 +18,7 @@
 
 </head>
 <body>
-  <header class="header" th:fragment="navbar">
+  <header class="header" th:fragment="navbar" th:object="${user}">
       <nav class="header_navbar">
           <ul class="header_navbar_list">
               <li class="header_navbar_item">
@@ -66,7 +66,7 @@
 
               <div class="header_option-item header_option-user">
                   <!-- <i class="header_option-icon fa-regular fa-user"></i> -->
-                  <img th:src="@{img/avatar.jpg}" alt="" class="user-avatar">
+                  <img th:src="@{${user.imgPath}}" alt="" class="user-avatar">
               </div>
           </div>
 
@@ -79,11 +79,11 @@
 
               <div class="navbar_user-header">
                   <div class="user_avatar">
-                      <img th:src="@{img/avatar.jpg}" alt="" class="user_avatar-img">
+                      <img th:src="@{${user.imgPath}}"alt="" class="user_avatar-img">
                   </div>
                   <div class="navbar_user-profile">
-                      <span class="user_name">Hồ Quốc Đạt</span>
-                      <span class="user_role">Người xem</span>
+                      <span class="user_name" th:text="${user.fullName}"></span>
+                      <span class="user_role" th:text="${user.account.role.roleName}"></span>
                   </div>
                   <div class="navbar_user-header-tab">
                       <div class="navbar_user-header-tab-item">
@@ -109,7 +109,7 @@
                   </ul> -->
                   <ul class="navbar_user-list">
                       <li class="navbar_user-item">
-                          <a href="profile" class="navbar_user-item-link">
+                          <a href="/profile" class="navbar_user-item-link">
                               <i class="navbar_user-icon fas fa-regular fa-user"></i>
                               <span>Trang cá nhân</span>
                           </a>

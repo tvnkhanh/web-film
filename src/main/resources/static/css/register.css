@@ -1,0 +1,132 @@
+.main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-image: url(../img/aot.gif); background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+.auth-form{
+    width: 476px;
+    max-height: 600px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    margin: auto 0;
+    text-align: center;
+}
+
+.auth-form_header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    margin: 0 18px;
+    font-weight: 600;
+    color: #d83333;
+}
+
+.auth-form_heading {
+    font-size: 2.2rem;
+}
+
+.auth-form_btn-switch {
+    color: #d83333;
+    text-decoration: none;
+    font-size: 1.8rem;
+}
+
+.auth-form_body {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.auth-form_group {
+    margin: 0 68px 12px;
+    text-align: left;
+}
+
+.auth-form_group-gender {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.auth-form_group-item {
+    position: relative;
+    margin-bottom: 2px;
+    
+}
+.auth-form_group-item-gender {
+    display: flex;
+    margin-right: 24px;
+}
+
+.auth-form_group-item-icon {
+    position: absolute;
+    left: 6px;
+    bottom: 9px;
+    font-size: 1.6rem;
+}
+
+.auth-form_group-item-input {
+    padding:8px 12px 8px 28px;
+    width: 100%;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size: 1.6rem;
+}
+.input_message {
+    font-size: 1.4rem;
+    color: #e00b0b;
+    font-weight: 300;
+    min-height: 17px;
+}
+
+.auth-form_group-item-input:focus {
+    outline-color: blue;
+}
+
+.auth-form_group-item-input.invalid{
+    border-color: #e00b0b;
+}
+.gender_value {
+    font-size: 1.6rem;
+    padding-left: 5px;
+}
+.auth-form_group-item-radio {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.form-submit {
+    margin-top: 12px;
+    margin-bottom: 32px;
+    background-color: rgb(209 24 24);
+    color: #fff;
+    padding: 6px 102px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 1.6rem;
+    font-weight: 400;
+
+}
+
+.error-message {
+    color: #e00b0b;
+    font-size: 1.6rem;
+}
+
+.btnReSend {
+    padding: 4px;
+    background-color: rgb(209 24 24);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+}
+
+.btn.btnReSend:hover,
+.btn.form-submit:hover{
+    cursor: pointer;
+    background-color: #ff3e3e;
+}

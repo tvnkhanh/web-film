@@ -19,7 +19,9 @@ public class User {
     @Column(name = "HOTEN")
     private String fullName;
     @Column(name = "EMAIL")
-    private int email;
+    private String email;
+    @Column(name="ANH")
+    private String imgPath;
     @Column(name = "GIOITINH")
     private String gender;
     @OneToOne(cascade = CascadeType.ALL)
