@@ -42,7 +42,7 @@ public class HomeController {
 
     ///login-register
     private int codeConfirm = 0;
-    private User user;
+    public static User user;
     private Account account;
     private FavoriteList favoriteList;
     private WatchList watchList;
@@ -134,7 +134,7 @@ public class HomeController {
 
     @GetMapping("/confirm")
     public String confirmRegister() {
-        codeConfirm = new Random().nextInt(999999) + 1;
+        codeConfirm = new Random().nextInt(900000) + 1;
         mailService.sendSimpleMail(new EmailDetails(user.getEmail(), Integer.toString(codeConfirm), "Thư xác nhận"));
         return "confirmRegister";
     }

@@ -128,6 +128,12 @@
                               <span>Đổi mật khẩu</span>
                           </a>
                       </li>
+                      <li class="navbar_user-item">
+                          <a th:href="@{/management}" class="navbar_user-item-link">
+                              <i class=" navbar_user-icon fas fa-regular fa-list-check"></i>
+                              <span>Quản lý</span>
+                          </a>
+                      </li>
 
                   </ul>
                   <hr class="header_user--separator">
@@ -152,7 +158,6 @@
                               <span>Nâng cấp premium</span>
                           </a>
                       </li>
-
                   </ul>
                   <hr class="header_user--separator">
                   <div class="navbar_user-item">
@@ -165,6 +170,16 @@
           </div>
       </nav>
   </header>
+  <div class="app-header" th:fragment="navbar_management" th:object="${user}">
+      <div class="app-header_logo">
+          <a class="management-link" href="#">
+              <img th:src="@{img/logo2.png}" alt="" class="management-logo">
+          </a>
+      </div>
+      <div class="app-header_content">
+
+      </div>
+  </div>
   <script th:fragment="navbar_js" th:src="@{js/user_navbar.js}"></script>
 </body>
 </html>
