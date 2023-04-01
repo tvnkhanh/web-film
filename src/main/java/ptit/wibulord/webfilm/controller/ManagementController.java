@@ -1,19 +1,103 @@
 package ptit.wibulord.webfilm.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ptit.wibulord.webfilm.model.Category;
+import ptit.wibulord.webfilm.model.Film;
+import ptit.wibulord.webfilm.service.CategoryService;
+import ptit.wibulord.webfilm.service.FilmService;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@ComponentScan
 @Controller
 @RequestMapping("/management")
 public class ManagementController {
-
+    @Autowired
+    CategoryService categoryService;
+    @Autowired
+    FilmService filmService;
     @GetMapping("")
     public String managementPage(){
-        return "/management/management";
+        return "management/management";
     }
     @GetMapping("/filmCategory")
-    public String management_CategoryPage(){
-        return "/management/management_category";
+    public String management_CategoryPage(ModelMap model){
+        List<Category> categoryList = categoryService.getCategoryList();
+        model.addAttribute("categoryList", categoryList);
+        return "management/management_category";
     }
+    @PostMapping("/filmCategory/save")
+    public String addCategory(ModelMap model , @RequestParam("name")String name, RedirectAttributes redirect){
+        if(categoryService.findByName(name)==null){
+            Category category = new Category();
+            category.setCategoryName(name);
+            categoryService.saveCategory(category);
+            redirect.addFlashAttribute("message", "Thêm thể loại thành công!");
+        }else{
+            redirect.addFlashAttribute("message", "Tên thể loại đã tồn tại");
+        }
+        return "redirect:/management/filmCategory";
+    }
+
+    @PostMapping("/filmCategory/update/{id}")
+    public String updateCategory(ModelMap model ,
+                                 @PathVariable("id")int id,
+                                 @RequestParam("name")String name,
+                                 RedirectAttributes redirect){
+        if(categoryService.findByName(name)==null){
+            Category category = new Category();
+            category.setIdCategory(id);
+            category.setCategoryName(name);
+            categoryService.saveCategory(category);
+            redirect.addFlashAttribute("message", "Thêm thể loại thành công!");
+        }else{
+            redirect.addFlashAttribute("message", "Cập nhật thất bại.");
+        }
+        return "redirect:/management/filmCategory";
+    }
+
+    @PostMapping("/filmCategory/delete/{id}")
+    public String deleteCategory(ModelMap model ,
+                                 @PathVariable("id")int id,
+                                 RedirectAttributes redirect){
+        System.out.println(id);
+        try{
+            categoryService.deleteCategory(id);
+            redirect.addFlashAttribute("message", "Xóa thể loại thành công!");
+        }catch(Exception e){
+            redirect.addFlashAttribute("message", "Xóa thất bại.");
+        }
+        return "redirect:/management/filmCategory";
+    }
+
+    @GetMapping("/Film")
+
+    public String management_FilmPage(ModelMap model){
+        List<Film> filmList = filmService.getFilms();
+        model.addAttribute("filmList", filmList);
+        return "management/management_film";
+    }
+    @GetMapping("/User")
+    public String management_UserPage(){
+        return "management/management_user";
+    }
+    @GetMapping("/Premium")
+    public String management_PremiumPage(){
+        return "management/management_premium";
+    }
+    @GetMapping("/View")
+    public String management_ViewPage(){
+        return "management/management_View";
+    }
+    @GetMapping("/Revenue")
+    public String management_RevenuePage(){
+        return "management/management_Revenue";
+    }
+
 }

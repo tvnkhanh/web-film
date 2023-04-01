@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/management.css}">
@@ -24,7 +24,7 @@
                             <span>Quản lý thể loại</span>
                         </div>
                     </a>
-                    <a class="management-link" href="">
+                    <a class="management-link" href="/management/Film">
                         <div class="sidebar_group-item">
                             <i class="sidebar-icon fa-solid fa-film"></i>
                             <span>Quản lý phim</span>
@@ -37,13 +37,13 @@
                     <div class="sidebar_group_head">
                         <span>NGƯỜI DÙNG</span>
                     </div>
-                    <a class="management-link" href="">
+                    <a class="management-link" href="/management/User">
                         <div class="sidebar_group-item">
                             <i class="sidebar-icon fa-solid fa-user"></i>
                             <span>Quản lý người dùng</span>
                         </div>
                     </a>
-                    <a class="management-link" href="">
+                    <a class="management-link" href="/management/Premium">
                         <div class="sidebar_group-item">
                             <i class="sidebar-icon fa-solid fa-money-bill"></i>
                             <span>Gói hội viên</span>
@@ -55,13 +55,13 @@
                     <div class="sidebar_group_head">
                         <span>THỐNG KÊ</span>
                     </div>
-                    <a class="management-link" href="">
+                    <a class="management-link" href="/management/Watch">
                         <div class="sidebar_group-item">
                             <i class="sidebar-icon fa-solid fa-eye"></i>
                             <span>Lượt xem</span>
                         </div>
                     </a>
-                    <a class="management-link" href="">
+                    <a class="management-link" href="/management/Revenue">
                         <div class="sidebar_group-item">
                             <i class="sidebar-icon fa-solid fa-sack-dollar"></i>
                             <span>Doanh thu </span>

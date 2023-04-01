@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link rel="stylesheet" th:href="@{/css/message.css}">
         <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-grid.css}">
         <link rel="stylesheet" th:href="@{/bootstrap/grid/bootstrap-grid.rtl.css.map}">
         <link rel="stylesheet" th:href="@{/bootstrap/grid/bootstrap-grid.rtl.min.css.map}">
@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+        <script th:src="@{/js/handleMessage.js}"></script>
     </div>
 
 </head>
@@ -23,7 +23,7 @@
           <ul class="header_navbar_list">
               <li class="header_navbar_item">
                   <a th:href="@{/home}" class="home">
-                      <img th:src="@{img/logo2.png}" alt="" class="logo">
+                      <img th:src="@{/img/logo2.png}" alt="" class="logo">
                   </a>
               </li>
               <li class="header_navbar_item">

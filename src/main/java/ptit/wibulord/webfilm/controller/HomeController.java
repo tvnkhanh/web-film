@@ -3,6 +3,7 @@ package ptit.wibulord.webfilm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +18,7 @@ import ptit.wibulord.webfilm.service.UserService;
 
 import java.util.Random;
 
+@ComponentScan
 @Controller
 public class HomeController {
     @Autowired

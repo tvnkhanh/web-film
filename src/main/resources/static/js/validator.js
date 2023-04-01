@@ -82,6 +82,16 @@ Validator.isEmail = function(selector,message){
     }
     
 }
+
+Validator.isEqualOld = function(selector,str, message){
+    return {
+        selector:selector,
+        test: (value)=>{
+            return value.toLowerCase()!=str.toLowerCase()?undefined:message||"Tên thể loại chưa thay đổi.";
+        }
+    }
+
+}
 Validator.minLength = function(selector,length,message){
     return {
         selector:selector,

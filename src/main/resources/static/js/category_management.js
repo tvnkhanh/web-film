@@ -9,7 +9,7 @@ btnAdd.onclick = () => {
     <div class="modal__overlay">
     </div>
     <div class="modal__body">
-        <form class="app-dialog" id="film_category-form" th:action ="@{management/filmCategory/add}" method="post">
+        <form class="app-dialog" id="film_category-form" action ="/management/filmCategory/save" method="post">
             <div class="app-dialog_main">
                 <div class="app-dialog_header">
                     <span>Thêm thể loại</span>
@@ -21,7 +21,7 @@ btnAdd.onclick = () => {
                 <div class="app-dialog_container">
                     <div class="app-dialog_group">
                         <div class="app-dialog_item">
-                            <input id="name" name ="name" type="text" placeholder="Tên thể loại"
+                            <input id="name" name="name" type="text" placeholder="Tên thể loại"
                                 class="app-dialog_item-input">
                             <span class="input_message"></span>
                         </div>
@@ -56,8 +56,8 @@ btnAdd.onclick = () => {
 }
 btnEditList.forEach((btnEdit) => {
     var row = btnEdit.closest('.app-main_table-data-row')
-    var idVal  = row.querySelector('.obj_id').id
-    var categoryName = row.childNodes[3].textContent
+    const idVal  = row.querySelector('.obj_id').id
+    const categoryName = row.childNodes[3].textContent
     btnEdit.onclick = () => {
         const dialog = document.createElement("div")
         dialog.classList.add("modal")
@@ -65,7 +65,7 @@ btnEditList.forEach((btnEdit) => {
     <div class="modal__overlay">
     </div>
     <div class="modal__body">
-        <form class="app-dialog" id="film_category-form" th:action ="@{management/filmCategory/edit/${idVal}}" method="post">
+        <form class="app-dialog" id="film_category-form" action ="/management/filmCategory/update/${idVal}" method="post">
             <div class="app-dialog_main">
                 <div class="app-dialog_header">
                     <span>Cập nhật thông tin thể loại</span>
@@ -96,6 +96,7 @@ btnEditList.forEach((btnEdit) => {
         errorSelector: '.input_message',
         rules: [
             Validator.isRequired("#name"),
+            Validator.isEqualOld("#name", '${categoryName}')
         ]
     });
     `
@@ -107,7 +108,17 @@ btnEditList.forEach((btnEdit) => {
             app.removeChild(dialog);
             app.removeChild(validation)
         }
+        // var form = document.querySelector("#film_category-form")
+        // form.onsubmit = (e)=>{
+        //     e.preventDefault();
+        //     var input = form.querySelector("#name")
+        //     if(input.textContent===categoryName){
+        //         var formGroup = input.closest(".app-dialog_group")
+        //
+        //     }
+        // }
     }
+
 }
 )
 
@@ -121,7 +132,7 @@ btnDeleteList.forEach((btnDelete) => {
         dialog.innerHTML = `
             <div class="modal__overlay"></div>
             <div class="modal__body">
-                <form class="app-dialog" id="film_category-form" th:action ="@{/management/filmCategory/delete/${idVal}}" >
+                <form class="app-dialog" id="film_category-form" action ="/management/filmCategory/delete/${idVal}" method="post">
                     <div class="app-dialog_main">
                         <div class="app-dialog_header">
                             <span>Xác nhận</span>

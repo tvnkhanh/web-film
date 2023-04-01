@@ -24,6 +24,8 @@ public class Film {
     private String imgPath;
     @Column(name = "MOTA")
     private String describe;
+    @Column(name = "LOAI")
+    private String type;
     @ManyToMany(mappedBy = "films")
     private Collection<WatchList> watchLists;
     @ManyToMany(mappedBy = "films")
@@ -35,6 +37,6 @@ public class Film {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "CT_THELOAI",
             joinColumns = {@JoinColumn(name = "ID_PHIM")},
-            inverseJoinColumns = {@JoinColumn(name = "ID_THELOAI")})
+            inverseJoinColumns = {@JoinColumn(name = "ID_TL")})
     private Collection<Category> categoryList;
 }
