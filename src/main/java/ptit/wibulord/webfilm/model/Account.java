@@ -11,7 +11,8 @@ import java.util.Date;
 @Table(name="TAIKHOAN")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Account {
     @Id
     @Column(name = "TEN_TK")

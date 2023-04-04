@@ -1,10 +1,7 @@
 function showMessage(message){
     const body = document.querySelector("body")
-    const btnshow = document.querySelector("btnshow")
-    // btnshow.onclick = ()=>{
     var messageform = document.createElement("div")
     messageform.classList.add("message")
-    // messageform.style.animation=`showMessage ease .3s`
     messageform.innerHTML=`
         <div class="message_header">
             <span>Thông báo</span>

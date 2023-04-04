@@ -1,9 +1,7 @@
 package ptit.wibulord.webfilm.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 
@@ -11,7 +9,8 @@ import java.util.Collection;
 @Table(name="PHIM")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Film {
 
     @Id
@@ -34,9 +33,6 @@ public class Film {
     @OneToMany(mappedBy = "film")
     private Collection<Episode> episodeList;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "CT_THELOAI",
-            joinColumns = {@JoinColumn(name = "ID_PHIM")},
-            inverseJoinColumns = {@JoinColumn(name = "ID_TL")})
+    @ManyToMany(mappedBy = "filmList")
     private Collection<Category> categoryList;
 }

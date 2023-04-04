@@ -152,7 +152,7 @@
     border-radius: 5px;
     color: #fff;
     font-weight: 400;
-    max-width: 80px;
+    max-width: 146px;
 }
 
 .management_btn:hover {
@@ -194,12 +194,14 @@
     align-items: center;
     
 }
-.data-option-edit {
+.data-option-edit,
+.data-option-addEp{
     padding-right: 22px;
 } 
 
 .data-option-edit:hover ,
-.data-option-delete:hover
+.data-option-delete:hover,
+.data-option-addEp:hover
 {
     cursor: pointer;
 
@@ -221,7 +223,12 @@
 .app-main_table-data-row td{
     text-align: left;
     line-height: 1.6rem;
+    line-height: 1.6rem;
     padding: 6px;
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 

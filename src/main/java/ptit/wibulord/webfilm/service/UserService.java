@@ -27,6 +27,5 @@ public class UserService{
     public int findIDMax(){
         return userRepository.findMaxId();
     }
-
     public User findUserByEmail(String email){return userRepository.findByEmail(email);}
 }

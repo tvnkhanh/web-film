@@ -1,9 +1,7 @@
 package ptit.wibulord.webfilm.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 
@@ -11,7 +9,8 @@ import java.util.Collection;
 @Table(name="DSYEUTHICH")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class FavoriteList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,7 @@ public class FavoriteList {
     @JoinColumn(name = "ID_ND")
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "CT_YEUTHICH",
             joinColumns = {@JoinColumn(name = "ID_DSYT")},
             inverseJoinColumns = {@JoinColumn(name = "ID_PHIM")})

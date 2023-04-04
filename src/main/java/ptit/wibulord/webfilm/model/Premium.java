@@ -1,8 +1,6 @@
 package ptit.wibulord.webfilm.model;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 
@@ -10,7 +8,8 @@ import java.util.Collection;
 @Table(name="GOIHOIVIEN")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Premium {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

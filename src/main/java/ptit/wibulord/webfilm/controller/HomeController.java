@@ -12,9 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import ptit.wibulord.webfilm.model.*;
-import ptit.wibulord.webfilm.service.AccountService;
-import ptit.wibulord.webfilm.service.MailService;
-import ptit.wibulord.webfilm.service.UserService;
+import ptit.wibulord.webfilm.service.*;
 
 import java.util.Random;
 
@@ -23,6 +21,10 @@ import java.util.Random;
 public class HomeController {
     @Autowired
     AccountService accountService;
+    @Autowired
+    FavoriteListService favoriteListService;
+    @Autowired
+    WatchListService watchListService;
 
     @RequestMapping("/home")
     public String index(ModelMap model) {
@@ -57,30 +59,22 @@ public class HomeController {
     MailService mailService;
 
     @GetMapping("/")
-    public String showLoginPage(ModelMap model) {
-        model.addAttribute("errorMessage",message);
-        message="";
+    public String showLoginPage() {
         return "login";
     }
-
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password) {
+                        @RequestParam("password") String password, RedirectAttributes redirect) {
         Account account = accountService.findAccountByUsername(username);
-
         if (account == null ||!account.isStatus()) {
-            message = "Tài khoản không tồn tại hoặc bị khóa";
+            redirect.addFlashAttribute("message","Tài khoản không tồn tại hoặc bị khóa!");
             return "redirect:/";
         }
         if (!account.getPassword().equals(password)) {
-            message="Tài khoản hoặc mật khẩu không đúng";
+            redirect.addFlashAttribute("message","Sai tài khoản hoặc mật khẩu!");
             return "redirect:/";
         }
-
-
-
         user = account.getUser();
-//        model.addAttribute("user", user);
         return "redirect:/home";
     }
 
@@ -97,12 +91,12 @@ public class HomeController {
                            @RequestParam("gender") int gender, ModelMap model) {
 
         if (accountService.findAccountByUsername(userName) != null) {
-            model.addAttribute("errorMessage", "Tên đăng nhập đã tồn tại");
+            model.addAttribute("errorMessage", "Tên đăng nhập đã tồn tại!");
             return "register";
         }
 
         if (userService.findUserByEmail(email) != null) {
-            model.addAttribute("errorMessage", "Email đã được sử dụng");
+            model.addAttribute("errorMessage", "Email đã được sử dụng!");
 
             return "register";
         } else {
@@ -126,10 +120,6 @@ public class HomeController {
             role.setRoleName("Member");
             account.setRole(role);
             user.setAccount(account);
-            favoriteList=new FavoriteList(user);
-            watchList = new WatchList(user);
-            user.setWatchList(new WatchList());//watchList
-            user.setFavoriteList(new FavoriteList());//favoriteList
             return "redirect:/confirm";
         }
     }
@@ -142,13 +132,17 @@ public class HomeController {
     }
 
     @PostMapping("/confirm")
-    public String confirmRegister(ModelMap model, @RequestParam("code") int code) {
+    public String confirmRegister(ModelMap model, @RequestParam("code") int code,RedirectAttributes redirect) {
         if (codeConfirm == code) {
             userService.addUser(user);
-
-            return "login";
+            int maxId = userService.findIDMax();
+            User temp = userService.findUserById(maxId);
+            favoriteListService.addFavoriteList(new FavoriteList(temp));
+            watchListService.addWatchList(new WatchList(temp));
+            redirect.addFlashAttribute("message","Tạo tài khoản thành công!");
+            return "redirect:/";
         }
-        model.addAttribute("message", "Mã nhập vào không khớp.");
+        redirect.addFlashAttribute("message","Mã nhập vào không khớp!");
         return "redirect:/confirm";
     }
 

@@ -89,17 +89,27 @@
             <th>Mô tả</th>
             <th>Thể loại</th>
             <th>Loại</th>
-            <th>Thêm tập</th>
+<!--            <th>Thêm tập</th>-->
             <th>Thiết lập</th>
           </tr>
           <tbody class="app-main_table-body">
           <tr class="app-main_table-data-row" th:each="film,iterStart:${filmList}">
             <th th:id="${film.filmID}" class="obj_id" scope="row" th:text="${film.filmID}"></th>
             <td th:text="${film.filmName}"></td>
-            <td th:text="${film.describe}"></td>
-            <td th:text="${film.categoryList[0]}" ></td>
+<!--            <td th:text="${film.describe}"></td>-->
+            <td>Câu chuyện tập trung vào Gabimaru, từng được tôn vinh là ninja mạnh nhất, nhưng hiện tại đã bỏ nghề, vì phạm luật của làng mình. Sau khi bị bắt, anh tuyên bố rằng mình không còn gì để sống. Tuy nhiên, do trình độ luyện tập siêu phàm của mình, anh đã vô tình sống sót sau nhiều lần bị hành quyết, từ nỗ lực chặt đầu đến chém cổ. Kẻ hành quyết Sagiri Asaemon nói với anh ta rằng anh ta còn gắn bó lâu dài với cuộc sống và giao cho anh một nhiệm vụ để giành được sự tha bổng của mình: tìm ra thuốc trường sinh bất tử.</td>
+<!--            <td th:text="${film.categoryList[0]}" ></td>-->
+            <td>Harem, Ecchi</td>
             <td th:text="${film.type}"></td>
+<!--            <td class="data-option">-->
+<!--              <div class="data-option-addEp">-->
+<!--                <i class="option-icon fa-solid fa-plus"></i>-->
+<!--              </div>-->
+<!--            </td>-->
             <td class="data-option">
+              <div class="data-option-addEp">
+                <i class="option-icon fa-solid fa-plus"></i>
+              </div>
               <div class="data-option-edit">
                 <i class="option-icon fa-solid fa-pen"></i>
               </div>
@@ -111,11 +121,11 @@
           <tr class="app-main_table-data-row">
             <th id="2" class="obj_id" scope="row">2</th>
             <td>Harem</td>
-            <td class="data-option">
-              <div class="data-option-addEp">
-                <i class="option-icon fa-solid fa-plus"></i>
-              </div>
-            </td>
+<!--            <td class="data-option">-->
+<!--              <div class="data-option-addEp">-->
+<!--                <i class="option-icon fa-solid fa-plus"></i>-->
+<!--              </div>-->
+<!--            </td>-->
             <td class="data-option">
               <div class="data-option-edit">
                 <i class="option-icon fa-solid fa-pen"></i>

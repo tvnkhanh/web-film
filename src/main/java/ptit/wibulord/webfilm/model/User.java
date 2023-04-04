@@ -2,15 +2,14 @@ package ptit.wibulord.webfilm.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity()
 @Table(name="NGUOIDUNG")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +32,8 @@ public class User {
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private FavoriteList favoriteList;
+
+    public User(int idUser) {
+        this.idUser = idUser;
+    }
 }
