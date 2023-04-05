@@ -99,7 +99,13 @@
 <!--            <td th:text="${film.describe}"></td>-->
             <td>Câu chuyện tập trung vào Gabimaru, từng được tôn vinh là ninja mạnh nhất, nhưng hiện tại đã bỏ nghề, vì phạm luật của làng mình. Sau khi bị bắt, anh tuyên bố rằng mình không còn gì để sống. Tuy nhiên, do trình độ luyện tập siêu phàm của mình, anh đã vô tình sống sót sau nhiều lần bị hành quyết, từ nỗ lực chặt đầu đến chém cổ. Kẻ hành quyết Sagiri Asaemon nói với anh ta rằng anh ta còn gắn bó lâu dài với cuộc sống và giao cho anh một nhiệm vụ để giành được sự tha bổng của mình: tìm ra thuốc trường sinh bất tử.</td>
 <!--            <td th:text="${film.categoryList[0]}" ></td>-->
-            <td>Harem, Ecchi</td>
+            <td class = "categoryStr" th:text="${film.categoryList}">
+<!--              <script th:inline="javascript">-->
+<!--                var categoryList = [[${film.categoryList}]]-->
+<!--                loadCategory(categoryList);-->
+<!--              </script>-->
+
+            </td>
             <td th:text="${film.type}"></td>
 <!--            <td class="data-option">-->
 <!--              <div class="data-option-addEp">-->

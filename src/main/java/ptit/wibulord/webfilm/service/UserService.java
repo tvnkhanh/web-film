@@ -1,6 +1,7 @@
 package ptit.wibulord.webfilm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ptit.wibulord.webfilm.model.User;
 import ptit.wibulord.webfilm.repository.UserRepository;
@@ -18,7 +19,7 @@ public class UserService{
 
 
     public List<User> getUserList(){
-        return userRepository.findAll();
+        return userRepository.findAll(Sort.by(Sort.Direction.ASC,"idUser"));
     }
 
     public User findUserById(int id){

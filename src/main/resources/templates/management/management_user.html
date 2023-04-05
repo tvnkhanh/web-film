@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link rel="stylesheet" th:href="@{/css/base.css}">
+  <link rel="stylesheet" th:href="@{/css/management.css}">
+  <link rel="stylesheet" th:href="@{/css/register.css}">
+  <link rel="stylesheet" th:href="@{/css/message.css}">
+  <div th:replace="fragments::html_head"></div>
+  <title>Management Category Page</title>
+</head>
+
+<body>
+<script th:inline="javascript">
+  /* Set message variable with Thymeleaf */
+  var message = [[${message}]];
+  if(message!==null){
+    showMessage(message)
+    // console.log(message)
+  }
+
+</script>
+<div class="app-management">
+  <div th:replace="fragments::navbar_management"></div>
+  <div class="app-main">
+    <div class="app-sidebar">
+      <ul class="sidebar_menu">
+        <li class="sidebar_group">
+          <div class="sidebar_group_head">
+            <span>PHIM</span>
+          </div>
+          <a class="management-link" href="/management/filmCategory">
+            <div class="sidebar_group-item sidebar_group-item--active">
+              <i class="sidebar-icon fa-solid fa-layer-group"></i>
+              <span>Quản lý thể loại</span>
+            </div>
+          </a>
+          <a class="management-link" href="/management/Film">
+            <div class="sidebar_group-item">
+              <i class="sidebar-icon fa-solid fa-film"></i>
+              <span>Quản lý phim</span>
+            </div>
+          </a>
+
+        </li>
+
+        <li class="sidebar_group">
+          <div class="sidebar_group_head">
+            <span>NGƯỜI DÙNG</span>
+          </div>
+          <a class="management-link" href="/management/User">
+            <div class="sidebar_group-item">
+              <i class="sidebar-icon fa-solid fa-user"></i>
+              <span>Quản lý người dùng</span>
+            </div>
+          </a>
+          <a class="management-link" href="/management/Premium">
+            <div class="sidebar_group-item">
+              <i class="sidebar-icon fa-solid fa-money-bill"></i>
+              <span>Gói hội viên</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="sidebar_group">
+          <div class="sidebar_group_head">
+            <span>THỐNG KÊ</span>
+          </div>
+          <a class="management-link" href="/management/Watch">
+            <div class="sidebar_group-item">
+              <i class="sidebar-icon fa-solid fa-eye"></i>
+              <span>Lượt xem</span>
+            </div>
+          </a>
+          <a class="management-link" href="/management/Revenue">
+            <div class="sidebar_group-item">
+              <i class="sidebar-icon fa-solid fa-sack-dollar"></i>
+              <span>Doanh thu </span>
+            </div>
+          </a>
+
+        </li>
+      </ul>
+    </div>
+    <div class="app-main-container">
+      <div class="app-main_option">
+        <div class="app-main_search">
+          <input type="text" class="app-main_search-input">
+          <i class="app-main_search-icon fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+      <div class="app-main_data">
+        <span class="app-main_data-head">Danh sách người dùng</span>
+        <table class="app-main_table">
+          <tr class="app-main_table-header">
+            <th>ID</th>
+            <th>Tên hiển thị</th>
+            <th>Email</th>
+            <th>Tên tài khoản</th>
+            <th>Trạng thái</th>
+          </tr>
+          <tbody class="app-main_table-body">
+          <tr class="app-main_table-data-row" th:each="user,iterStart:${userList}">
+            <th th:id="${user.idUser}" class="obj_id" scope="row" th:text="${user.idUser}"></th>
+            <td th:text="${user.fullName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.account.username}"></td>
+            <td class="data-option">
+              <div class="data-option-status data-option-status--active" th:if="${user.account.status == true}">
+                <i class="fa-sharp fa-solid fa-circle-check"></i>
+              </div>
+              <div  class="data-option-status data-option-status--disabled" th:if="${user.account.status == false}">
+                <i class="fa-solid fa-circle-xmark"></i>
+              </div>
+            </td>
+          </tr>
+          <!--                            <tr class="app-main_table-data-row">-->
+          <!--                                <th id="2" class="obj_id" scope="row">2</th>-->
+          <!--                                <td>Harem</td>-->
+          <!--                                <td class="data-option">-->
+          <!--                                    <div class="data-option-edit">-->
+          <!--                                        <i class="option-icon fa-solid fa-pen"></i>-->
+          <!--                                    </div>-->
+          <!--                                    <div class="data-option-delete">-->
+          <!--                                        <i class="fa-solid fa-trash"></i>-->
+          <!--                                    </div>-->
+          <!--                                </td>-->
+          <!--                            </tr>-->
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script th:src="@{/js/user_management.js}"></script>
+</div>
+</body>
+
+</html>

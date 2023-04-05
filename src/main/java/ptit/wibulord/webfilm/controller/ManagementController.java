@@ -6,10 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ptit.wibulord.webfilm.model.Account;
 import ptit.wibulord.webfilm.model.Category;
 import ptit.wibulord.webfilm.model.Film;
+import ptit.wibulord.webfilm.model.User;
+import ptit.wibulord.webfilm.service.AccountService;
 import ptit.wibulord.webfilm.service.CategoryService;
 import ptit.wibulord.webfilm.service.FilmService;
+import ptit.wibulord.webfilm.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,10 @@ public class ManagementController {
     CategoryService categoryService;
     @Autowired
     FilmService filmService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    AccountService accountService;
     @GetMapping("")
     public String managementPage(){
         return "management/management";
@@ -84,9 +92,40 @@ public class ManagementController {
         return "management/management_film";
     }
     @GetMapping("/User")
-    public String management_UserPage(){
+    public String management_UserPage(ModelMap model){
+        List<User> userList = userService.getUserList();
+        model.addAttribute("userList", userList);
         return "management/management_user";
     }
+    @PostMapping("User/status/{username}")
+    public String activeAccount(@PathVariable("username")String username , RedirectAttributes redirect){
+        try{
+            Account account = accountService.findAccountByUsername(username);
+
+            if(account.isStatus()==true)account.setStatus(false);
+            else account.setStatus(true);
+            accountService.addAccount(account);
+            redirect.addFlashAttribute("message", "Thay đổi trạng thái tài khoản \"" + username+"\" thành công!");
+
+        }catch (Exception e){
+            redirect.addFlashAttribute("message", "Thay đổi trạng thái tài khoản \"" + username+"\" không thành công.");
+        }
+        return "redirect:/management/User";
+    }
+
+//    @PostMapping("User/disable/{username}")
+//    public String disableAccount(@PathVariable("username")String username , RedirectAttributes redirect){
+//        try{
+//            Account account = accountService.findAccountByUsername(username);
+//            account.setStatus(false);
+//            accountService.addAccount(account);
+//            redirect.addFlashAttribute("message", "Khóa tài khoản " + username+" thành công!");
+//
+//        }catch (Exception e){
+//            redirect.addFlashAttribute("message", "Khóa tài khoản " + username+" không thành công.");
+//        }
+//        return "redirect:/User";
+//    }
     @GetMapping("/Premium")
     public String management_PremiumPage(){
         return "management/management_premium";

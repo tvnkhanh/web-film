@@ -25,3 +25,10 @@ function showMessage(message){
     }
     // }
 }
+function loadCategory(categoryList) {
+    var s =  categoryList.reduce((output,category )=>{
+        return output + ',' + category.categoryName;
+    } )
+    const category = document.querySelector(".categoryStr")
+    category.innerText = s;
+}

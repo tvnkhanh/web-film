@@ -24,6 +24,11 @@ public class Episode {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datePosted;
 
+    @Column(name = "ANH")
+    private String imgPath;
+    @Column(name = "LINKVD")
+    private String videoPath;
+
     @ManyToOne
     @JoinColumn(name="ID_PHIM")
     private Film film;

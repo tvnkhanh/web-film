@@ -201,14 +201,20 @@
 
 .data-option-edit:hover ,
 .data-option-delete:hover,
-.data-option-addEp:hover
+.data-option-addEp:hover,
+.data-option-status:hover
 {
     cursor: pointer;
 
 }
-.data-option-delete {
+.data-option-delete,
+.data-option-status--disabled{
     text-decoration: none;
     color: #ff0000;
+}
+.data-option-status--active {
+    text-decoration: none;
+    color: #43de00;
 }
 .option-icon {
     color: #1c00ff;
