@@ -6,14 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ptit.wibulord.webfilm.model.Account;
-import ptit.wibulord.webfilm.model.Category;
-import ptit.wibulord.webfilm.model.Film;
-import ptit.wibulord.webfilm.model.User;
-import ptit.wibulord.webfilm.service.AccountService;
-import ptit.wibulord.webfilm.service.CategoryService;
-import ptit.wibulord.webfilm.service.FilmService;
-import ptit.wibulord.webfilm.service.UserService;
+import ptit.wibulord.webfilm.model.*;
+import ptit.wibulord.webfilm.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +24,8 @@ public class ManagementController {
     UserService userService;
     @Autowired
     AccountService accountService;
+    @Autowired
+    PremiumService premiumService;
     @GetMapping("")
     public String managementPage(){
         return "management/management";
@@ -127,8 +123,55 @@ public class ManagementController {
 //        return "redirect:/User";
 //    }
     @GetMapping("/Premium")
-    public String management_PremiumPage(){
+    public String management_PremiumPage(ModelMap model){
+        List<Premium> premiumList = premiumService.getPremiumList();
+        model.addAttribute("premiumList",premiumList);
         return "management/management_premium";
+    }
+    @PostMapping("/Premium/save")
+    public String savePack(@RequestParam("price")long price,
+                           @RequestParam("quantityDay")int quantity,
+                           RedirectAttributes redirect){
+        Premium premium = new Premium();
+        premium.setPrice(price);
+        premium.setNofDay(quantity);
+        try{
+            premiumService.addPack(premium);
+            redirect.addFlashAttribute("message", "Thêm gói thành công!");
+        }catch (Exception e){
+            redirect.addFlashAttribute("message", "Thêm gói thất bại.");
+        }
+        return "redirect:/management/Premium";
+    }
+    @PostMapping("/Premium/update/{id}")
+    public String updatePack(@PathVariable("id")int id
+                            ,@RequestParam("price")long price,
+                            @RequestParam("quantityDay")int quantity,
+                            RedirectAttributes redirect){
+        Premium premium = new Premium();
+        premium.setPrice(price);
+        premium.setNofDay(quantity);
+        premium.setIdPackage(id);
+        try{
+            premiumService.addPack(premium);
+            redirect.addFlashAttribute("message", "Cập nhật thông tin gói thành công!");
+        }catch (Exception e){
+            redirect.addFlashAttribute("message", "Cập nhật thông tin gói thất bại.");
+        }
+        return "redirect:/management/Premium";
+    }
+
+    @PostMapping("/Premium/delete/{id}")
+    public String deletePack(
+                                 @PathVariable("id")int id,
+                                 RedirectAttributes redirect){
+        try{
+            premiumService.deletePack(id);
+            redirect.addFlashAttribute("message", "Xóa gói thành công!");
+        }catch(Exception e){
+            redirect.addFlashAttribute("message", "Xóa gói thất bại.");
+        }
+        return "redirect:/management/Premium";
     }
     @GetMapping("/View")
     public String management_ViewPage(){

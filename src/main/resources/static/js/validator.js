@@ -108,3 +108,11 @@ Validator.isConfirmed = function(selector, str, message){
         }
     }
 }
+Validator.minValue = function(selector, intValue, message) {
+    return {
+        selector: selector,
+        test: (value) => {
+            return value >= intValue ? undefined : message || "Giá trị nhập vào phải lớn hơn 0.";
+        }
+    }
+}
