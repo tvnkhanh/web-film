@@ -1,0 +1,21 @@
+.chart_detail {
+    list-style: none;
+}
+
+.chart_detail-item {
+
+}
+
+.chart_detail-item-name {
+
+}
+
+.chart_detail-item-percent {
+
+}
+
+.doughnut-chart {
+    width: 350px !important;
+    height: 350px !important;
+    
+}

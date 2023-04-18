@@ -22,30 +22,22 @@
                     <a href="#" class="container_link">PHIM MỚI NHẤT</a>
                 </div>
                 <div class="row">
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                    <div th:each="data, dataStat : ${newestEp}" th:unless="${dataStat.index > 12}" class="col-3">
+                        <a th:href="${data.getVideoPath()}" class="film_link">
+                            <div class="film_item">
+                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb">
                                 <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
+                                    <h3 class="film_name" th:text="${data.getFilm().getFilmName()}"></h3>
                                     <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
+                                        <span class="film_title">
+                                            Tập
+                                            <span class="film_title" th:text="${data.getEpNum()}"></span>
+                                        </span>
 
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
+                                        <span class="film_title">
+                                            <span class="film_title" th:text="${data.getView()}"></span>
+                                            lượt xem
+                                        </span>
                                     </div>
 
                                 </div>
@@ -53,172 +45,6 @@
                         </a>
                     </div>
 
-                    <div class=" col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  film--complete">
-                                <div class="film_status">
-                                    <span>HOÀN THÀNH</span>
-                                </div>
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item   film--complete">
-                                <div class="film_status">
-                                    <span>HOÀN THÀNH</span>
-                                </div>
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item  ">
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <a href="#" class="film_link">
-                            <div class="film_item    film--complete ">
-                                <div class="film_status">
-                                    <span>HOÀN THÀNH</span>
-                                </div>
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name">Mahoutsukai no yoru</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">Tập 8</span>
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </section>
 

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/management.css}">
+    <link rel="stylesheet" th:href="@{/css/statistic.css}">
+    <link rel="stylesheet" th:href="@{/css/chart.css}">
+    <div th:replace="fragments::html_head"></div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Statistic</title>
+</head>
+<body>
+    <div class="statistic">
+        <div th:replace="fragments::navbar_management"></div>
+        <div class="app-main">
+            <div class="app-sidebar">
+                <ul class="sidebar_menu">
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>PHIM</span>
+                        </div>
+                        <a class="management-link" href="/management/filmCategory">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-layer-group"></i>
+                                <span>Quản lý thể loại</span>
+                            </div>
+                        </a>
+                        <a class="management-link" href="/management/Film">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-film"></i>
+                                <span>Quản lý phim</span>
+                            </div>
+                        </a>
+
+                    </li>
+
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>NGƯỜI DÙNG</span>
+                        </div>
+                        <a class="management-link" href="/management/User">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-user"></i>
+                                <span>Quản lý người dùng</span>
+                            </div>
+                        </a>
+                        <a class="management-link" href="/management/Premium">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-money-bill"></i>
+                                <span>Gói hội viên</span>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>THỐNG KÊ</span>
+                        </div>
+                        <a class="management-link" href="/management/Revenue/GetDetail">
+                            <div class="sidebar_group-item sidebar_group-item--active">
+                                <i class="sidebar-icon fa-solid fa-sack-dollar"></i>
+                                <span>Doanh thu</span>
+                            </div>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="app-main-container">
+                <div class="statistic_block">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="statistic_revenue col-6">
+                                <div class="statistic_revenue-header">
+                                    <h2>Doanh thu</h2>
+                                </div>
+                                <div class="statistic_revenue-option">
+                                    <div class="statistic_revenue-group">
+                                        <select class="statistic_revenue-item statistic_revenue-choice" name="choice">
+                                            <option value="day">Ngày</option>
+                                            <option value="month">Tháng</option>
+                                            <option value="year">Năm</option>
+                                        </select>
+                                        <form action="Revenue/GetDetail" method="post" id="option_value">
+                                            <div class="statistic_revenue-item" id="day">
+                                                   <h3 class="statistic_revenue-item-name">Ngày</h3>
+                                                    <input type="date"  name = "day" class="statistic_revenue-item-value" id = "dayInput">
+                                            </div>
+                                            <div class="statistic_revenue-item disabled" id="month">
+                                                   <h3 class="statistic_revenue-item-name">Tháng</h3>
+                                                    <input type="number" min="1" max="12" name = "month" class="statistic_revenue-item-value" id = "monthInput">
+                                            </div>
+                                            <div class="statistic_revenue-item disabled" id="year">
+                                                    <h3 class="statistic_revenue-item-name">Năm</h3>
+                                                    <input type="number"  name = "year"  class="statistic_revenue-item-value" id = "yearInput">
+                                            </div>
+                                            <button class = "btn-submit-option">
+                                                Xem
+                                                </button>  
+                                        </form>
+                                    </div>
+                                
+                                </div>
+                                <div class="statistic_revenue-graph">
+                                    <div class="statistic_revenue-chart">
+                                        <canvas class = "doughnut-chart" ></canvas>
+                                        <script th:inline="javascript">
+                                            const charData = {
+                                                labels: [],
+                                                data:[]
+                                            }
+                                            var listData = [[${list}]]
+                                            listData.forEach((item) =>{
+                                                if(item.quantity != 0){
+                                                    charData.labels.push(item.quantity + " Ngày")
+                                                    charData.data.push(item.revenue)
+                                                }else {
+                                                    charData.labels.push("Khác")
+                                                    charData.data.push(item.revenue)
+                                                }
+                                            })
+                                            const myChart = document.querySelector(".doughnut-chart")
+
+                                            new Chart(myChart,{
+                                                type: "doughnut",
+                                                data: {
+                                                    labels:charData.labels,
+                                                    datasets: [
+                                                        {
+                                                            label: "Tổng doanh thu",
+                                                            data: charData.data
+                                                        }
+                                                    ]
+                                                },
+                                                options: {
+                                                    borderWidth: 10,
+                                                    borderRadius: 2,
+                                                    hoverBorderWidth: 2,
+                                                }
+                                            })
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="statistic_revenue-graph-title"><h3>Doanh thu </h3> &nbsp <h3 th:text = "${title}" ></h3></div>
+                            </div>
+                            <div class="statistic_detail col-5">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="total-revenue statistic_detail-item col-5">
+                                            <div class="statistic_detail-icon">
+                                                <i class="fa-solid fa-dollar-sign"></i>
+                                            </div>
+                                            <div class="statistic_detail-value">
+                                                <span th:text =" ${totalRevenue}"></span>
+                                                <span>VND</span>
+                                            </div>
+                                            <div class="statistic_detail-title">Tổng doanh thu</div>
+                                        </div>
+                                        <div class="total-quantity-pack statistic_detail-item col-5">
+                                            <div class="statistic_detail-icon">
+                                                <i class="fa-solid fa-cube"></i>
+                                            </div>
+                                            <div class="statistic_detail-value">
+                                                <span th:text =" ${totalBuy}"></span>
+                                            </div>
+                                            <div class="statistic_detail-title">Số lượng gói</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="total-register statistic_detail-item col-5">
+                                            <div class="statistic_detail-icon">
+                                                <i class="fa-solid fa-user-plus"></i>
+                                            </div>
+                                            <div class="statistic_detail-value"><span th:text =" ${totalRegister}"></span></div>
+                                            <div class="statistic_detail-title">Đăng ký mới</div>
+                                        </div>
+                                        <div class="total-user statistic_detail-item col-5">
+                                            <div class="statistic_detail-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                            <div class="statistic_detail-value"><span th:text =" ${totalUser}"></span></div>
+                                            <div class="statistic_detail-title">Người dùng</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                     
+
+                    
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/chart.js}"></script>
+</body>
+
+</html>

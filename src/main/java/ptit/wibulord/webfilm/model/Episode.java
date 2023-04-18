@@ -17,8 +17,8 @@ public class Episode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TAP")
     private int epID;
-    @Column(name = "TAP")
-    private int tap;
+    @Column(name = "TEN_TAP")
+    private int epNum;
     @Column(name = "LUOTXEM")
     private long view;
     @Column(name = "NGAYDANG")

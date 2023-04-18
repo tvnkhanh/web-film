@@ -25,10 +25,13 @@ public class HomeController {
     FavoriteListService favoriteListService;
     @Autowired
     WatchListService watchListService;
+    @Autowired
+    EpisodeService episodeService;
 
     @RequestMapping("/home")
     public String index(ModelMap model) {
         model.addAttribute("user",user);
+        model.addAttribute("newestEp", episodeService.getNewestList());
         return "index";
     }
 

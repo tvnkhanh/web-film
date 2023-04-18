@@ -1,0 +1,141 @@
+.statistic_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin-top: 64px;
+}
+.statistic_revenue{
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px #e7e5e5;
+    height: 66vh;
+    background-color: #fff;
+
+}
+
+.statistic_revenue {
+    margin-right:42px;
+}
+
+.statistic_revenue-header {
+    color: #1c00ff;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.statistic_revenue-option {
+    margin-bottom: 6px;
+}
+
+.statistic_revenue-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.statistic_revenue-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    color: #1c00ff;
+    font-size: 1.1rem;
+}
+#option_value {
+    display: flex;
+}
+.statistic_revenue-choice {
+    color: #333;
+    padding: 4px 6px;
+    font-weight: 600;
+}
+.statistic_revenue-item-name {
+    margin-right: 4px;
+}
+
+.statistic_revenue-item-value {
+    max-width: 200px;
+    padding:2px;
+}
+
+.btn-submit-option {
+    background-color: #1e00ff;
+    border-color:#1e00ff ;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 26px;
+    padding: 0 16px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 4px 16px;
+}
+
+.btn-submit-option:hover {
+    background-color: #3b3eff;
+    cursor: pointer;
+}
+
+.statistic_detail {
+    height: 66vh;
+}
+.statistic_detail-item {
+    color: #fff;
+    border-radius: 6px;
+    padding: 50px 18px !important;
+    height: 31vh;
+    box-shadow: 1px 1px 5px #e7e5e5;
+}
+.statistic_detail-item:nth-child(1),.statistic_detail-item:nth-child(3){
+    margin-right: 24px;
+}
+.total-register,.total-user{
+    margin-top: 30px !important;
+}
+.total-quantity-pack {
+    background-image: linear-gradient(0,#00ffe2,#0ccd53);
+}
+.total-revenue {
+    background-image: linear-gradient(0,#ff2100,#00fff8);
+
+}
+.total-register {
+    background-image: linear-gradient(0,#0005ff,#00ff26);
+    margin-top: 30px !important;
+}
+.total-user {
+    background-image: linear-gradient(0,#fffc00,#ff00d7);
+}
+.statistic_revenue-graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 36px;
+}
+
+.statistic_revenue-graph-title {
+    font-size: 1.4rem;
+    color: #1c00ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.statistic_detail-icon {
+    font-size: 4rem;
+}
+.statistic_detail-value {
+    font-size: 2rem;
+    margin-top: 12px;
+    line-height: 2rem;
+}
+.statistic_detail-title {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    margin-top: 12px;
+    color: rgba(255, 255,255 , 0.7);
+}

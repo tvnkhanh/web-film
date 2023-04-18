@@ -1,5 +1,6 @@
 package ptit.wibulord.webfilm.controller;
 
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ptit.wibulord.webfilm.model.*;
 import ptit.wibulord.webfilm.service.*;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 @ComponentScan
 @Controller
@@ -26,6 +30,8 @@ public class ManagementController {
     AccountService accountService;
     @Autowired
     PremiumService premiumService;
+
+    StatisticService statisticService = new StatisticService();
     @GetMapping("")
     public String managementPage(){
         return "management/management";
@@ -173,13 +179,107 @@ public class ManagementController {
         }
         return "redirect:/management/Premium";
     }
-    @GetMapping("/View")
-    public String management_ViewPage(){
-        return "management/management_View";
+
+    @GetMapping("/Revenue/GetDetail")
+    public String firstLoadStatistic( RedirectAttributes redirect){
+        String fromDate = "";
+        String toDate = "";
+        String title = "";
+        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");
+            fromDate = java.time.LocalDate.now().toString();
+            toDate = java.time.LocalDate.now().toString();
+            title = java.time.LocalDate.now().toString();
+
+        List<RevenuePremium> list = statisticService.StatisticRevenuePremium(fromDate,toDate);
+        redirect.addFlashAttribute("list", list);
+
+        int totalRevenue = statisticService.totalRevenue(fromDate,toDate);
+        redirect.addFlashAttribute("totalRevenue", totalRevenue);
+
+        int totalBuy = statisticService.totalBuy(fromDate,toDate);
+        redirect.addFlashAttribute("totalBuy", totalBuy);
+
+        int totalRegister = statisticService.totalRegister(fromDate,toDate);
+        redirect.addFlashAttribute("totalRegister", totalRegister);
+
+        int totalUser = statisticService.totalUser(toDate);
+        redirect.addFlashAttribute("totalUser", totalUser);
+        redirect.addFlashAttribute("title", title);
+        return "redirect:/management/Revenue";
+    }
+    @PostMapping("/Revenue/GetDetail")
+    public String getDataRevenue(@RequestParam("day") String day,
+                                 @RequestParam("month")String month,
+                                 @RequestParam("year")String year, RedirectAttributes redirect){
+        String fromDate = "";
+        String toDate = "";
+        String title = "";
+        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");
+        if(day.isBlank()&&month.isBlank()&&year.isBlank()){
+            fromDate = java.time.LocalDate.now().toString();
+            toDate = java.time.LocalDate.now().toString();
+            title = java.time.LocalDate.now().toString();
+        }
+        else if(!day.isBlank()){
+            fromDate = day;
+            toDate = day;
+            title = day;
+        }else if(!month.isBlank()) {
+            fromDate = year + "-" + month + "-01";
+            String dayStr = "";
+            switch (Integer.parseInt(month)) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    dayStr = "31";
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    dayStr = "30";
+                    break;
+                default:
+                    if (statisticService.isLeap(Integer.parseInt(year))) {
+                        dayStr = "29";
+                    } else {
+                        dayStr = "28";
+                    }
+                    break;
+            }
+            toDate = year + "-" + month + "-" + dayStr;
+            title = month+"-"+year;
+        }else {
+            fromDate = year + "-01-01";
+            toDate = year + "-12-31";
+            title = year;
+            System.out.println(fromDate + "  " + toDate);
+        }
+
+        List<RevenuePremium> list = statisticService.StatisticRevenuePremium(fromDate,toDate);
+        redirect.addFlashAttribute("list", list);
+
+        int totalRevenue = statisticService.totalRevenue(fromDate,toDate);
+        redirect.addFlashAttribute("totalRevenue", totalRevenue);
+
+        int totalBuy = statisticService.totalBuy(fromDate,toDate);
+        redirect.addFlashAttribute("totalBuy", totalBuy);
+
+        int totalRegister = statisticService.totalRegister(fromDate,toDate);
+        redirect.addFlashAttribute("totalRegister", totalRegister);
+
+        int totalUser = statisticService.totalUser(toDate);
+        redirect.addFlashAttribute("totalUser", totalUser);
+        redirect.addFlashAttribute("title", title);
+        return "redirect:/management/Revenue";
     }
     @GetMapping("/Revenue")
     public String management_RevenuePage(){
-        return "management/management_Revenue";
+        return "management/management_statistic";
     }
 
 }

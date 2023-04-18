@@ -1,18 +1,23 @@
 package ptit.wibulord.webfilm.model;
 
 public class RevenuePremium {
-    int id;
+    int quantity;
     long revenue;
 
     public RevenuePremium() {
     }
 
-    public int getId() {
-        return id;
+    public RevenuePremium(int quantity, long revenue) {
+        this.quantity = quantity;
+        this.revenue = revenue;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int id) {
+        this.quantity = id;
     }
 
     public long getRevenue() {
