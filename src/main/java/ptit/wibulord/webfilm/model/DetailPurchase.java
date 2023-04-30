@@ -13,14 +13,14 @@ import java.util.Date;
 @Getter
 @Setter
 public class DetailPurchase {
-    @EmbeddedId
-    private DetailPurchaseID detailPurchaseID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_MUA")
+    private int detailPurchaseID;
     @ManyToOne
-    @MapsId("username")
     @JoinColumn(name = "TEN_TK")
     private Account account;
     @ManyToOne
-    @MapsId("idPackage")
     @JoinColumn(name = "ID_GOI")
     private Premium premium;
     @Column(name = "NGAYMUA")
