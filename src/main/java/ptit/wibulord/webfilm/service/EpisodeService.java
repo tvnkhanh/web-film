@@ -2,17 +2,25 @@ package ptit.wibulord.webfilm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ptit.wibulord.webfilm.dto.Databasehelper;
 import ptit.wibulord.webfilm.model.Episode;
 import ptit.wibulord.webfilm.model.Film;
 import ptit.wibulord.webfilm.repository.EpisodeRepository;
+import ptit.wibulord.webfilm.repository.FilmRepository;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class EpisodeService {
     @Autowired
     EpisodeRepository episodeRepository;
+    @Autowired
+    FilmService filmService;
 
     public List<Episode> getNewestList() {
         List<Episode> result = new ArrayList<>();
@@ -27,5 +35,29 @@ public class EpisodeService {
         });
 
         return result;
+    }
+
+    public List<Film> getTierList() {
+        List<Film> tierList = new ArrayList<>();
+        HashMap<Integer, Integer> topFilmIds = new HashMap<>();
+
+        try {
+            Connection con = Databasehelper.openConnection();
+            Statement stmt = con.createStatement();
+            String sql = "SELECT TOP 10 ID_PHIM, SUM(LUOTXEM) AS LUOTXEM FROM TAP GROUP BY ID_PHIM ORDER BY LUOTXEM DESC";
+            ResultSet resultSet = stmt.executeQuery(sql);
+            while (resultSet.next()) {
+                topFilmIds.put(resultSet.getInt(1), resultSet.getInt(2));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        topFilmIds.forEach((id, view) -> {
+            Film film = filmService.getFilmById(id);
+            tierList.add(film);
+        });
+
+        return tierList;
     }
 }

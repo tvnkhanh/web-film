@@ -16,5 +16,15 @@ public class FilmService {
     public List<Film> getFilms(){
         return filmRepository.getListFilm();
     }
+    public Film getFilmById(int id) {
+        return filmRepository.findById(id).get();
+    }
 
+    public List<Film> getMovie() {
+        return filmRepository.getFilmByType("MOVIE");
+    }
+
+    public List<Film> getRandom() {
+        return filmRepository.getRandomFilm();
+    }
 }

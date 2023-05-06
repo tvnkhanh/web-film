@@ -27,11 +27,16 @@ public class HomeController {
     WatchListService watchListService;
     @Autowired
     EpisodeService episodeService;
+    @Autowired
+    FilmService filmService;
 
     @RequestMapping("/home")
     public String index(ModelMap model) {
         model.addAttribute("user",user);
         model.addAttribute("newestEp", episodeService.getNewestList());
+        model.addAttribute("tierList", episodeService.getTierList());
+        model.addAttribute("movie", filmService.getMovie());
+        model.addAttribute("randomFilm", filmService.getRandom());
         return "index";
     }
 

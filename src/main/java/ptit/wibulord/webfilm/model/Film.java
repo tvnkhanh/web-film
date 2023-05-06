@@ -21,6 +21,8 @@ public class Film {
     private String filmName;
     @Column(name = "ANH")
     private String imgPath;
+    @Column(name = "ANH_BXH")
+    private String imgTierList;
     @Column(name = "MOTA")
     private String describe;
     @Column(name = "LOAI")
