@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/watch.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>watch</title>
+</head>
+
+<body>
+    <header th:replace="fragments::navbar"></header>
+
+    <div class="watch" th:object="${user}">
+        <div class="row">
+            <div class="col-9">
+                <h1>Cho xem phim</h1>
+                <h1 th:text="${film.getFilmName()}"></h1>
+                <h1 th:text="${currentEp.getEpNum()}"></h1>
+            </div>
+
+            <div class="col-3">
+                <h1>Cho tap phim</h1>
+            </div>
+        </div>
+    </div>
+
+    <script th:replace="fragments::navbar_js"></script>
+</body>
+</html>

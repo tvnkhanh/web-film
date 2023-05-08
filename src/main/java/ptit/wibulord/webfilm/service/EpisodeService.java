@@ -6,7 +6,6 @@ import ptit.wibulord.webfilm.dto.Databasehelper;
 import ptit.wibulord.webfilm.model.Episode;
 import ptit.wibulord.webfilm.model.Film;
 import ptit.wibulord.webfilm.repository.EpisodeRepository;
-import ptit.wibulord.webfilm.repository.FilmRepository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,6 +20,10 @@ public class EpisodeService {
     EpisodeRepository episodeRepository;
     @Autowired
     FilmService filmService;
+
+    public Episode getEpById(int id) {
+        return episodeRepository.findById(id).get();
+    }
 
     public List<Episode> getNewestList() {
         List<Episode> result = new ArrayList<>();

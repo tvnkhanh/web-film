@@ -10,8 +10,7 @@ import java.util.Date;
 @Table(name="TAP")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class Episode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

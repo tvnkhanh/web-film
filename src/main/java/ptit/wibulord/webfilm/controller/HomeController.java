@@ -52,6 +52,15 @@ public class HomeController {
         return "profile";
     }
 
+    @RequestMapping("/watch/{id}/{ep}")
+    public String loadWatch(ModelMap model, @PathVariable String id, @PathVariable String ep) {
+        model.addAttribute("user", user);
+        model.addAttribute("film", filmService.getFilmById(Integer.parseInt(id)));
+        model.addAttribute("currentEp", episodeService.getEpById(Integer.parseInt(ep)));
+
+        return "watch";
+    }
+
     ///login-register
     private int codeConfirm = 0;
     public static User user;
