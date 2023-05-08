@@ -1,5 +1,143 @@
 .watch {
     max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 120px;
+    margin: 120px auto 0;
+}
+
+.watch-field {
+    width: 100%;
+    height: 520px;
+}
+
+.ep-film-name {
+    margin-top: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.ep-film-view {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.film-action {
+    margin-top: 10px;
+}
+
+.favorite-btn, .following-btn {
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 4px 12px;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.favorite-btn:hover {
+    color: #DC2626;
+    border: 1px solid #DC2626;
+    background-color: #FFFFFF;
+}
+
+.following-btn:hover {
+    color: #0F766E;
+    border: 1px solid #0F766E;
+    background-color: #FFFFFF;
+}
+
+.favorite-btn {
+    background-color: #DC2626;
+    margin-right: 8px;
+}
+
+.following-btn {
+    background-color: #0F766E;
+}
+
+.film-info {
+    height: 288px;
+    margin-top: 20px;
+    display: flex;
+}
+
+.film-img {
+    width: 208px;
+    height: 100%;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.film-desc {
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.ep-link {
+    text-decoration: none;
+}
+
+.ep-field {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: solid 1px #cccccc;
+}
+
+.ep-title {
+    font-size: 16px;
+    color: #000000;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+
+.ep-item {
+    display: flex;
+    align-items: center;
+    width: 318px;
+    height: 60px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.ep-item:hover .ep-text {
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.ep-item:hover .ep-img {
+    --tw-scale-x: 1.25;
+    --tw-scale-y: 1.25;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    cursor: pointer;
+}
+
+.ep-img {
+    width: inherit;
+    height: inherit;
+    transition: transform .4s;
+}
+
+.ep-info {
+    margin-left: 8px;
+}
+
+.ep-text {
+    font-size: 14px;
+    color: #000000;
+    line-height: 22px;
+}
+
+.ep-text-sub {
+    font-size: 10px;
+    color: #000000;
+    font-weight: lighter;
+    line-height: 22px;
 }

@@ -52,11 +52,11 @@ public class HomeController {
         return "profile";
     }
 
-    @RequestMapping("/watch/{id}/{ep}")
-    public String loadWatch(ModelMap model, @PathVariable String id, @PathVariable String ep) {
+    @RequestMapping("/watch")
+    public String loadWatch(ModelMap model, @RequestParam(value = "id") int id, @RequestParam(value = "ep") int ep) {
         model.addAttribute("user", user);
-        model.addAttribute("film", filmService.getFilmById(Integer.parseInt(id)));
-        model.addAttribute("currentEp", episodeService.getEpById(Integer.parseInt(ep)));
+        model.addAttribute("film", filmService.getFilmById(id));
+        model.addAttribute("currentEp", episodeService.getEpById(ep));
 
         return "watch";
     }

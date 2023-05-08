@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/watch.css}">
     <div th:replace="fragments::html_head"></div>
-    <title>watch</title>
+    <title th:text="${film.getFilmName()} + ' Tập ' + ${currentEp.getEpNum()}"></title>
 </head>
 
 <body>
@@ -16,14 +16,46 @@
 
     <div class="watch" th:object="${user}">
         <div class="row">
-            <div class="col-9">
-                <h1>Cho xem phim</h1>
-                <h1 th:text="${film.getFilmName()}"></h1>
-                <h1 th:text="${currentEp.getEpNum()}"></h1>
+            <div class="col-9 watch-field">
+                <iframe width="100%" height="100%" th:src="@{https://www.youtube.com/embed/{url} (url=${currentEp.getVideoPath()}, autoplay=1)}"
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                       clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                <div class="ep-film-name" th:text="${film.getFilmName()} + ' tập ' + ${currentEp.getEpNum()}"></div>
+                <div class="ep-film-view" th:text="${currentEp.getView()} + ' lượt xem'"></div>
+
+                <div class="film-action">
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                        thích
+                    </button>
+                    <button class="following-btn">
+                        <i class="fa-sharp fa-solid fa-bell"></i>
+                        theo dõi
+                    </button>
+                </div>
+
+                <div class="film-info">
+                    <img class="film-img" th:src="${film.getImgPath()}">
+                    <p class="film-desc" th:text="${film.getDescribe()}"></p>
+                </div>
             </div>
 
-            <div class="col-3">
-                <h1>Cho tap phim</h1>
+            <div class="col-3 ep-field">
+                <div class="ep-title">Danh sách tập</div>
+                <div th:each="data, dataStat : ${film.getEpisodeList()}">
+                    <a class="ep-link" th:href="@{/watch (id=${data.getFilm().getFilmID()}, ep=${data.getEpID()})}">
+                        <div class="ep-item">
+                        <span style="overflow: hidden; width: 106px; height: 100% ">
+                                <img class="ep-img" alt="" th:src="${data.getImgPath()}">
+                        </span>
+                            <div class="ep-info">
+                                <div class="ep-text" th:text="'Tập ' + ${data.getEpNum()}"></div>
+                                <div class="ep-text-sub" th:text="'Lượt xem ' + ${data.getView()}"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
