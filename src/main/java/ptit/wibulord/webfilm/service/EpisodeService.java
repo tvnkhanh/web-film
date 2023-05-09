@@ -28,4 +28,13 @@ public class EpisodeService {
 
         return result;
     }
+    public void addEps(Episode eps){
+        episodeRepository.save(eps);
+    }
+    public Episode findEpsById(int id){
+        return episodeRepository.findById(id);
+    }
+    public void deleteEps(int id){
+        episodeRepository.deleteById(id);
+    }
 }

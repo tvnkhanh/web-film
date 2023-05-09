@@ -1,0 +1,73 @@
+.back_list_film {
+    color: #939393;
+}
+.back_list_film:hover {
+    color: #c5c2c2;
+    cursor: pointer;
+}
+.film_detail {
+    display: flex;
+}
+
+.film_detail-thumb {
+    border-radius: 4px;
+    width: 180px;
+    box-shadow: 1px 1px 1px #ccc;
+}
+
+.film_detail-info {
+    margin: 0 24px;
+}
+
+.film_detail-info-name {
+    font-size: 3rem;
+    line-height: 3rem;
+    padding: 6px 0;
+    font-weight: 500;
+}
+
+.film_detail-info-description {
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+}
+
+.film_detail-info-category {
+    display: flex;
+    list-style: none;
+    margin-top: 12px;
+}
+
+.film_detail-info-category-item {
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 1.3rem;
+    border-radius: 2px;
+    margin: 0 3px;
+    padding: 0 6px;
+}
+
+
+.film_epList::before{
+    content: "";
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:-22px
+}
+
+.film_epList {
+    margin-top: 24px;
+    position: relative;
+}
+
+.film_type_head,
+.film_type {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.film_detail-info-type {
+    margin-top: 4px;
+    display: flex;
+}

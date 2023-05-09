@@ -25,6 +25,8 @@ public class ManagementController {
     @Autowired
     FilmService filmService;
     @Autowired
+    EpisodeService episodeService;
+    @Autowired
     UserService userService;
     @Autowired
     AccountService accountService;
@@ -36,6 +38,8 @@ public class ManagementController {
     public String managementPage(){
         return "management/management";
     }
+
+    //Film category
     @GetMapping("/filmCategory")
     public String management_CategoryPage(ModelMap model){
         List<Category> categoryList = categoryService.getCategoryList();
@@ -86,13 +90,119 @@ public class ManagementController {
         return "redirect:/management/filmCategory";
     }
 
+    //Film
     @GetMapping("/Film")
-
     public String management_FilmPage(ModelMap model){
         List<Film> filmList = filmService.getFilms();
         model.addAttribute("filmList", filmList);
         return "management/management_film";
     }
+    @GetMapping("/Film/Info/{id}")
+    public String management_FilmInfo(@PathVariable("id") int id, ModelMap model){
+        Film film = filmService.findFilmById(id);
+        model.addAttribute("film", film);
+        return "management/filmDetail";
+    }
+
+    @PostMapping("Film/Edit/{idFilm}")
+    public String editFilm(@PathVariable("idFilm")int id,
+                           @RequestParam("name")String filmName,
+                           @RequestParam("thumb")String thumbBXH,
+                           @RequestParam("thumb2")String thumb,
+                           @RequestParam("description")String des,
+                           @RequestParam("charge")String type,
+                           RedirectAttributes redirect){
+        Film film = filmService.findFilmById(id);
+        film.setFilmName(filmName);
+        film.setImgBXHPath(thumbBXH);
+        film.setImgPath(thumb);
+        film.setDescribe(des);
+        film.setType(type);
+        try{
+            filmService.saveFilm(film);
+            redirect.addFlashAttribute("message", "Cập nhật thông tin phim thành công!!!");
+        }catch(Exception e){
+            redirect.addFlashAttribute("message", "Cập nhật thông tin phim thất bại.");
+        }
+        return "redirect:/management/Film/Info/" + id;
+    }
+    @PostMapping("Film/Delete/{idFilm}")
+    public String deleteFilm(@PathVariable("idFilm")int id,
+                           RedirectAttributes redirect){
+
+        try{
+            filmService.deleteFilmById(id);
+            redirect.addFlashAttribute("message", "Xóa phim thành công!!!");
+            return "redirect:/management/Film";
+        }catch(Exception e) {
+            redirect.addFlashAttribute("message", "Phim phim thất bại.");
+            return "redirect:/management/Film/Info/" + id;
+        }
+    }
+
+    //Episode
+    @PostMapping("/Film/AddEps/{idfilm}")
+    public String addEpsFilm(@PathVariable("idfilm")int idFilm,
+                             @RequestParam("name") int epsName,
+                             @RequestParam("thumb") String thumb,
+                             @RequestParam("video") String video,
+                             RedirectAttributes redirect){
+        Episode eps = new Episode();
+        eps.setEpNum(epsName);
+        eps.setImgPath(thumb);
+        eps.setVideoPath(video);
+        eps.setView(0);
+        eps.setDatePosted(new java.util.Date());
+        Film temp = new Film();
+        temp.setFilmID(idFilm);
+        eps.setFilm(temp);
+
+        try {
+            episodeService.addEps(eps);
+            redirect.addFlashAttribute("message", "Thêm tập thành công!!!");
+        }catch(Exception e){
+            e.printStackTrace();
+            redirect.addFlashAttribute("message", "Thêm tập thất bại.");
+        }
+        return "redirect:/management/Film/Info/" + idFilm ;
+    }
+
+    @PostMapping("/Film/EditEps/{idfilm}/{ideps}")
+    public String editEpsFilm(@PathVariable("idfilm")int idFilm,
+                              @PathVariable("ideps")int idEps,
+                             @RequestParam("name") int epsName,
+                             @RequestParam("thumb") String thumb,
+                             @RequestParam("video") String video,
+                             RedirectAttributes redirect){
+        Episode eps = episodeService.findEpsById(idEps);
+        eps.setEpNum(epsName);
+        eps.setImgPath(thumb);
+        eps.setVideoPath(video);
+        try {
+            episodeService.addEps(eps);
+            redirect.addFlashAttribute("message", "Cập nhật thông tin tập thành công!!!");
+        }catch(Exception e){
+            e.printStackTrace();
+            redirect.addFlashAttribute("message", "Cập nhật thông tin tập thất bại.");
+        }
+        return "redirect:/management/Film/Info/" + idFilm ;
+    }
+
+    @PostMapping("/Film/DeleteEps/{idfilm}/{ideps}")
+    public String deleteEpsFilm(@PathVariable("ideps")int idEps,
+                                @PathVariable("idfilm")int idFilm,
+                              RedirectAttributes redirect){
+        try {
+            episodeService.deleteEps(idEps);
+            redirect.addFlashAttribute("message", "Xóa tập thành công!!!");
+        }catch(Exception e){
+            e.printStackTrace();
+            redirect.addFlashAttribute("message", "Xóa tập thất bại.");
+        }
+        return "redirect:/management/Film/Info/" + idFilm ;
+    }
+
+    //User
     @GetMapping("/User")
     public String management_UserPage(ModelMap model){
         List<User> userList = userService.getUserList();
@@ -115,19 +225,8 @@ public class ManagementController {
         return "redirect:/management/User";
     }
 
-//    @PostMapping("User/disable/{username}")
-//    public String disableAccount(@PathVariable("username")String username , RedirectAttributes redirect){
-//        try{
-//            Account account = accountService.findAccountByUsername(username);
-//            account.setStatus(false);
-//            accountService.addAccount(account);
-//            redirect.addFlashAttribute("message", "Khóa tài khoản " + username+" thành công!");
-//
-//        }catch (Exception e){
-//            redirect.addFlashAttribute("message", "Khóa tài khoản " + username+" không thành công.");
-//        }
-//        return "redirect:/User";
-//    }
+
+    //Premium
     @GetMapping("/Premium")
     public String management_PremiumPage(ModelMap model){
         List<Premium> premiumList = premiumService.getPremiumList();
@@ -180,6 +279,7 @@ public class ManagementController {
         return "redirect:/management/Premium";
     }
 
+    //Revenue
     @GetMapping("/Revenue/GetDetail")
     public String firstLoadStatistic( RedirectAttributes redirect){
         String fromDate = "";

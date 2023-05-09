@@ -152,7 +152,10 @@
     border-radius: 5px;
     color: #fff;
     font-weight: 400;
-    max-width: 146px;
+    max-width: 120px;
+    margin: 0 4px;
+    padding: 6px 18px;
+    font-size: 1.4rem;
 }
 
 .management_btn:hover {
@@ -176,10 +179,11 @@
 }
 
 .app-main_data-head {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     font-size: 1.8rem;
     font-weight: 500;
-    color :#1c00ff;
+    color: #1c00ff;
     margin-bottom: 14px;
 }
 
@@ -195,13 +199,13 @@
     
 }
 .data-option-edit,
-.data-option-addEp{
+.data-option-info{
     padding-right: 22px;
 } 
 
 .data-option-edit:hover ,
 .data-option-delete:hover,
-.data-option-addEp:hover,
+.data-option-info:hover,
 .data-option-status:hover
 {
     cursor: pointer;

@@ -16,5 +16,15 @@ public class FilmService {
     public List<Film> getFilms(){
         return filmRepository.getListFilm();
     }
+    public Film findFilmById(int id) {
+        return filmRepository.findFilmByID(id);
+    }
 
+    public void saveFilm(Film film){
+        filmRepository.save(film);
+    }
+
+    public void deleteFilmById(int id){
+        filmRepository.deleteById(id);
+    }
 }

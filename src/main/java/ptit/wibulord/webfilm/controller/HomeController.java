@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import ptit.wibulord.webfilm.model.*;
 import ptit.wibulord.webfilm.service.*;
 
+import java.util.Date;
 import java.util.Random;
 
 @ComponentScan
@@ -117,6 +118,7 @@ public class HomeController {
             account = new Account();
             account.setUsername(userName);
             account.setStatus(true);
+            account.setCreateDate(new java.util.Date());
             account.setPassword(password);
             Role role = new Role();
             role.setIdRole(1);

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/filmDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/management.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Film Info Page</title>
+</head>
+
+<body>
+
+<script th:inline="javascript">
+    /* Set message variable with Thymeleaf */
+    var message = [[${message}]];
+    if(message!==null){
+        showMessage(message)
+        // console.log(message)
+    }
+
+</script>
+    <div class="app-management">
+        <div th:replace="fragments::navbar_management"></div>
+        <div class="app-main">
+            <div class="app-sidebar">
+                <ul class="sidebar_menu">
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>PHIM</span>
+                        </div>
+                        <a class="management-link" href="/management/filmCategory">
+                            <div class="sidebar_group-item ">
+                                <i class="sidebar-icon fa-solid fa-layer-group"></i>
+                                <span>Quản lý thể loại</span>
+                            </div>
+                        </a>
+                        <a class="management-link" href="/management/Film">
+                            <div class="sidebar_group-item sidebar_group-item--active">
+                                <i class="sidebar-icon fa-solid fa-film"></i>
+                                <span>Quản lý phim</span>
+                            </div>
+                        </a>
+
+                    </li>
+
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>NGƯỜI DÙNG</span>
+                        </div>
+                        <a class="management-link" href="/management/User">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-user"></i>
+                                <span>Quản lý người dùng</span>
+                            </div>
+                        </a>
+                        <a class="management-link" href="/management/Premium">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-money-bill"></i>
+                                <span>Gói hội viên</span>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>THỐNG KÊ</span>
+                        </div>
+                        <a class="management-link" href="/management/Revenue/GetDetail">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-sack-dollar"></i>
+                                <span>Doanh thu </span>
+                            </div>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="app-main-container">
+                <div class="app-main_option">
+                    <div class="app-main_search">
+                        <input type="text" class="app-main_search-input">
+                        <i class="app-main_search-icon fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <!-- <div class="management_btn app-main_btn_add">Thêm</div> -->
+                    <div class="management_btn app-main_btn_edit">Sửa</div>
+                    <div class="management_btn app-main_btn_delete">Xóa</div>
+                    <div class="management_btn app-main_btn_add-eps">Thêm tập</div>
+                </div>
+                <div class="app-main_data">
+                    <div class="app-main_data-head">
+                        <span >Thông tin phim</span>
+                        <span th:id="'film_'+${film.filmID}" class="id-film disabled"></span>
+                        <a class= "back_list_film" href="/management/Film">
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="film_detail">
+
+                        <div >
+                            <img  class="film_detail-thumb" th:src="@{${film.imgBXHPath}}" alt="">
+                        </div>
+                        <div  style="display: none;">
+                            <img  class="film_detail-thumb2" th:src="@{${film.imgPath}}" alt="">
+                        </div>
+                        <div class="film_detail-info">
+                            <div class="film_detail-info-name" th:id="'film_'+${film.filmID}">
+                                <span style="display: block" th:text = "${film.filmName}"></span>
+                            </div>
+                            <div class="film_detail-info-description">
+                                <span style="display: block" th:text = "${film.describe}"></span>
+                            </div>
+                            <ul class="film_detail-info-category">
+                                <span style="display: flex; font-size: 1.4rem; color: #333;font-weight: 500;">Thể loại:</span>
+
+                                <li class="film_detail-info-category-item" th:each="categoryItem,iterStart:${film.categoryList}">
+                                    <span th:id="'category_'+${categoryItem.idCategory}" th:text = "${categoryItem.categoryName}" style = "display: flex;"></span>
+                                </li>
+                                <!--<li class="film_detail-info-category-item">
+                                    Fantasy
+                                </li>
+                                <li class="film_detail-info-category-item">
+                                    Romance
+                                </li>-->
+                            </ul>
+                            <div class="film_detail-info-type">
+                                <h3 class="film_type_head">Loại phim: </h3>
+                                <h3 class="film_type" style="margin-left: 3px;" th:text = "${film.type}"></h3>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="film_epList">
+                        <span class="app-main_data-head">Danh sách tập</span>  
+                        <table class="app-main_table">
+                            <tr class="app-main_table-header">
+                                <th>ID</th>
+                                <th>Tên tập</th>
+                                <th>Lượt xem</th>
+                                <th>Ngày đăng</th>
+                                <th>Link ảnh</th>
+                                <th>Link Video</th>
+                                <th>Thiết lập</th>
+                            </tr>
+                            <tbody class="app-main_table-body">
+                                <tr class="app-main_table-data-row" th:each="epsItem,iterStart:${film.episodeList}">
+                                    <th th:id="'eps_'+${epsItem.epID}" class="obj_id" scope="row" th:text = "${epsItem.epID}"></th>
+                                    <td th:text = "${epsItem.epNum}"></td>
+                                    <td th:text = "${epsItem.view}"></td>
+                                    <td th:text = "${epsItem.datePosted}"></td>
+                                    <td th:text = "${epsItem.imgPath}"></td>
+                                    <td th:text = "${epsItem.videoPath}"></td>
+                                    <td class="data-option">
+                                        <div class="data-option-edit">
+                                            <i class="option-icon fa-solid fa-pen"></i>
+                                        </div>
+                                        <div class="data-option-delete">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <script th:src="@{/js/filmDetail.js}"></script>
+        <script th:src="@{/js/validator.js}"></script>
+    </div>
+         
+</body>
+
+</html>
