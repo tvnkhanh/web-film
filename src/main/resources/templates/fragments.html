@@ -53,8 +53,13 @@
               </li>
               <li class="header_navbar_item">
                   <div class="header_search">
-                      <input type="text" class="header_search-input" placeholder="Nhập tên phim">
-                      <i class="header_search-icon fa-solid fa-magnifying-glass"></i>
+                      <input type="text" class="header_search-input" placeholder="Nhập tên phim" >
+                      <div class="header_search-field">
+                          <span>Search Field</span>
+                      </div>
+                      <button class="header_search-btn">
+                          <i class="header_search-icon fa-solid fa-magnifying-glass"></i>
+                      </button>
                   </div>
               </li>
           </ul>
@@ -180,6 +185,7 @@
 
       </div>
   </div>
+
   <script th:fragment="navbar_js" th:src="@{js/user_navbar.js}"></script>
 </body>
 </html>

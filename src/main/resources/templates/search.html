@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bxh.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Kết quả tìm kiếm</title>
+</head>
+<body>
+<header th:replace="fragments::navbar"></header>
+<div class="bxh_container">
+    <section class="container">
+        <div class="bxh_head">
+            <div class="bxh_head-title" th:text="'Kết quả tìm kiếm: ' + ${keyword}"></div>
+        </div>
+        <div class="row">
+            <div class="col-3" th:each="data, dataStat : ${filmList}">
+                <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList()[0].getEpID()})}"
+                   class="film_link">
+                    <div class="film_item film--top">
+                        <img th:src="${data.getImgTierList()}" alt="" class="film_item_thumb">
+                        <div class="film_info">
+                            <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
+                            <div class="film_detail">
+                                    <span class="film_title"
+                                          th:text="${data.getFilmView(data.getFilmID())} + ' lượt xem'">
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div th:if="${filmList.isEmpty()}" style="font-size: 16px; font-weight: 400; line-height: 24px">
+            Không tìm thấy kết quả nào phù hợp
+        </div>
+    </section>
+</div>
+
+<script th:replace="fragments::navbar_js"></script>
+</body>
+</html>

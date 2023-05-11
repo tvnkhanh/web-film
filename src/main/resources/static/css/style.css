@@ -65,9 +65,26 @@
 
 .header_search {
     display: flex;
+    position: relative;
     width: 248px;
     justify-content: space-between;
     align-items: center;
+}
+
+.header_search-field {
+    display: none;
+    position: absolute;
+    top: 26px;
+    left: 0;
+    padding: 6px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #FFFFFF;
+    width: 100%;
+    min-height: 80px;
+    max-height: 400px;
+    box-shadow: 1px 1px #cccccc;
+    overflow-y: auto;
 }
 
 .header_search-input {
@@ -86,6 +103,10 @@
     color:#ff0000;
 }
 
+.header_search-btn {
+    border: none;
+    background-color: #FFFFFF;
+}
 
 .header_option {
     display: flex;

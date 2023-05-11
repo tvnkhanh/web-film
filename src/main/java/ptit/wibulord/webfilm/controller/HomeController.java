@@ -61,6 +61,15 @@ public class HomeController {
         return "watch";
     }
 
+    @RequestMapping("/search")
+    public String search(ModelMap model, @RequestParam(value = "keyword") String keyword) {
+        model.addAttribute("user", user);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("filmList", filmService.searchFilm(keyword));
+
+        return "search";
+    }
+
     ///login-register
     private int codeConfirm = 0;
     public static User user;

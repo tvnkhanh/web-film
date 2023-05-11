@@ -17,4 +17,7 @@ public interface FilmRepository extends JpaRepository<Film,Integer> {
 
     @Query("select f from Film f order by RAND() limit 6")
     List<Film> getRandomFilm();
+
+    @Query("select f from Film f where f.filmName like %?1%")
+    List<Film> searchByFilmName(String keyword);
 }
