@@ -2,9 +2,13 @@ package ptit.wibulord.webfilm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ptit.wibulord.webfilm.dto.Databasehelper;
 import ptit.wibulord.webfilm.model.Film;
 import ptit.wibulord.webfilm.repository.FilmRepository;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 @Service
@@ -37,7 +41,12 @@ public class FilmService {
         return filmRepository.getRandomFilm();
     }
 
-    public int findMaxId(){
+
+    public int findMaxId() {
         return filmRepository.findMaxId();
+    }
+    public List<Film> searchFilm(String keyword) {
+        return filmRepository.searchByFilmName(keyword);
+
     }
 }

@@ -104,7 +104,7 @@
                                 <div class="film_info">
                                     <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
                                     <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
+                                        <span class="film_title" th:text="${data.getFilmView(data.getFilmID())} + ' lượt xem'"></span>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                 <div class="film_info">
                                     <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
                                     <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
+                                        <span class="film_title" th:text="${data.getFilmView(data.getFilmID())} + ' lượt xem'"></span>
                                     </div>
                                 </div>
                             </div>

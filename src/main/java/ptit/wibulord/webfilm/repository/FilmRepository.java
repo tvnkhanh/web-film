@@ -24,4 +24,6 @@ public interface FilmRepository extends JpaRepository<Film,Integer> {
 
     @Query("select coalesce(max(f.filmID), 0) from Film f ")
     public int findMaxId();
+    @Query("select f from Film f where f.filmName like %?1%")
+    List<Film> searchByFilmName(String keyword);
 }

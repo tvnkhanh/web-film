@@ -2,7 +2,13 @@ package ptit.wibulord.webfilm.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import ptit.wibulord.webfilm.dto.Databasehelper;
+import ptit.wibulord.webfilm.service.FilmService;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Collection;
 
 @Entity()
@@ -39,4 +45,19 @@ public class Film {
             joinColumns = {@JoinColumn(name = "ID_PHIM")},
             inverseJoinColumns = {@JoinColumn(name = "ID_TL")})
     private Collection<Category> categoryList;
+
+    public int getFilmView(int filmID) {
+        try {
+            Connection con = Databasehelper.openConnection();
+            Statement stmt = con.createStatement();
+            String sql = "SELECT SUM(LUOTXEM) AS LUOTXEM FROM TAP WHERE ID_PHIM = " + filmID;
+            ResultSet resultSet = stmt.executeQuery(sql);
+            while (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
