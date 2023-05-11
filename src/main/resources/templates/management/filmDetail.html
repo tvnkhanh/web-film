@@ -103,10 +103,10 @@
                     <div class="film_detail">
 
                         <div >
-                            <img  class="film_detail-thumb" th:src="@{${film.imgBXHPath}}" alt="">
+                            <img  class="film_detail-thumb" th:src="@{${film.imgPath}}" alt="">
                         </div>
                         <div  style="display: none;">
-                            <img  class="film_detail-thumb2" th:src="@{${film.imgPath}}" alt="">
+                            <img  class="film_detail-thumb2" th:src="@{${film.imgTierList}}" alt="">
                         </div>
                         <div class="film_detail-info">
                             <div class="film_detail-info-name" th:id="'film_'+${film.filmID}">
@@ -127,6 +127,9 @@
                                 <li class="film_detail-info-category-item">
                                     Romance
                                 </li>-->
+                                <a th:href="@{~/management/Film/ChooseCategory/{id}(id =${film.filmID})}" style = "text-decoration: none">
+                                    <i class="option-icon fa-solid fa-pen" style="margin-left: 8px;"></i>
+                                </a>
                             </ul>
                             <div class="film_detail-info-type">
                                 <h3 class="film_type_head">Loại phim: </h3>

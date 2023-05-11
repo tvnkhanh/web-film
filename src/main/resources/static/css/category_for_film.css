@@ -1,0 +1,47 @@
+.category_input--choosed,
+.category_input {
+border: none;
+    background-color: #ff0000;
+    color: #fff;
+    max-width: 70px;
+    padding: 2px 3px;
+    border-radius: 3px;
+    text-align: center;
+}
+.category_input--choosed:focus-visible,
+.category_input:focus-visible {
+    outline: none;
+}
+.category_input--choosed:hover,
+.category_input:hover {
+    cursor: pointer;
+}
+.category_item {
+    background-color: #ff0000;
+    color: #fff;
+    max-width: 90px;
+    padding: 2px 3px;
+    margin: 4px 4px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.category_item:hover {
+    cursor: pointer;
+}
+
+.category_for_film_icon{
+    margin-left:4px;
+    margin-right:3px;
+    font-size: 1.4rem;
+}
+
+.category_for_film_icon:hover{
+    color: #ebe8e8;
+    cursor: pointer;
+}
+
+.icon_remove {
+
+}

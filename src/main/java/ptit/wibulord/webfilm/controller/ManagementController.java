@@ -12,9 +12,7 @@ import ptit.wibulord.webfilm.service.*;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
+import java.util.*;
 
 @ComponentScan
 @Controller
@@ -99,22 +97,75 @@ public class ManagementController {
     }
     @GetMapping("/Film/Info/{id}")
     public String management_FilmInfo(@PathVariable("id") int id, ModelMap model){
-        Film film = filmService.findFilmById(id);
+        Film film = filmService.getFilmById(id);
         model.addAttribute("film", film);
         return "management/filmDetail";
     }
 
+    @PostMapping("Film/Add")
+    public String addFilm(@RequestParam("name")String filmName,
+                          @RequestParam("thumb")String thumb,
+                          @RequestParam("thumb2")String thumbBXH,
+                          @RequestParam("description")String des,
+                          @RequestParam("charge")String type,
+                          RedirectAttributes redirect){
+        Film film = new Film();
+        film.setFilmName(filmName);
+        film.setImgPath(thumb);
+        film.setImgTierList(thumbBXH);
+        film.setDescribe(des);
+        film.setType(type);
+        try{
+            filmService.saveFilm(film);
+            redirect.addFlashAttribute("message", "Thêm phim thành công!");
+            return "redirect:/management/Film/ChooseCategory/" + filmService.findMaxId();
+        }catch(Exception e){
+            redirect.addFlashAttribute("message", "Thêm phim thất bại.");
+            return "redirect:/management/Film";
+        }
+    }
+
+    @GetMapping("Film/ChooseCategory/{id}")
+    public String chooseCategoryForFilm(@PathVariable ("id") int idFilm, ModelMap model){
+        Film film = filmService.getFilmById(idFilm);
+        model.addAttribute("idFilm",idFilm);
+        List<Category> categoryList = categoryService.getCategoryList();
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("film",film);
+        return "management/adjustCategoryOfFilm";
+    }
+    @PostMapping("Film/ChooseCategory/{id}")
+    public String saveCategoryOfFilm(@PathVariable ("id") int idFilm,
+                                     @RequestParam("paramCategoryList[]")int[] idCategoryList,
+                                     RedirectAttributes redirect){
+
+        Film film = filmService.getFilmById(idFilm);
+        Collection<Category> categoryList = new ArrayList<>();
+        for(int i : idCategoryList){
+            System.out.print(i + " ");
+            Category temp = categoryService.findById(i);
+            categoryList.add(temp);
+        }
+        film.setCategoryList(categoryList);
+        try{
+            filmService.saveFilm(film);
+            redirect.addFlashAttribute("message", "Ghi thể loại của phim thành công!!");
+        }catch(Exception e){
+            redirect.addFlashAttribute("message","Ghi thể loại phim thất bại.");
+        }
+        return "redirect:/management/Film/Info/"+idFilm;
+    }
     @PostMapping("Film/Edit/{idFilm}")
     public String editFilm(@PathVariable("idFilm")int id,
                            @RequestParam("name")String filmName,
-                           @RequestParam("thumb")String thumbBXH,
-                           @RequestParam("thumb2")String thumb,
+                           @RequestParam("thumb")String thumb,
+                           @RequestParam("thumb2")String thumbBXH,
                            @RequestParam("description")String des,
                            @RequestParam("charge")String type,
                            RedirectAttributes redirect){
-        Film film = filmService.findFilmById(id);
+        Film film = filmService.getFilmById(id);
         film.setFilmName(filmName);
-        film.setImgBXHPath(thumbBXH);
+        film.setImgTierList(thumbBXH);
         film.setImgPath(thumb);
         film.setDescribe(des);
         film.setType(type);
@@ -135,7 +186,7 @@ public class ManagementController {
             redirect.addFlashAttribute("message", "Xóa phim thành công!!!");
             return "redirect:/management/Film";
         }catch(Exception e) {
-            redirect.addFlashAttribute("message", "Phim phim thất bại.");
+            redirect.addFlashAttribute("message", "Xóa phim thất bại.");
             return "redirect:/management/Film/Info/" + id;
         }
     }

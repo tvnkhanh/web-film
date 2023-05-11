@@ -28,11 +28,16 @@ public class HomeController {
     WatchListService watchListService;
     @Autowired
     EpisodeService episodeService;
+    @Autowired
+    FilmService filmService;
 
     @RequestMapping("/home")
     public String index(ModelMap model) {
         model.addAttribute("user",user);
         model.addAttribute("newestEp", episodeService.getNewestList());
+        model.addAttribute("tierList", episodeService.getTierList());
+        model.addAttribute("movie", filmService.getMovie());
+        model.addAttribute("randomFilm", filmService.getRandom());
         return "index";
     }
 
@@ -46,6 +51,15 @@ public class HomeController {
     public String loadProfile(ModelMap model) {
         model.addAttribute("user",user);
         return "profile";
+    }
+
+    @RequestMapping("/watch")
+    public String loadWatch(ModelMap model, @RequestParam(value = "id") int id, @RequestParam(value = "ep") int ep) {
+        model.addAttribute("user", user);
+        model.addAttribute("film", filmService.getFilmById(id));
+        model.addAttribute("currentEp", episodeService.getEpById(ep));
+
+        return "watch";
     }
 
     ///login-register

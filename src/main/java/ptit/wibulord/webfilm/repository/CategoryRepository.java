@@ -10,6 +10,7 @@ import ptit.wibulord.webfilm.model.Category;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @Query("select c from Category c where c.categoryName=:name ")
     public Category findByCategoryName(@Param("name")String name);
-//    @Query("update Category c set  c.categoryName = :name where c.idCategory=:id")
-//    public
+    @Query("select c from Category c where c.idCategory=:id ")
+    public Category findByCategoryId(@Param("id")int id);
+
 }

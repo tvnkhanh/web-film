@@ -302,7 +302,7 @@ btnEdit.onclick = (e) =>{
                         </div>
                         
                         <div class="img_preview" style = "display: flex; justify-content: center;margin: 2px auto;">
-                                <img src="${filmImg}" alt="" style="object-fit: cover; height: 200px; width: 160px; border-radius :3px; ">
+                                <img src="${filmImg}" alt="" style="object-fit: cover; height: 226px; width: 160px; border-radius :3px; ">
                         </div>
                     </div>
                     <div class="app-dialog_group">
@@ -313,7 +313,7 @@ btnEdit.onclick = (e) =>{
                             <span class="input_message"></span>
                         </div>
                         <div class="img_preview" style = "display: flex; justify-content: center;margin: 2px auto;">
-                                <img src="${filmImg2}" alt="" style="object-fit: cover; height: 140px; width: 240px; border-radius :3px; ">
+                               <img src="${filmImg2}" alt="" style="object-fit: cover; height: 128px; width: 240px; border-radius :3px; ">
                         </div>
                     </div>
                     <div class="app-dialog_group">
@@ -337,7 +337,6 @@ btnEdit.onclick = (e) =>{
             <button class="btn_add">Thêm</button>
         </form>
     </div>
-
     `;
 
     // <input type="text" name="charge" list="chargeList" class="app-dialog_item-input" placeholder="Phim có phí?">
@@ -369,7 +368,26 @@ btnEdit.onclick = (e) =>{
         app.removeChild(dialog);
         app.removeChild(validation)
     }
+    var thumb = dialog.querySelector("#thumb")
+    thumb.oninput = ()=>{
+        console.log("thumb focus lost")
+        var temp = thumb.value
+        if(temp!=""){
+            var imgPreview = thumb.closest(".app-dialog_group").querySelector(".img_preview")
+            imgPreview.innerHTML =`<img src="${temp}" alt="" style="object-fit: cover; height: 226px; width: 160px; border-radius :3px; ">`
+        }
 
+    }
+    var thumbbxh = dialog.querySelector("#thumb2")
+    thumbbxh.oninput = ()=>{
+        console.log("thumb focus lost")
+        var temp = thumb2.value
+        if(temp!=""){
+            var imgPreview = thumbbxh.closest(".app-dialog_group").querySelector(".img_preview")
+            imgPreview.innerHTML =`<img src="${temp}" alt="" style="object-fit: cover; height: 128px; width: 240px; border-radius :3px; ">`
+        }
+
+    }
     
 }
 

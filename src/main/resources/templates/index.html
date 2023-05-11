@@ -23,7 +23,7 @@
                 </div>
                 <div class="row">
                     <div th:each="data, dataStat : ${newestEp}" th:unless="${dataStat.index > 12}" class="col-3">
-                        <a th:href="${data.getVideoPath()}" class="film_link">
+                        <a th:href="@{/watch (id=${data.getFilm().getFilmID()}, ep=${data.getEpID()})}" class="film_link">
                             <div class="film_item">
                                 <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb">
                                 <div class="film_info">
@@ -56,124 +56,33 @@
                 </div>
 
                 <div class="row">
-                    <div class=" col-4">
-                        <a href="#" class="film_link">
+                    <div th:class="${dataStat.index != 0 ? 'row col-8' : 'col-4'}" th:each="data, dataStat : ${tierList}">
+                        <div th:if="${dataStat.index != 0}" class="col-3">
+                            <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link">
+                                <div class="film_item film--top">
+                                    <div class="film_status">
+                                        <span th:text="${dataStat.index + 1}"></span>
+                                    </div>
+                                    <img th:src="${data.getImgTierList()}" alt="" class="film_item_thumb">
+                                    <div class="film_info">
+                                        <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link"
+                                            th:if="${dataStat.index == 0}">
                             <div class="film_item film--top">
                                 <div class="film_status">
-                                    <span>1</span>
+                                    <span th:text="${dataStat.index + 1}"></span>
                                 </div>
-                                <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
+                                <img th:src="${data.getImgTierList()}" alt="" class="film_item_thumb">
                                 <div class="film_info">
-                                    <h3 class="film_name"> Mahoutsukai no yoru</h3>
+                                    <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
                                 </div>
                             </div>
                         </a>
-                    </div>
-                    <div class="row col-8" style="padding-right: 0;">
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>2</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>3</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>4</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>5</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>6</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>7</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>8</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3">
-                            <a href="#" class="film_link">
-                                <div class="film_item film--top">
-                                    <div class="film_status">
-                                        <span>9</span>
-                                    </div>
-                                    <img th:src="@{img/thumb3.webp}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name"> Mahoutsukai no yoru</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -185,95 +94,15 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-2">
-                        <a href="" class="film_link">
+                    <div class="col-2" th:each="data, dataStat : ${movie}">
+                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link">
                             <div class="film_movie film--cm_soon">
                                 <div class="film_status">
                                     <span>SẮP CHIẾU</span>
                                 </div>
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style="width: 208px; height: 300px">
                                 <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-                                <div class="film_status">
-                                    <span>SẮP CHIẾU</span>
-                                </div>
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-                                <div class="film_status">
-                                    <span>SẮP CHIẾU</span>
-                                </div>
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-                                <div class="film_status">
-                                    <span>SẮP CHIẾU</span>
-                                </div>
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-                                <div class="film_status">
-                                    <span>SẮP CHIẾU</span>
-                                </div>
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-                                <div class="film_status">
-                                    <span>SẮP CHIẾU</span>
-                                </div>
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
                                     <div class="film_detail">
                                         <span class="film_title">567,890 lượt xem</span>
                                     </div>
@@ -292,83 +121,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-2">
-                        <a href="" class="film_link">
+                    <div class="col-2" th:each="data, dataStat : ${randomFilm}">
+                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link">
                             <div class="film_movie film--cm_soon">
 
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
+                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style="width: 208px; height: 300px">
                                 <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
-                                    <div class="film_detail">
-                                        <span class="film_title">567,890 lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="" class="film_link">
-                            <div class="film_movie film--cm_soon">
-
-                                <img th:src="@{img/thumb4.jpg}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name"> Tensei Shitara Slime Datta Ken</h3>
+                                    <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
                                     <div class="film_detail">
                                         <span class="film_title">567,890 lượt xem</span>
                                     </div>

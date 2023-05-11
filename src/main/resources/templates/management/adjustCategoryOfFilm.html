@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/management.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="stylesheet" th:href="@{/css/category_for_film.css}">
+    <link rel="stylesheet" th:href="@{/css/message.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Management Page</title>
+</head>
+
+<body>
+<script th:inline="javascript">
+    /* Set message variable with Thymeleaf */
+    var message = [[${message}]];
+    if(message!==null){
+        showMessage(message)
+        // console.log(message)
+    }
+</script>
+    <div class="app-management">
+        <div th:replace="fragments::navbar_management"></div>
+        <div class="app-main">
+            <div class="app-sidebar">
+                <ul class="sidebar_menu">
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>PHIM</span>
+                        </div>
+                        <a class="management-link" href="/management/filmCategory">
+                            <div class="sidebar_group-item ">
+                                <i class="sidebar-icon fa-solid fa-layer-group"></i>
+                                <span>Quản lý thể loại</span>
+                            </div>
+                        </a>
+                        <a class="management-link" href="/management/Film">
+                            <div class="sidebar_group-item sidebar_group-item--active">
+                                <i class="sidebar-icon fa-solid fa-film"></i>
+                                <span>Quản lý phim</span>
+                            </div>
+                        </a>
+
+                    </li>
+
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>NGƯỜI DÙNG</span>
+                        </div>
+                        <a class="management-link" href="/management/User">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-user"></i>
+                                <span>Quản lý người dùng</span>
+                            </div>
+                        </a>
+                        <a class="management-link" href="/management/Premium">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-money-bill"></i>
+                                <span>Gói hội viên</span>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li class="sidebar_group">
+                        <div class="sidebar_group_head">
+                            <span>THỐNG KÊ</span>
+                        </div>
+                        <a class="management-link" href="/management/Revenue/GetDetail">
+                            <div class="sidebar_group-item">
+                                <i class="sidebar-icon fa-solid fa-sack-dollar"></i>
+                                <span>Doanh thu </span>
+                            </div>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="app-main-container">
+<!--                <div class="app-main_option">-->
+<!--                    <div class="app-main_search">-->
+<!--                        <input type="text" class="app-main_search-input">-->
+<!--                        <i class="app-main_search-icon fa-solid fa-magnifying-glass"></i>-->
+<!--                    </div>-->
+<!--                    <div class="management_btn app-main_btn_add">Thêm</div>-->
+<!--                </div>-->
+                <div class="app-main_data">
+                    <span class="app-main_data-head" th:text="'Chọn thể loại cho ' +${film.filmName}"></span>
+                        <div class="app-main_container">
+                            <span style="display: block; font-size: 1.4rem; color: #ff7b00; margin-top: 6px;">Danh sách thể loại khả dụng</span>
+                            <ul class="category_list" style="display:flex; flex-wrap: wrap; list-style: none;">
+                                <li th:class ="'category_item ' + ${#lists.contains(film.categoryList, category)?'disabled':''}" th:each="category,iterStart:${categoryList}" >
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <input th:id = "'category_' + ${category.idCategory}" type="text" class="category_input" th:value="${category.categoryName}" readonly >
+                                    </div>
+
+                                </li>
+                            </ul>
+                            <form method= "post" id = "choose-form" style="position: relative; padding-bottom: 34px;" th:action ="@{/management/Film/ChooseCategory/{id}(id = ${idFilm})}">
+                                <span style="display: block; font-size: 1.4rem; color: #009aff; margin-top: 6px;">Thể loại đã chọn</span>
+                                <ul class="category_choosed" style="display: flex; flex-wrap: wrap; list-style: none;" >
+                                    <li th:class ="'category_item ' + ${#lists.contains(film.categoryList, category)?'':'disabled'}" th:each="category,iterStart:${categoryList}" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <input th:id ="${category.idCategory}" type="text" name = paramCategoryList[] class="category_input--choosed" th:value="${category.categoryName}" readonly>
+                                        <i class="category_for_film_icon icon_remove fa-solid fa-xmark" ></i>
+                                    </li>
+                                </ul>
+                                <button style="font-size: 1.4rem;
+                                font-weight: 400;
+                                color: #fff;
+                                background-color: #1c00ff;
+                                border: none;
+                                padding: 6px 18px;
+                                border-radius: 5px;
+                                position: absolute;
+                                right: 42px;
+                                margin-top: 6px;">Hoàn tất</button>
+                            </form>
+                            
+                        </div>
+                       
+                </div>
+                    
+            </div>
+        </div>
+        <script th:src="@{/js/handleMessage.js}"></script>
+        <script th:src="@{/js/handleChooseCategory.js}"></script>
+    </div>
+    
+</body>
+
+</html>

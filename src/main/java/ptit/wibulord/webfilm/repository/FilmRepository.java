@@ -15,4 +15,13 @@ public interface FilmRepository extends JpaRepository<Film,Integer> {
     List<Film> getListFilm();
     @Query("select f from Film f where f.filmID = :id")
     Film findFilmByID(@Param("id") int id);
+
+    @Query("select f from Film f where f.type = :type order by RAND() limit 6")
+    List<Film> getFilmByType(String type);
+
+    @Query("select f from Film f order by RAND() limit 6")
+    List<Film> getRandomFilm();
+
+    @Query("select coalesce(max(f.filmID), 0) from Film f ")
+    public int findMaxId();
 }

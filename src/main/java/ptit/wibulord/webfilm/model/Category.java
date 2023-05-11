@@ -20,9 +20,7 @@ public class Category {
     @Column(name = "TEN_TL")
     private String categoryName;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name = "CT_THELOAI",
-            joinColumns = {@JoinColumn(name = "ID_TL")},
-            inverseJoinColumns = {@JoinColumn(name = "ID_PHIM")})
+    @ManyToMany(mappedBy = "categoryList")
     private Collection<Film> filmList;
+
 }

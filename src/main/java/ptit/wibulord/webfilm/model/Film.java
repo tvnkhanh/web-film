@@ -22,7 +22,7 @@ public class Film {
     @Column(name = "ANH")
     private String imgPath;
     @Column(name = "ANH_BXH")
-    private String imgBXHPath;
+    private String imgTierList;
     @Column(name = "MOTA")
     private String describe;
     @Column(name = "LOAI")
@@ -34,7 +34,9 @@ public class Film {
 
     @OneToMany(mappedBy = "film")
     private Collection<Episode> episodeList;
-
-    @ManyToMany(mappedBy = "filmList")
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinTable(name = "CT_THELOAI",
+            joinColumns = {@JoinColumn(name = "ID_PHIM")},
+            inverseJoinColumns = {@JoinColumn(name = "ID_TL")})
     private Collection<Category> categoryList;
 }

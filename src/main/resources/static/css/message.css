@@ -12,15 +12,13 @@
     background-color: #fff;
 }
 
-/* @keyframes showMessage {
+@keyframes hideMessage {
     from{
-        opacity: 0;
-        transform: translateY(calc(-100%));
-    }to{
         opacity: 1;
-        transform: translateY(0);
-    }
-} */
+    }to{
+         opacity: 0;
+     }
+}
 .message_header {
     display: flex;
     align-items: center;

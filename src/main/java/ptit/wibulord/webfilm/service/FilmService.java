@@ -16,15 +16,28 @@ public class FilmService {
     public List<Film> getFilms(){
         return filmRepository.getListFilm();
     }
-    public Film findFilmById(int id) {
-        return filmRepository.findFilmByID(id);
-    }
+
 
     public void saveFilm(Film film){
         filmRepository.save(film);
     }
 
-    public void deleteFilmById(int id){
+    public void deleteFilmById(int id) {
         filmRepository.deleteById(id);
+    }
+    public Film getFilmById(int id) {
+        return filmRepository.findById(id).get();
+    }
+
+    public List<Film> getMovie() {
+        return filmRepository.getFilmByType("MOVIE");
+    }
+
+    public List<Film> getRandom() {
+        return filmRepository.getRandomFilm();
+    }
+
+    public int findMaxId(){
+        return filmRepository.findMaxId();
     }
 }
