@@ -71,3 +71,11 @@ body {
 .disabled {
     display: none !important;
 }
+.btn_refresh {
+    color: rgb(30, 187, 30);
+
+}
+.btn_refresh:hover {
+    color: rgb(135, 235, 135);
+    cursor: pointer;
+}

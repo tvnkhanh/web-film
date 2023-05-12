@@ -84,7 +84,12 @@
         <div class="management_btn app-main_btn_add">Thêm</div>
       </div>
       <div class="app-main_data">
-        <span class="app-main_data-head">Danh sách người dùng</span>
+        <div class="app-main_data-head">
+          <span >Danh sách gói premium</span>
+          <div class= "btn_refresh" >
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+        </div>
         <table class="app-main_table">
           <tr class="app-main_table-header">
             <th>ID</th>
@@ -128,6 +133,7 @@
 
 </div>
     <script th:src="@{/js/validator.js}"></script>
+<script th:src="@{/js/handleSearch.js}"></script>
 </body>
 
 </html>

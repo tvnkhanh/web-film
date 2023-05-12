@@ -180,9 +180,13 @@ public class ManagementController {
     @PostMapping("Film/Delete/{idFilm}")
     public String deleteFilm(@PathVariable("idFilm")int id,
                            RedirectAttributes redirect){
-
+        Film film = filmService.getFilmById(id);
+//        film.setCategoryList(null);
+//        film.setEpisodeList(null);
+//        film.setFavoriteLists(null);
+//        film.setWatchLists(null);
         try{
-            filmService.deleteFilmById(id);
+            filmService.deleteFilm(film);
             redirect.addFlashAttribute("message", "Xóa phim thành công!!!");
             return "redirect:/management/Film";
         }catch(Exception e) {
