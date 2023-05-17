@@ -79,3 +79,8 @@ body {
     color: rgb(135, 235, 135);
     cursor: pointer;
 }
+
+.invalid {
+    border-color: #eb0c0c;
+    border-style: solid;
+}

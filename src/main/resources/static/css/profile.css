@@ -163,6 +163,7 @@
 .profile_detail {
     list-style: none;
     padding: 0;
+    margin-top: 24px;
 }
 
 .profile_detail-item {

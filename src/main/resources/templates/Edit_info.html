@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{./css/bxh.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/css/edit_info.css}">
+    <div th:replace="~{fragments::html_head}"></div>
+    <title>Edit info</title>
+</head>
+
+<body style="    background-color: #f2f2f5;">
+<script th:inline="javascript">
+    /* Set message variable with Thymeleaf */
+    var message = [[${message}]];
+    if(message!==null){
+        showMessage(message)
+        // console.log(message)
+    }
+</script>
+    <div class="profile">
+        <header th:replace="~{fragments::navbar}"></header>
+        <div class="container">
+          
+            <div class="profile_container">
+                <div class="row">
+                    <div class="profile_post col-8">
+                        <div class="info_box">
+                            <div class="task_header">
+                                <span style="padding-left: 16px;">SỬA THÔNG TIN</span>
+                            </div>
+                            <form th:action="@{/edit-info/{id}(id = ${user.idUser})}" method="post" id = "form-info"  >
+                                <div class="task_info">
+                                    <div class="task_info_group">
+                                        <div class="task_info_item">
+                                            <label class="task_info_item-head">Tên hiển thị</label>
+                                            <input id="name" name = "name" type="text" th:value ="${user.fullName}"
+                                                class="task_info_item-input">
+                                            <span class="task_info-input_message"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="task_info_group">
+                                        <div class="task_info_item">
+                                            <label class="task_info_item-head">Email</label>
+                                            <input id="email" name = "email" type="text" th:value ="${user.email}"
+                                                class="task_info_item-input">
+                                            <span class="task_info-input_message"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="task_info_group">
+                                        <div class="task_info_item">
+                                            <label class="task_info_item-head">Ảnh</label>
+                                            <input id="img" name = "img" type="text" th:value ="${user.imgPath}"
+                                                class="task_info_item-input">
+                                            <span class="task_info-input_message"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="task_info_group">
+                                        <div class="task_info_item">
+                                            <span style="font-size: 1.6rem; display: block; margin-bottom: 6px; font-weight: 300;">Giới tính</span>
+                                            <div class="task_info_group-gender">
+                                                <div class="task_info_group-item-gender" th:if = "${user.gender == 'Nam'}"}>
+                                                    <input type="radio" class="task_info_group-item-radio"  name = "gender" value="0" checked >
+                                                    <span class="task_info-gender_value">Nam</span>
+                                                </div>
+                                                <div class="task_info_group-item-gender" th:if = "${user.gender != 'Nam'}"}>
+                                                    <input type="radio" class="task_info_group-item-radio"  name = "gender" value="0" >
+                                                    <span class="task_info-gender_value">Nam</span>
+                                                </div>
+                                                <div class="task_info_group-item-gender" th:if = "${user.gender == 'Nữ'}"}>
+                                                    <input type="radio" class="task_info_group-item-radio"  name = "gender" value="1" checked >
+                                                    <span class="task_info-gender_value">Nữ</span>
+                                                </div>
+                                                <div class="task_info_group-item-gender" th:if = "${user.gender != 'Nữ'}"}>
+                                                    <input type="radio" class="task_info_group-item-radio"  name = "gender" value="1"  >
+                                                    <span class="task_info-gender_value">Nữ</span>
+                                                </div>
+                                                <div class="task_info_group-item-gender" th:if = "${user.gender == 'Không nói'}"}>
+                                                    <input type="radio" class="task_info_group-item-radio"  name = "gender" value="2" checked >
+                                                    <span class="task_info-gender_value">Không nói</span>
+                                                </div>
+                                                <div class="task_info_group-item-gender" th:if = "${user.gender != 'Không nói'}"}>
+                                                    <input type="radio" class="task_info_group-item-radio"  name = "gender" value="2" >
+                                                    <span class="task_info-gender_value">Không nói</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button style="background-color: #ff2a2a;
+                                border: none;
+                                border-radius: 4px;
+                                padding: 6px 42px;
+                                color: #fff;">Lưu</button>
+                            </form>
+                            
+                            <div class="preview_avatar" >
+                                <img th:src="${user.imgPath}" alt="" style="object-fit: cover; height: 180px; width: 180px; border-radius :3px; ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile_about col-4">
+                        <div class="info_box">
+                            <ul class="profile_detail">
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">User ID</span>
+                                    <span class="detail_data" th:text = "${user.idUser}"></span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">Username</span>
+                                    <span class="detail_data" th:text = "${user.account.username}"></span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">Email</span>
+                                    <span class="detail_data" th:text = "${user.email}"></span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">Chức danh</span>
+                                    <span class="detail_data" th:text = "${user.account.role.roleName}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/user_navbar.js}"></script>
+    <script type="text/javascript" th:src="@{/js/validator.js}"></script>
+    <script th:inline="javascript">
+      Validator({
+        form: "#form-info",
+        formGroupSelector: '.task_info_group',
+        errorSelector: '.task_info-input_message',
+        rules:[
+            Validator.isRequired("#name"),
+            Validator.isRequired("#email"),
+            Validator.isEmail("#email"),
+            Validator.isRequired("#img"),
+        ]
+      });
+
+      const previewAvatar = document.querySelector(".preview_avatar img")
+      const imgInput = document.querySelector("#img")
+
+      imgInput.oninput = ()=>{  
+        console.log(previewAvatar)
+        if(imgInput.value != "") {
+           previewAvatar.src =  imgInput.value
+        }
+        
+      }
+    </script>
+</body>
+</html>

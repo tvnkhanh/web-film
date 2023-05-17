@@ -121,11 +121,10 @@
 
                       </li>
                       <li class="navbar_user-item">
-                          <a href="#" class="navbar_user-item-link">
+                          <a th:href="@{/edit-info/{id}(id = ${user.idUser})}" class="navbar_user-item-link">
                               <i class="navbar_user-icon fas fa-regular fa-pen"></i>
                               <span>Sửa thông tin</span>
                           </a>
-
                       </li>
                       <li class="navbar_user-item">
                           <a href="#" class="navbar_user-item-link">
@@ -175,9 +174,9 @@
           </div>
       </nav>
   </header>
-  <div class="app-header" th:fragment="navbar_management" th:object="${user}">
+  <div class="app-header" th:fragment="navbar_management">
       <div class="app-header_logo">
-          <a class="management-link" href="#">
+          <a class="management-link" href="/home">
               <img th:src="@{~/img/logo2.png}" alt="" class="management-logo">
           </a>
       </div>

@@ -343,7 +343,6 @@
 }
 .film--complete .film_status {
     display: flex;
-
     font-size: 1.4rem;
     background-color: rgba(45,165,26,0.8);
 }
@@ -426,6 +425,7 @@
 
 .social_links {
     margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .social_link {

@@ -20,6 +20,9 @@ import java.util.Random;
 @ComponentScan
 @Controller
 public class HomeController {
+    private int codeConfirm = 0;
+    public static User user;
+    private Account account;
     @Autowired
     AccountService accountService;
     @Autowired
@@ -53,6 +56,45 @@ public class HomeController {
         return "profile";
     }
 
+    @GetMapping("/edit-info/{id}")
+    public String showEdit(@PathVariable(value = "id") int id, ModelMap model){
+        model.addAttribute("user", userService.findUserById(id));
+        System.out.println(userService.findUserById(id).getGender());
+        return "Edit_info";
+    }
+
+    @PostMapping("/edit-info/{id}")
+    public String saveInfo(@PathVariable(value = "id") int id, RedirectAttributes redirect,
+                           @RequestParam("name") String name,
+                           @RequestParam("email") String email,
+                           @RequestParam("img") String imgPath,
+                           @RequestParam("gender") int gender){
+        User tmpUser = userService.findUserByEmail(email);
+        if(tmpUser!=null && !tmpUser.getEmail().equals(user.getEmail())){
+            redirect.addFlashAttribute("message", "Email đã được sử dụng! Vui lòng chọn email khác.");
+        }else {
+            tmpUser = userService.findUserById(id);
+            tmpUser.setEmail(email);
+            tmpUser.setFullName(name);
+            tmpUser.setImgPath(imgPath);
+            if(gender == 0 ) {
+                tmpUser.setGender("Nam");
+            }else if(gender == 1){
+                tmpUser.setGender("Nữ");
+            }else {
+                tmpUser.setGender("Không nói");
+            }
+
+            try{
+                userService.addUser(tmpUser);
+                redirect.addFlashAttribute("message","Cập nhật thông tin thành công !");
+            }catch (Exception e){
+                redirect.addFlashAttribute("message", "Cập nhật thông tin thất bại.");
+            }
+            user = tmpUser;
+        }
+        return "redirect:/edit-info/" + id;
+    }
     @RequestMapping("/watch")
     public String loadWatch(ModelMap model, @RequestParam(value = "id") int id, @RequestParam(value = "ep") int ep) {
         model.addAttribute("user", user);
@@ -72,12 +114,10 @@ public class HomeController {
     }
 
     ///login-register
-    private int codeConfirm = 0;
-    public static User user;
-    private Account account;
-    private FavoriteList favoriteList;
-    private WatchList watchList;
-    private String message;
+
+//    private FavoriteList favoriteList;
+//    private WatchList watchList;
+//    private String message;
 //    @Autowired
 //    AccountService accountService;
     @Autowired
@@ -85,8 +125,11 @@ public class HomeController {
     @Autowired
     MailService mailService;
 
+
+    //Login_Register
     @GetMapping("/")
     public String showLoginPage() {
+        user = null;
         return "login";
     }
     @PostMapping("/login")
@@ -100,9 +143,11 @@ public class HomeController {
         if (!account.getPassword().equals(password)) {
             redirect.addFlashAttribute("message","Sai tài khoản hoặc mật khẩu!");
             return "redirect:/";
+        }else{
+            user = account.getUser();
+            return "redirect:/home";
         }
-        user = account.getUser();
-        return "redirect:/home";
+
     }
 
     @GetMapping("/register")
@@ -136,7 +181,7 @@ public class HomeController {
             } else if (gender == 1) {
                 user.setGender("Nữ");
             } else {
-                user.setGender("Không biết");
+                user.setGender("Không nói");
             }
             account = new Account();
             account.setUsername(userName);

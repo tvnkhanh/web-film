@@ -23,19 +23,19 @@
                 </div>
                 <div class="row">
                     <div th:each="data, dataStat : ${newestEp}" th:unless="${dataStat.index > 12}" class="col-3">
-                        <a th:href="@{/watch (id=${data.getFilm().getFilmID()}, ep=${data.getEpID()})}" class="film_link">
+                        <a th:href="@{/watch (id=${data.film.filmID}, ep=${data.epID})}" class="film_link">
                             <div class="film_item">
-                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb">
+                                <img th:src="${data.imgPath}" alt="" class="film_item_thumb">
                                 <div class="film_info">
-                                    <h3 class="film_name" th:text="${data.getFilm().getFilmName()}"></h3>
+                                    <h3 class="film_name" th:text="${data.film.filmName}"></h3>
                                     <div class="film_detail">
                                         <span class="film_title">
                                             Tập
-                                            <span class="film_title" th:text="${data.getEpNum()}"></span>
+                                            <span class="film_title" th:text="${data.epNum}"></span>
                                         </span>
 
                                         <span class="film_title">
-                                            <span class="film_title" th:text="${data.getView()}"></span>
+                                            <span class="film_title" th:text="${data.view}"></span>
                                             lượt xem
                                         </span>
                                     </div>
@@ -56,33 +56,33 @@
                 </div>
 
                 <div class="row">
-                    <div th:class="${dataStat.index != 0 ? 'row col-8' : 'col-4'}" th:each="data, dataStat : ${tierList}">
-                        <div th:if="${dataStat.index != 0}" class="col-3">
-                            <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link">
+                    <div class="col-4">
+                        <a th:href="@{/watch (id=${tierList[0].filmID}, ep=${tierList[0].episodeList[0].epID})}" class="film_link">
+                            <div class="film_item film--top">
+                                <div class="film_status">
+                                    <span th:text="${1}"></span>
+                                </div>
+                                <img th:src="${tierList[0].imgTierList}" alt="" class="film_item_thumb">
+                                <div class="film_info">
+                                    <h3 class="film_name" th:text="${tierList[0].filmName}"></h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row col-8">
+                        <div th:each="data, dataStat: ${tierList}" class="col-3" th:if="${dataStat.index != 0}">
+                            <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
                                 <div class="film_item film--top">
                                     <div class="film_status">
                                         <span th:text="${dataStat.index + 1}"></span>
                                     </div>
-                                    <img th:src="${data.getImgTierList()}" alt="" class="film_item_thumb">
+                                    <img th:src="${data.imgTierList}" alt="" class="film_item_thumb">
                                     <div class="film_info">
-                                        <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
+                                        <h3 class="film_name" th:text="${data.filmName}"></h3>
                                     </div>
                                 </div>
                             </a>
                         </div>
-
-                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link"
-                                            th:if="${dataStat.index == 0}">
-                            <div class="film_item film--top">
-                                <div class="film_status">
-                                    <span th:text="${dataStat.index + 1}"></span>
-                                </div>
-                                <img th:src="${data.getImgTierList()}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
-                                </div>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </section>
@@ -95,7 +95,7 @@
 
                 <div class="row">
                     <div class="col-2" th:each="data, dataStat : ${movie}">
-                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link">
+                        <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
                             <div class="film_movie film--cm_soon">
                                 <div class="film_status">
                                     <span>SẮP CHIẾU</span>
@@ -122,7 +122,7 @@
 
                 <div class="row">
                     <div class="col-2" th:each="data, dataStat : ${randomFilm}">
-                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList().get(0).getEpID()})}" class="film_link">
+                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.episodeList[0].epID})}" class="film_link">
                             <div class="film_movie film--cm_soon">
 
                                 <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style="width: 208px; height: 300px">
