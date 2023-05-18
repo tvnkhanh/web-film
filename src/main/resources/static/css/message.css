@@ -6,7 +6,7 @@
     position: fixed;
     left: 50%;
     top: 10px;
-    min-height: 80px;
+    min-height: 100px;
     transform: translateX(-50%);
     z-index: 1000;
     background-color: #fff;
@@ -22,8 +22,7 @@
 .message_header {
     display: flex;
     align-items: center;
-    
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: #1c00ff;
     margin: 10px 0;
@@ -48,16 +47,16 @@
 }
 
 .message_msg {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     width: 100%;
     word-wrap: break-word;
 }
 
 .btn_close-message {
     height: 20px;
-    padding: 0 8px;
-    max-width: 60px;
-    font-size: 1.3rem;
+    padding: 12px 22px;
+    max-width: 138px;
+    font-size: 1.4rem;
     font-weight: 500;
     color: #fff;
     background-color: #1c00ff;

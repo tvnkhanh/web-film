@@ -95,6 +95,30 @@ public class HomeController {
         }
         return "redirect:/edit-info/" + id;
     }
+    @GetMapping("/change-password")
+    public String showChangePassPage( ModelMap model){
+        model.addAttribute("user", user);
+        return "change_pass";
+    }
+
+    @PostMapping("/change-password")
+    public String savePass(RedirectAttributes redirect,
+                           @RequestParam("oldPass") String oldPass,
+                           @RequestParam("newPass") String newPass){
+        if(!user.getAccount().getPassword().equals(oldPass)){
+            redirect.addFlashAttribute("message", "Mật khẩu hiện tại không đúng! Vui lòng nhập lại.");
+        }else {
+            try{
+                user.getAccount().setPassword(newPass);
+                userService.addUser(user);
+                redirect.addFlashAttribute("message","Thay đổi mật khẩu thành công!");
+            }catch (Exception e){
+                redirect.addFlashAttribute("message", "Thay đổi mật khẩu thất bại. Vui lòng thử lại.");
+            }
+        }
+        return "redirect:/change-password";
+    }
+
     @RequestMapping("/watch")
     public String loadWatch(ModelMap model, @RequestParam(value = "id") int id, @RequestParam(value = "ep") int ep) {
         model.addAttribute("user", user);
