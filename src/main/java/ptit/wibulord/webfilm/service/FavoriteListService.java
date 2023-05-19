@@ -12,4 +12,7 @@ public class FavoriteListService {
     public void addFavoriteList(FavoriteList favoriteList){
         favoriteListRepository.save(favoriteList);
     }
+    public FavoriteList findByID(int id){
+        return favoriteListRepository.getById(id);
+    }
 }

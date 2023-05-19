@@ -119,6 +119,31 @@ public class HomeController {
         return "redirect:/change-password";
     }
 
+    @GetMapping("/favorite")
+    public String loadFavorite(ModelMap model){
+        model.addAttribute("user", user);
+        model.addAttribute("list", favoriteListService.findByID(user.getFavoriteList().getIdFavoriteList()).getFilms());
+        return "favorite_film";
+    }
+    @GetMapping("/favorite/remove/{id}")
+    public String removeFavorite(ModelMap model,RedirectAttributes redirect,
+                                 @PathVariable(value = "id") int id){
+        try{
+            FavoriteList favoriteList = favoriteListService.findByID(user.getFavoriteList().getIdFavoriteList());
+            for(Film film :favoriteList.getFilms()){
+                if(film.getFilmID() == id){
+                    favoriteList.getFilms().remove(film);
+                    break;
+                }
+            }
+            favoriteListService.addFavoriteList(favoriteList);
+            user = userService.findUserById(user.getIdUser());
+            redirect.addFlashAttribute("message", "Bỏ yêu thích phim thành công!");
+        }catch (Exception e){
+            redirect.addFlashAttribute("message", "Bỏ yêu thích phim không thành công. Vui lòng thử lại.");
+        }
+        return "redirect:/favorite";
+    }
     @RequestMapping("/watch")
     public String loadWatch(ModelMap model, @RequestParam(value = "id") int id, @RequestParam(value = "ep") int ep) {
         model.addAttribute("user", user);

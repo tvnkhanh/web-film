@@ -1,0 +1,83 @@
+.page {
+    margin-top:100px;
+}
+
+.page_header {
+    font-size: 2.4rem !important;
+    color:#d52b2b;
+    line-height: 38px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+.page_section {
+    margin: 0 auto;
+    max-width: 980px;
+}
+.page_container {
+
+}
+
+.page_container-head {
+    display: flex;
+    position: relative;
+    margin-bottom: 20px;
+}
+.page_container-head::after, .page_container-item::after  {
+    content: "";
+    border-bottom: #ccc;
+    border-width: 1px;
+    border-style: solid;
+    position: absolute;
+    right: 8px;
+    left: 8px;
+    bottom: -10px;
+    color: #fff;
+    
+}
+.page_container-head-item {
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.page_container-list {
+    list-style: none;
+}
+
+.page_container-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.page_container-item-img {
+    width: 108px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.page_container-item-name {
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: 400;
+}
+
+.page_container-item-view {
+    text-align: right;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+.page_container-item-remove {
+    text-align: right;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.page_container-item-remove:hover {
+    color: #ccc;
+}
+
