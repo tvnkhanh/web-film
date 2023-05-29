@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/anime.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Movie</title>
+</head>
+
+<body>
+    <header th:replace="~{fragments::navbar}"></header>
+    <div class="page_container">
+        <section class="container">
+            <div class="row">
+                <div class="col-2" th:each="data, dataStat : ${filmList}">
+                    <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
+                        <div class="film_movie film--cm_soon" style="border-radius: 0; margin-bottom: 15px;">
+                            <img th:src="${data.imgPath}" alt="" class="film_item_thumb">
+                            <div class="film_info film_info--red">
+                                <h3 class="film_name" th:text="${data.filmName}"></h3>
+                                <div class="film_detail">
+                                        <span class="film_title" th:text="${data.getFilmView(data.filmID)} + ' Lượt xem'"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <ul class="pagination">
+                
+                <li class="pagination-item">
+                    <a href="" class="pagination-link">
+                        <i class="pagination-icon fa-sharp fa-solid fa-backward-step"></i>
+                    </a>
+                </li>
+                
+            </ul>
+            <script th:src="@{/js/handle_pagination.js}"></script>
+            <script th:inline="javascript">
+                var value  = {
+                    totalPage: [[${pages}]],
+                    currentPage:[[${currentPage}]]
+                }
+                handlePagination(value, getcurrentPathNameForMoviePage())
+            </script>
+        </section>
+    </div>
+    <script th:src="@{/js/user_navbar.js}"></script>
+</body>
+
+</html>

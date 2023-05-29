@@ -33,6 +33,12 @@ public class HomeController {
     EpisodeService episodeService;
     @Autowired
     FilmService filmService;
+    @Autowired
+    CategoryService categoryService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    MailService mailService;
 
     @RequestMapping("/home")
     public String index(ModelMap model) {
@@ -44,9 +50,57 @@ public class HomeController {
         return "index";
     }
 
+//
+    @RequestMapping("/anime/{page}")
+    public String loadAnimeByPage(ModelMap model ,@PathVariable("page")String page) {
+        int numberPage = Integer.parseInt(page.substring(5));
+        model.addAttribute("user",user);
+        model.addAttribute("filmList",filmService.getFilmByPage(numberPage));
+        model.addAttribute("categoryList", categoryService.getCategoryList());
+        model.addAttribute("pages",filmService.getPage());
+        model.addAttribute("currentPage",numberPage);
+        return "anime";
+    }
+    @RequestMapping("/anime/filter")
+    public String loadAnimeByType(
+            @RequestParam("type") String type,
+            @RequestParam("page")int page,
+            ModelMap model) {
+//        int numberPage = Integer.parseInt(page.substring(5));
+        model.addAttribute("user",user);
+        model.addAttribute("filmList",filmService.getFilmPageByType(page,type));
+        model.addAttribute("categoryList", categoryService.getCategoryList());
+        model.addAttribute("pages",filmService.getPageByType(type));
+        model.addAttribute("currentPage",page);
+        return "anime";
+    }
+    @RequestMapping("/anime/{category}/{page}")
+    public String loadAnimeByCategory(
+            @PathVariable("category") String category,
+            @PathVariable("page")String page,
+            ModelMap model) {
+        int numberPage = Integer.parseInt(page.substring(5));
+        model.addAttribute("user",user);
+        model.addAttribute("filmList",filmService.getFilmPageByCategory(numberPage, category));
+        model.addAttribute("categoryList", categoryService.getCategoryList());
+        model.addAttribute("pages",filmService.getPageByCategory(category));
+        model.addAttribute("currentPage",numberPage);
+        return "anime";
+    }
+    @RequestMapping("/movie/{page}")
+    public String loadMovieByPage(ModelMap model ,@PathVariable("page")String page) {
+        int numberPage = Integer.parseInt(page.substring(5));
+        model.addAttribute("user",user);
+        model.addAttribute("filmList",filmService.getFilmPageByType(numberPage,"MOVIE"));
+        model.addAttribute("pages",filmService.getPageByType("MOVIE"));
+        model.addAttribute("currentPage",numberPage);
+        return "movie";
+    }
+
     @RequestMapping("/bxh")
     public String loadBXH(ModelMap model) {
         model.addAttribute("user",user);
+        model.addAttribute("list",filmService.get24FilmTopTier() );
         return "bxh";
     }
 
@@ -144,12 +198,36 @@ public class HomeController {
         }
         return "redirect:/favorite";
     }
+    @GetMapping("/follow")
+    public String loadFilmFollowList(ModelMap model){
+        model.addAttribute("user", user);
+        model.addAttribute("list",watchListService.findByID(user.getWatchList().getIdWatchList()).getFilms());
+        return "film_followed";
+    }
+    @GetMapping("/follow/remove/{id}")
+    public String removeFollow(ModelMap model,RedirectAttributes redirect,
+                                 @PathVariable(value = "id") int id){
+        try{
+            WatchList watchList = watchListService.findByID(user.getWatchList().getIdWatchList());
+            for(Film film : watchList.getFilms()){
+                if(film.getFilmID() == id){
+                    watchList.getFilms().remove(film);
+                    break;
+                }
+            }
+            watchListService.addWatchList(watchList);
+            user = userService.findUserById(user.getIdUser());
+            redirect.addFlashAttribute("message", "Bỏ theo dõi phim thành công!");
+        }catch (Exception e){
+            redirect.addFlashAttribute("message", "Bỏ theo dõi phim không thành công. Vui lòng thử lại.");
+        }
+        return "redirect:/follow";
+    }
     @RequestMapping("/watch")
     public String loadWatch(ModelMap model, @RequestParam(value = "id") int id, @RequestParam(value = "ep") int ep) {
         model.addAttribute("user", user);
         model.addAttribute("film", filmService.getFilmById(id));
         model.addAttribute("currentEp", episodeService.getEpById(ep));
-
         return "watch";
     }
 
@@ -164,15 +242,6 @@ public class HomeController {
 
     ///login-register
 
-//    private FavoriteList favoriteList;
-//    private WatchList watchList;
-//    private String message;
-//    @Autowired
-//    AccountService accountService;
-    @Autowired
-    UserService userService;
-    @Autowired
-    MailService mailService;
 
 
     //Login_Register
@@ -184,12 +253,13 @@ public class HomeController {
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password, RedirectAttributes redirect) {
-        Account account = accountService.findAccountByUsername(username);
-        if (account == null ||!account.isStatus()) {
-            redirect.addFlashAttribute("message","Tài khoản không tồn tại hoặc bị khóa!");
-            return "redirect:/";
-        }
-        if (!account.getPassword().equals(password)) {
+        Account account = accountService.findAccountByUsernameAndPassword(username,password);
+        System.out.println("password: " + password);
+//        if (account == null ||!account.isStatus()) {
+//            redirect.addFlashAttribute("message","Tài khoản không tồn tại hoặc bị khóa!");
+//            return "redirect:/";
+//        }
+        if (account == null) {
             redirect.addFlashAttribute("message","Sai tài khoản hoặc mật khẩu!");
             return "redirect:/";
         }else{

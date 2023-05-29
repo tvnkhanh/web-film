@@ -26,7 +26,7 @@
                         <a th:href="@{/watch (id=${data.film.filmID}, ep=${data.epID})}" class="film_link">
                             <div class="film_item">
                                 <img th:src="${data.imgPath}" alt="" class="film_item_thumb">
-                                <div class="film_info">
+                                <div class="film_info film_info--blue">
                                     <h3 class="film_name" th:text="${data.film.filmName}"></h3>
                                     <div class="film_detail">
                                         <span class="film_title">
@@ -63,8 +63,8 @@
                                     <span th:text="${1}"></span>
                                 </div>
                                 <img th:src="${tierList[0].imgTierList}" alt="" class="film_item_thumb">
-                                <div class="film_info">
-                                    <h3 class="film_name" th:text="${tierList[0].filmName}"></h3>
+                                <div class="film_info film_info--green">
+                                    <h3 class="film_top-name" th:text="${tierList[0].filmName}"></h3>
                                 </div>
                             </div>
                         </a>
@@ -77,8 +77,8 @@
                                         <span th:text="${dataStat.index + 1}"></span>
                                     </div>
                                     <img th:src="${data.imgTierList}" alt="" class="film_item_thumb">
-                                    <div class="film_info">
-                                        <h3 class="film_name" th:text="${data.filmName}"></h3>
+                                    <div class="film_info film_info--green">
+                                        <h3 class="film_top-name" th:text="${data.filmName}"></h3>
                                     </div>
                                 </div>
                             </a>
@@ -97,11 +97,11 @@
                     <div class="col-2" th:each="data, dataStat : ${movie}">
                         <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
                             <div class="film_movie film--cm_soon">
-                                <div class="film_status">
-                                    <span>SẮP CHIẾU</span>
-                                </div>
-                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style="width: 208px; height: 300px">
-                                <div class="film_info">
+<!--                                <div class="film_status">-->
+<!--                                    <span>SẮP CHIẾU</span>-->
+<!--                                </div>-->
+                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style=" height: 300px">
+                                <div class="film_info film_info--red">
                                     <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
                                     <div class="film_detail">
                                         <span class="film_title" th:text="${data.getFilmView(data.getFilmID())} + ' lượt xem'"></span>
@@ -125,8 +125,8 @@
                         <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.episodeList[0].epID})}" class="film_link">
                             <div class="film_movie film--cm_soon">
 
-                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style="width: 208px; height: 300px">
-                                <div class="film_info">
+                                <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style=" height: 300px">
+                                <div class="film_info film_info--purple">
                                     <h3 class="film_name" th:text="${data.getFilmName()}"></h3>
                                     <div class="film_detail">
                                         <span class="film_title" th:text="${data.getFilmView(data.getFilmID())} + ' lượt xem'"></span>

@@ -26,4 +26,11 @@ public interface FilmRepository extends JpaRepository<Film,Integer> {
     public int findMaxId();
     @Query("select f from Film f where f.filmName like %?1%")
     List<Film> searchByFilmName(String keyword);
+    @Query("select count(f) from Film f")
+    int countFilm();
+
+
+//    @Query(nativeQuery = true,
+//            value = "select top 24 p.f from (select f,  t.view  from Film f inner join  (select e.film.filmID as id , sum(e.view) as view from Episode e group by e.film.filmID) t where f.filmID = t.id order by t.view desc) p")
+//    List<Film> get24FilmTopTier();
 }

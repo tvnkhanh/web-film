@@ -19,4 +19,7 @@ public class AccountService {
         accountRepository.save(account);
     }
     public Account findAccountByUsername(String username){return accountRepository.findAccountByUsername(username);}
+    public Account findAccountByUsernameAndPassword(String username, String password){
+        return accountRepository.findAccountByUsernameAndPassword(username, password);
+    }
 }

@@ -13,4 +13,7 @@ public class WatchListService {
     public void addWatchList(WatchList watchList){
         watchListRepository.save(watchList);
     }
+    public WatchList findByID(int id){
+        return watchListRepository.getById(id);
+    }
 }

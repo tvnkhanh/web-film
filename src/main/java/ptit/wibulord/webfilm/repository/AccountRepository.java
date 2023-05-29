@@ -10,4 +10,6 @@ import ptit.wibulord.webfilm.model.Account;
 public interface AccountRepository extends JpaRepository<Account, String> {
     @Query("select a from Account a where a.username = :username")
     public Account findAccountByUsername(@Param("username") String username);
+    @Query("select a from Account a where a.username = :username and a.password = :password")
+    public Account findAccountByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
 }

@@ -19,6 +19,7 @@
 }
 .header_navbar {
     max-width: 1200px;
+    height: 80px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -52,7 +53,7 @@
 }
 
 .home .logo {
-    width: 180px;
+    width: 164px;
     object-fit: contain;
 }
 
@@ -66,7 +67,7 @@
 .header_search {
     display: flex;
     position: relative;
-    width: 248px;
+    width: 332px;
     justify-content: space-between;
     align-items: center;
 }
@@ -341,6 +342,18 @@
 .film_link:hover .film_item_thumb {
     transform: scale(1.1);
 }
+.film_link:hover .film_info--red {
+    background-image: linear-gradient(transparent,#c53737);
+}
+.film_link:hover .film_info--blue {
+    background-image: linear-gradient(transparent,#4c7ad0)
+}
+.film_link:hover .film_info--green {
+    background-image: linear-gradient(transparent,#80ad8e);
+}
+.film_link:hover .film_info--purple {
+    background-image: linear-gradient(transparent,#9d57a2)
+}
 .film--complete .film_status {
     display: flex;
     font-size: 1.4rem;
@@ -370,23 +383,32 @@
     left: 0;
     right: 0;
     padding: 10px;
+    padding-top: 80px;
     color: #fff;
     background-image: linear-gradient(transparent,#000);
 }
 .film_name {
     font-size: 1.6rem;
-    margin:0 0 10px 0;
     font-weight: 500;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    line-height: 28px;
+    margin-bottom: 16px;
 }
 .film_detail {
     display: flex;
     justify-content: space-between;
     font-size: 1.2rem;
-    
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
 }
 
 /*Top film*/
@@ -396,6 +418,28 @@
     font-size: 2.6rem;
 }
 
+.film--top .film_info {
+    bottom: 0;
+}
+
+.film--top:hover .film_status {
+    top:8px;
+}
+
+.film_top-name {
+    position: absolute;
+    right: 10px;
+    left: 10px;
+    bottom: 6px;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 400;
+    line-height: 24px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
 /* Coming soon*/
 .film--cm_soon .film_status {
     display: flex;
@@ -408,7 +452,9 @@
     border-radius: 8px;
     overflow: hidden;
 }
-
+.film_movie > .film_info{
+    padding-top: 120px;
+}
 /* Footer */
 .footer {
     margin-top: 42px;

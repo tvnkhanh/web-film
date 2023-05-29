@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/anime.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Tổng hợp anime</title>
+</head>
+
+<body>
+    <header th:replace="~{fragments::navbar}"></header>
+    <div class="page_container">
+        <section class="container">
+            <div class="page_head">
+                <ul class="category-list row">
+                    <li class="category-item col-1">
+                        <a class="category-item-link" th:href="@{/anime/page-1}">
+                            <span class="category-item-name">Tất cả</span>
+                        </a>
+                    </li>
+                    <li class="category-item col-1" th:each="data,dataStat : ${categoryList}">
+                        <a class="category-item-link" th:href="@{/anime/{id}/page-1 (id = ${data.categoryName})}">
+                            <span class="category-item-name" th:text="${data.categoryName}"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="movie-tv">
+                    <li class="movie-tv-item col-2">
+                        <a class="movie-tv-link" th:href="@{/anime/filter (type = 'movie', page = 1)}">
+                            <span class="movie-tv-name">Movie</span>
+                        </a>
+                    </li>
+                    <li class="movie-tv-item col-2">
+                        <a class="movie-tv-link" th:href="@{/anime/filter (type = 'tv-series', page = 1)}">
+                            <span class="movie-tv-name">TV Series</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-3" th:each="data, dataStat : ${filmList}">
+                    <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
+                        <div class="film_item film--top" style="border-radius: 0; margin-bottom: 15px;">
+                            <img th:src="${data.imgTierList}" alt="" class="film_item_thumb">
+                            <div class="film_info film_info--blue">
+                                <h3 class="film_name" th:text="${data.filmName}"></h3>
+                                <div class="film_detail">
+                                    <span class="film_title" th:text="${data.getNumberOfEp(data.filmID)} + ' Tập'"></span>
+                                    <span class="film_title" th:text="${data.getFilmView(data.filmID)} + ' Lượt xem'"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                
+            </div>
+            <ul class="pagination">
+                <li class="pagination-item">
+                    <a th:href="@{/anime}" class="pagination-link">
+                        <i class="pagination-icon fa-sharp fa-solid fa-backward-step"></i>
+                    </a>
+                </li>
+            </ul>
+            <script th:src="@{/js/handle_pagination.js}"></script>
+            <script th:inline="javascript">
+                var value  = {
+                    totalPage: [[${pages}]],
+                    currentPage:[[${currentPage}]]
+                }
+                handlePagination(value, getcurrentPathNameForAnimePage())
+            </script>
+        </section>
+
+    </div>
+    <script th:src="@{/js/user_navbar.js}"></script>
+</body>
+
+</html>

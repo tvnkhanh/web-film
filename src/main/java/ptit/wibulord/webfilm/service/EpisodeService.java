@@ -51,7 +51,7 @@ public class EpisodeService {
 
     public List<Film> getTierList() {
         List<Film> tierList = new ArrayList<>();
-        HashMap<Integer, Integer> topFilmIds = new HashMap<>();
+        List<Integer> topFilmIds = new ArrayList<>();
 
         try {
             Connection con = Databasehelper.openConnection();
@@ -59,16 +59,16 @@ public class EpisodeService {
             String sql = "SELECT TOP 10 ID_PHIM, SUM(LUOTXEM) AS LUOTXEM FROM TAP GROUP BY ID_PHIM ORDER BY LUOTXEM DESC";
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next()) {
-                topFilmIds.put(resultSet.getInt(1), resultSet.getInt(2));
+                topFilmIds.add(resultSet.getInt(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        topFilmIds.forEach((id, view) -> {
-            Film film = filmService.getFilmById(id);
+        for (int i : topFilmIds){
+            Film film = filmService.getFilmById(i);
             tierList.add(film);
-        });
+        }
 
         return tierList;
     }

@@ -60,4 +60,18 @@ public class Film {
         }
         return 0;
     }
+    public int getNumberOfEp(int filmID) {
+        try {
+            Connection con = Databasehelper.openConnection();
+            Statement stmt = con.createStatement();
+            String sql = "SELECT COUNT(ID_TAP) FROM TAP WHERE ID_PHIM = " + filmID;
+            ResultSet resultSet = stmt.executeQuery(sql);
+            while (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
