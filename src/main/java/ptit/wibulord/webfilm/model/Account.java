@@ -31,6 +31,5 @@ public class Account {
     @OneToOne(mappedBy = "account")
     private User user;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    private Collection<DetailPurchase> detailPurchases;
+
 }

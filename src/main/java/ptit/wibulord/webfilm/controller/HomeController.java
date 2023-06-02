@@ -39,6 +39,10 @@ public class HomeController {
     UserService userService;
     @Autowired
     MailService mailService;
+    @Autowired
+    PremiumService premiumService;
+    @Autowired
+    DetailPurchaseService detailPurchaseService;
 
     @RequestMapping("/home")
     public String index(ModelMap model) {
@@ -223,11 +227,35 @@ public class HomeController {
         }
         return "redirect:/follow";
     }
+    @GetMapping("/buy")
+    public String loadPack(ModelMap model){
+        model.addAttribute("list", premiumService.getPremiumList());
+        model.addAttribute("user",user);
+        return "buy";
+    }
+    @GetMapping("/buy/get")
+    public String buyPack(ModelMap model ,@RequestParam("id")int idpack, RedirectAttributes redirect){
+        DetailPurchase detail = new DetailPurchase();
+        detail.setUser(user);
+        Premium pack = premiumService.getPackById(idpack);
+        detail.setPremium(pack);
+        detail.setPoint(pack.getPoint());
+        detail.setDatePurchase(new java.util.Date());
+        detail.setPrice(pack.getPrice());
+        detailPurchaseService.save(detail);
+        user.setPoint(user.getPoint()+pack.getPoint());
+        userService.addUser(user);
+        redirect.addFlashAttribute("message", "Mua gói thành công! Cảm ơn bạn đã ủng hộ.");
+        return "redirect:/buy";
+    }
     @RequestMapping("/watch")
     public String loadWatch(ModelMap model, @RequestParam(value = "id") int id, @RequestParam(value = "ep") int ep) {
         model.addAttribute("user", user);
         model.addAttribute("film", filmService.getFilmById(id));
         model.addAttribute("currentEp", episodeService.getEpById(ep));
+        Episode episode = episodeService.getEpById(ep);
+        episode.setView(episode.getView()+1);
+        episodeService.addEps(episode);
         return "watch";
     }
 

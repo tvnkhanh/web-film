@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/category_for_film.css}">
     <link rel="stylesheet" th:href="@{/css/message.css}">
     <div th:replace="fragments::html_head"></div>
-    <title>Management Page</title>
+    <title th:text="'Chọn thể loại cho phim '+${film.filmName}"></title>
 </head>
 
 <body>

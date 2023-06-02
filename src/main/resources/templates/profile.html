@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/bxh.css}">
     <link rel="stylesheet" th:href="@{/css/profile.css}">
     <div th:replace="fragments::html_head"></div>
-    <title>Profile</title>
+    <title>Trang cá nhân</title>
 </head>
 
 <body>
@@ -101,6 +101,10 @@
                                 <li class="profile_detail-item">
                                     <span class="detail_name">Chức danh</span>
                                     <span class="detail_data" th:text="${user.account.role.roleName}"></span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">FPoint</span>
+                                    <span class="detail_data" th:text="${user.point}"></span>
                                 </li>
                             </ul>
                         </div>

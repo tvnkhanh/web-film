@@ -6,7 +6,7 @@
   <link rel="stylesheet" th:href="@{/css/register.css}">
   <link rel="stylesheet" th:href="@{/css/message.css}">
   <div th:replace="fragments::html_head"></div>
-  <title>Management Category Page</title>
+  <title>Quản lý gói điểm</title>
 </head>
 
 <body>
@@ -93,14 +93,14 @@
         <table class="app-main_table">
           <tr class="app-main_table-header">
             <th>ID</th>
-            <th>Số ngày</th>
+            <th>Số FPoint</th>
             <th>Giá</th>
             <th>Thiết lập</th>
           </tr>
           <tbody class="app-main_table-body">
           <tr class="app-main_table-data-row" th:each="pack,iterStart:${premiumList}">
             <th th:id="${pack.idPackage}" class="obj_id" scope="row" th:text="${pack.idPackage}"></th>
-            <td th:text="${pack.nofDay}"></td>
+            <td th:text="${pack.point}"></td>
             <td th:text="${pack.price}"></td>
             <td class="data-option">
               <div class="data-option-edit">

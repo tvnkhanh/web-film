@@ -84,7 +84,7 @@ public class StatisticService {
         try {
             con = Databasehelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT COUNT(ID_GOI)\n" +
+            String sql = "SELECT SUM(SODIEM)\n" +
                     "FROM (SELECT * FROM CT_MUA WHERE NGAYMUA BETWEEN '"+fromDate+"' AND '"+toDate+"') CT";
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
@@ -141,7 +141,7 @@ public class StatisticService {
         try {
             con = Databasehelper.openConnection();
             statement = con.createStatement();
-            String sql = "SELECT GHV.SONGAY, ISNULL(DOANHTHU,0) FROM GOIHOIVIEN GHV LEFT JOIN "+
+            String sql = "SELECT GHV.SODIEM, ISNULL(DOANHTHU,0) FROM GOIDIEM GHV LEFT JOIN "+
                     "(SELECT ID_GOI, DOANHTHU = SUM(GIA) FROM (SELECT * FROM CT_MUA WHERE NGAYMUA BETWEEN '"+fromDate+"' AND '"+toDate+"') CT GROUP BY ID_GOI ) CTM "+
             "ON CTM.ID_GOI = GHV.ID_GOI "+
                     "ORDER BY DOANHTHU DESC";

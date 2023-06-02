@@ -290,11 +290,11 @@ public class ManagementController {
     }
     @PostMapping("/Premium/save")
     public String savePack(@RequestParam("price")long price,
-                           @RequestParam("quantityDay")int quantity,
+                           @RequestParam("quantityPoint")int quantity,
                            RedirectAttributes redirect){
         Premium premium = new Premium();
         premium.setPrice(price);
-        premium.setNofDay(quantity);
+        premium.setPoint(quantity);
         try{
             premiumService.addPack(premium);
             redirect.addFlashAttribute("message", "Thêm gói thành công!");
@@ -306,11 +306,11 @@ public class ManagementController {
     @PostMapping("/Premium/update/{id}")
     public String updatePack(@PathVariable("id")int id
                             ,@RequestParam("price")long price,
-                            @RequestParam("quantityDay")int quantity,
+                            @RequestParam("quantityPoint")int quantity,
                             RedirectAttributes redirect){
         Premium premium = new Premium();
         premium.setPrice(price);
-        premium.setNofDay(quantity);
+        premium.setPoint(quantity);
         premium.setIdPackage(id);
         try{
             premiumService.addPack(premium);

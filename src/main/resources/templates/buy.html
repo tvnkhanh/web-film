@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/buy.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="fragments::html_head"></div>
+    <title>Mua FPoint</title>
+</head>
+<body>
+<script th:inline="javascript">
+    /* Set message variable with Thymeleaf */
+    var message = [[${message}]];
+    if(message!==null){
+        showMessage(message)
+        // console.log(message)
+    }
+</script>
+    <header th:replace="~{fragments::navbar}"></header>
+    <div class="page">
+
+        <div class="container">
+            <section class="page_section">
+                <div class="row">
+                    <div class="ss_header">
+                        <h3 class="ss_header-title">MUA FPOINT</h3>
+                        <div class="ss_header-per">
+                            <i class="ss_header-per-icon fa-solid fa-circle-check"></i>
+                            <h3 class="ss_header-per-content">Cực nhiều quyền lợi hấp dẫn:</h3>
+                            <h3 class="ss_header-per-des">thoải mái thưởng thức anime một cách trọn vẹn.</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page_container">
+                    <div class="ss_container-list row">
+                        <div class="ss_container-item" th:each="data, dataStat : ${list}">
+                            <div class="ss_container-item-quan" th:utext = "${data.point}+ ' FPOINT'">
+                            </div>
+                            <div class="ss_container-item-price" th:utext = "${data.price}+ ' VND'">
+                            </div>
+                            <a th:href="@{/buy/get (id = ${data.idPackage})}" style="text-decoration: none">
+                                <div class="btn_buy">Mua</div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+        
+    </div>
+<script th:replace="fragments::navbar_js"></script>
+</body>
+</html>
+
+

@@ -11,7 +11,7 @@
   <link rel="stylesheet" th:href="@{/css/profile.css}">
   <link rel="stylesheet" th:href="@{/css/edit_info.css}">
   <div th:replace="~{fragments::html_head}"></div>
-  <title>Edit info</title>
+  <title>Đổi mật khẩu</title>
 </head>
 
 <body style="    background-color: #f2f2f5;">
@@ -77,19 +77,23 @@
             <ul class="profile_detail">
               <li class="profile_detail-item">
                 <span class="detail_name">User ID</span>
-                <span class="detail_data">123344</span>
+                <span class="detail_data" th:text = "${user.idUser}"></span>
               </li>
               <li class="profile_detail-item">
                 <span class="detail_name">Username</span>
-                <span class="detail_data">dat1</span>
+                <span class="detail_data" th:text = "${user.account.username}"></span>
               </li>
               <li class="profile_detail-item">
                 <span class="detail_name">Email</span>
-                <span class="detail_data">datho@gmail.com</span>
+                <span class="detail_data" th:text = "${user.email}"></span>
               </li>
               <li class="profile_detail-item">
                 <span class="detail_name">Chức danh</span>
-                <span class="detail_data">Member VIP</span>
+                <span class="detail_data" th:text = "${user.account.role.roleName}"></span>
+              </li>
+              <li class="profile_detail-item">
+                <span class="detail_name">FPoint</span>
+                <span class="detail_data" th:text = "${user.point}"></span>
               </li>
             </ul>
           </div>

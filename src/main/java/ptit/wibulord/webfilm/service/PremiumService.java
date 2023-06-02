@@ -13,6 +13,9 @@ public class PremiumService {
     @Autowired
     private PremiumRepository premiumRepository;
 
+    public Premium getPackById(int id){
+        return premiumRepository.findById(id).get();
+    }
     public void deletePack(int id){
         premiumRepository.deleteById(id);
     }

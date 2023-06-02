@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}">
     <link rel="stylesheet" th:href="@{/css/edit_info.css}">
     <div th:replace="~{fragments::html_head}"></div>
-    <title>Edit info</title>
+    <title>Thay đổi thông tin cá nhân</title>
 </head>
 
 <body style="    background-color: #f2f2f5;">
@@ -125,6 +125,10 @@
                                 <li class="profile_detail-item">
                                     <span class="detail_name">Chức danh</span>
                                     <span class="detail_data" th:text = "${user.account.role.roleName}"></span>
+                                </li>
+                                <li class="profile_detail-item">
+                                    <span class="detail_name">FPoint</span>
+                                    <span class="detail_data" th:text = "${user.point}"></span>
                                 </li>
                             </ul>
                         </div>

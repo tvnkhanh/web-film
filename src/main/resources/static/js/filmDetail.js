@@ -326,8 +326,8 @@ btnEdit.onclick = (e) =>{
                     <div class="app-dialog_group">
                         <div class="app-dialog_item">
                             <select name="charge" id="charge" class="app-dialog_item-input">
-                                <option value="Limit">Limit</option>
-                                <option value="Free">Free</option>
+                                <option value="MOVIE">MOVIE</option>
+                                <option value="TV-SERIES">TV-SERIES</option>
                             </select>
                             <span class="input_message"></span>
                         </div>
@@ -358,7 +358,6 @@ btnEdit.onclick = (e) =>{
     });
     `
     var cmbType = dialog.querySelector("#charge")
-    console.log(filmType)
     cmbType.value = filmType;
     app.appendChild(dialog);
     app.appendChild(validation);

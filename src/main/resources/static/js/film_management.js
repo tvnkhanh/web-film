@@ -60,8 +60,8 @@ btnAdd.onclick = ()=>{
                     <div class="app-dialog_group">
                         <div class="app-dialog_item">
                             <select name="charge" id="charge" class="app-dialog_item-input">
-                                <option value="Limit">Limit</option>
-                                <option value="Free">Free</option>
+                                <option value="MOVIE">MOVIE</option>
+                                <option value="TV-SERIES">TV-SERIES</option>
                             </select>
                             <span class="input_message"></span>
                         </div>

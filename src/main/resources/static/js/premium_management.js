@@ -28,7 +28,7 @@ btnAdd.onclick = () => {
                     </div>
                     <div class="app-dialog_group">
                         <div class="app-dialog_item">
-                            <input id="quantity" name="quantityDay" type="number" placeholder="Số ngày"
+                            <input id="quantity" name="quantityPoint" type="number" placeholder="Số điểm"
                                  class="app-dialog_item-input">
                             <span class="input_message"></span>
                         </div>
@@ -96,7 +96,7 @@ btnEditList.forEach((btnEdit) => {
                     </div>
                     <div class="app-dialog_group">
                         <div class="app-dialog_item">
-                            <input id="quantity" name="quantityDay" type="number" placeholder="Số ngày"
+                            <input id="quantity" name="quantityPoint" type="number" placeholder="Số điểm"
                                 value="${quantity}" class="app-dialog_item-input">
                             <span class="input_message"></span>
                         </div>
@@ -156,7 +156,7 @@ btnDeleteList.forEach((btnDelete) => {
                         
                         <div class="app-dialog_container">
                             <div class="app-dialog_group">
-                                Bạn có thực sự muốn xóa gói <strong>${quantity}</strong> ngày giá <strong>${price}</strong> không?
+                                Bạn có thực sự muốn xóa gói <strong>${quantity}</strong> FPoint giá <strong>${price}</strong> không?
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-function handlePagination(valuePage, getPathName){
+function handlePagination(valuePage, type){
     const {totalPage, currentPage} = valuePage
     const pagination = document.querySelector(".pagination")
     var backward = document.querySelector(".pagination-item .fa-backward-step").closest(".pagination-item")
@@ -6,7 +6,12 @@ function handlePagination(valuePage, getPathName){
             if(1 == currentPage){
                 backward.classList.add("activated")
             }
-    const href = getPathName();
+            var href =''
+            if(type == 'anime'){
+                href = getcurrentPathNameForAnimePage()
+            }else{
+                href=getcurrentPathNameForMoviePage()
+            }
     backward.querySelector(".pagination-link").href =href+"1"
     var maxLeft = currentPage - 2
     var maxRight = currentPage + 2
@@ -45,23 +50,23 @@ function handlePagination(valuePage, getPathName){
             </a>
             `
     pagination.appendChild(forward)
-}
-function getcurrentPathNameForAnimePage(){
-    const pathName = window.location.pathname;
-    const search = window.location.search;
-    let href = "";
-    if(pathName.includes("/anime/page-")){
-        href = "/anime/page-"
-    }else if(pathName.includes("/anime/filter")){
-        href = "/anime/filter"
-        var temp = search.split("&")
-        href+=temp[0]+"&page="
-    }else {
-        var temp = pathName.split("/")
-        href = "/"+temp[1]+"/"+temp[2]+"/page-"
+    function getcurrentPathNameForAnimePage(){
+        const pathName = window.location.pathname;
+        const search = window.location.search;
+        let href = "";
+        if(pathName.includes("/anime/page-")){
+            href = "/anime/page-"
+        }else if(pathName.includes("/anime/filter")){
+            href = "/anime/filter"
+            var temp = search.split("&")
+            href+=temp[0]+"&page="
+        }else {
+            var temp = pathName.split("/")
+            href = "/"+temp[1]+"/"+temp[2]+"/page-"
+        }
+        return href;
     }
-    return href;
-}
-function getcurrentPathNameForMoviePage(){
-    return "/movie/page-";
+    function getcurrentPathNameForMoviePage(){
+        return "/movie/page-";
+    }
 }

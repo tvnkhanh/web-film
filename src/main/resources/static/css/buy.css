@@ -1,0 +1,102 @@
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.page_section {
+    margin: 0 auto;
+}
+
+.ss_header {
+    border: 1px solid #d52b2b;
+    border-radius: 4px;
+    padding: 32px !important;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+
+.ss_header-title {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #333;
+    line-height: 2.4rem;
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 8px;
+    border-left: 4px solid #eb0303 ;
+}
+
+.ss_header-per {
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;
+    
+}
+
+.ss_header-per-icon {
+    color: #03a911;
+    font-size: 1.4rem;
+
+}
+
+.ss_header-per-content {
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-left: 8px;
+    margin: 0;
+}
+
+.ss_header-per-des {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding-left: 8px;
+}
+
+.ss_container-list {
+    list-style: none;
+    margin-bottom: 24px;
+}
+
+.ss_container-item {
+    padding: 20px !important;
+    border: 1px solid  #eb0303 ;
+    border-radius: 4px;
+    width: 272px !important;
+    margin: 0 14px 28px 14px !important;
+}
+
+.ss_container-item-quan {
+    font-size: 2rem;
+    color: #d52b2b;
+    text-align: center;
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 12px;
+    line-height: 3rem;
+}
+
+.ss_container-item-price {
+    font-size: 1.8rem;
+    color: #004eb5;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    line-height: 3rem;
+}
+
+.btn_buy {
+    background-color: #f44a4a;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 auto;
+    max-width: 124px;
+    border-radius: 4px;
+    padding: 4px 8px;
+    text-align: center;
+
+}

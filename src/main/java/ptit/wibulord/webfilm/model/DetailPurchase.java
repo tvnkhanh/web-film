@@ -18,8 +18,8 @@ public class DetailPurchase {
     @Column(name = "ID_MUA")
     private int detailPurchaseID;
     @ManyToOne
-    @JoinColumn(name = "TEN_TK")
-    private Account account;
+    @JoinColumn(name = "ID_ND")
+    private User user;
     @ManyToOne
     @JoinColumn(name = "ID_GOI")
     private Premium premium;
@@ -27,6 +27,8 @@ public class DetailPurchase {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datePurchase;
-    @Column(name = "SONGAY")
-    private int nofDay;
+    @Column(name = "SODIEM")
+    private int point;
+    @Column(name = "GIA")
+    private double price;
 }

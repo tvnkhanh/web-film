@@ -5,7 +5,7 @@ import lombok.*;
 import java.util.Collection;
 
 @Entity
-@Table(name="GOIHOIVIEN")
+@Table(name="GOIDIEM")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,8 +15,8 @@ public class Premium {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_GOI")
     private int idPackage;
-    @Column(name = "SONGAY")
-    private int nofDay;
+    @Column(name = "SODIEM")
+    private int point;
     @Column(name = "GIA")
     private long price;
     @OneToMany(mappedBy = "premium", fetch = FetchType.EAGER)

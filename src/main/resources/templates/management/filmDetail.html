@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/management.css}">
     <link rel="stylesheet" th:href="@{/css/register.css}">
     <div th:replace="fragments::html_head"></div>
-    <title>Film Info Page</title>
+    <title th:text="'Thông tin phim '+${film.filmName}"></title>
 </head>
 
 <body>

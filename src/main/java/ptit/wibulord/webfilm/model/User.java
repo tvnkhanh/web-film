@@ -4,6 +4,8 @@ package ptit.wibulord.webfilm.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
+
 @Entity()
 @Table(name="NGUOIDUNG")
 @AllArgsConstructor
@@ -23,6 +25,8 @@ public class User {
     private String imgPath;
     @Column(name = "GIOITINH")
     private String gender;
+    @Column(name = "DIEM")
+    private int point;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TEN_TK")
     private Account account;
@@ -32,6 +36,8 @@ public class User {
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private FavoriteList favoriteList;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Collection<DetailPurchase> detailPurchases;
 
     public User(int idUser) {
         this.idUser = idUser;
