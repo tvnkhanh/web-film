@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/watch.css}">
@@ -44,7 +41,7 @@
             <div class="col-3 ep-field">
                 <div class="ep-title">Danh sách tập</div>
                 <div th:each="data, dataStat : ${film.getEpisodeList()}">
-                    <a class="ep-link" th:href="@{/watch (id=${data.getFilm().getFilmID()}, ep=${data.getEpID()})}">
+                    <a class="ep-link" th:id ="${data.getEpID()}" th:href="@{/watch (id=${data.getFilm().getFilmID()}, ep=${data.getEpID()})}">
                         <div class="ep-item">
                         <span style="overflow: hidden; width: 106px; height: 100% ">
                                 <img class="ep-img" alt="" th:src="${data.getImgPath()}">
@@ -61,5 +58,17 @@
     </div>
 
     <script th:replace="fragments::navbar_js"></script>
+    <script th:inline="javascript">
+        var curid = [[${currentEp.epID}]]
+        const epList = document.querySelectorAll(".ep-link")
+        epList.forEach((ep)=>{
+            console.log(parseInt(ep.id) == parseInt(curid))
+            if(parseInt(ep.id) == parseInt(curid)){
+                ep.classList.add("ep-active")
+                ep.style = "pointer-events: none";
+
+            }
+        })
+    </script>
 </body>
 </html>

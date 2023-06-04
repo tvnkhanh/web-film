@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     public User findByEmail(@Param("email")String email);
     @Query("select coalesce(max(u.idUser), 0) from User u ")
     public int findMaxId();
+    @Query("select u from User u where u.account.username = :username")
+    User findByUsername(String username);
 }

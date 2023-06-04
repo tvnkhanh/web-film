@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/mylist.css}">
+    <link rel="stylesheet" th:href="@{/css/management.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <div th:replace="~{fragments::html_head}"></div>
+    <title>Phim của tôi</title>
+</head>
+<body>
+<div class="page">
+    <header th:replace="~{fragments::navbar}"></header>
+    <div class="container">
+        <section class="page_section">
+            <div >
+                <h2 class="page_header">PHIM ĐÃ MUA</h2>
+            </div>
+            <div class="page_container">
+                <div class="page_container-head row">
+                    <div class="page_container-head-item col-2">
+                        Ảnh
+                    </div>
+                    <div class="page_container-head-item col-7">
+                        Tên phim
+                    </div>
+                    <h3 class="page_container-head-item col-3" style="text-align: right;">Lượt xem</h3>
+                </div>
+                <ul class="page_container-list">
+                    <li class="page_container-item row" th:each = "data, dataStat : ${list}">
+                        <div class="col-2">
+                            <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}">
+                                <img class="page_container-item-img" th:src="${data.imgTierList}" alt="" >
+                            </a>
+                        </div>
+                        <div class="col-7" >
+                            <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" style="text-decoration: none;">
+                                <h3  class="page_container-item-name" th:text = "${data.filmName}"></h3>
+                            </a>
+                        </div>
+                        <h3 class="page_container-item-view col-3" th:text=" ${data.getFilmView(data.filmID)}"></h3>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+<script type="text/javascript" th:src="@{/js/user_navbar.js}"></script>
+</body>
+</html>

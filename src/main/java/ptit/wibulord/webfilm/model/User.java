@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity()
 @Table(name="NGUOIDUNG")
@@ -25,8 +26,6 @@ public class User {
     private String imgPath;
     @Column(name = "GIOITINH")
     private String gender;
-    @Column(name = "DIEM")
-    private int point;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TEN_TK")
     private Account account;
@@ -38,7 +37,18 @@ public class User {
     private FavoriteList favoriteList;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Collection<DetailPurchase> detailPurchases;
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Collection<BuyFilm> buyFilm;
+    public int totalPoint(){
+        int total = 0;
+        for(DetailPurchase detail : detailPurchases){
+            total+= detail.getPoint();
+        };
+        for(BuyFilm buy : buyFilm){
+            total-= buy.getPrice();
+        };
+        return total;
+    }
     public User(int idUser) {
         this.idUser = idUser;
     }

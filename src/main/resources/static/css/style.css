@@ -129,11 +129,12 @@
 .header_option-icon {
     font-size: 1.4rem;
 }
-.header_option_notification:hover {
-    color: #ff0000;
-}
-.header_option-user {
 
+.header_option-point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 4px;
 }
 .user-avatar {
     width: 40px;

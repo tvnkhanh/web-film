@@ -1,20 +1,16 @@
 package ptit.wibulord.webfilm.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.Banner;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import ptit.wibulord.webfilm.model.*;
 import ptit.wibulord.webfilm.service.*;
 
-import java.util.Date;
 import java.util.Random;
 
 @ComponentScan
@@ -43,6 +39,9 @@ public class HomeController {
     PremiumService premiumService;
     @Autowired
     DetailPurchaseService detailPurchaseService;
+
+    @Autowired
+    BuyFilmService buyFilmService;
 
     @RequestMapping("/home")
     public String index(ModelMap model) {
@@ -243,8 +242,7 @@ public class HomeController {
         detail.setDatePurchase(new java.util.Date());
         detail.setPrice(pack.getPrice());
         detailPurchaseService.save(detail);
-        user.setPoint(user.getPoint()+pack.getPoint());
-        userService.addUser(user);
+        user = userService.findUserById(user.getIdUser());
         redirect.addFlashAttribute("message", "Mua gói thành công! Cảm ơn bạn đã ủng hộ.");
         return "redirect:/buy";
     }
@@ -259,6 +257,34 @@ public class HomeController {
         return "watch";
     }
 
+    @RequestMapping("/film-info")
+    public String filmInfoPage(@RequestParam("id")int id, ModelMap model){
+        model.addAttribute("user",user);
+        model.addAttribute("film", filmService.getFilmById(id));
+        model.addAttribute("check", buyFilmService.checkFilmInMyFilmList(id,user.getIdUser()));
+        return "filmInfo";
+    }
+    @RequestMapping("/buy-film")
+    public String buyFilm(ModelMap model, @RequestParam("id") int id, RedirectAttributes redirect){
+        try{
+            BuyFilm buy = new BuyFilm();
+            buy.setFilm(filmService.getFilmById(id));
+            buy.setUser(user);
+            buy.setPrice(filmService.getFilmById(id).getPrice());
+            buyFilmService.save(buy);
+            user = userService.findUserById(user.getIdUser());
+            redirect.addFlashAttribute("message", "Mua phim thành công! Chúc bạn thưởng thức phim vui vẻ.");
+        }catch (Exception e){
+            redirect.addFlashAttribute("message", "Xảy ra lỗi trong quá trình mua phim. Điểm đã giao dịch sẽ được hoàn trà.");
+        }
+        return "redirect:/film-info?id="+id;
+    }
+    @GetMapping("/my-film")
+    public String loadMyFilm(ModelMap model){
+        model.addAttribute("user", user);
+        model.addAttribute("list",filmService.getMyFilm(user.getIdUser()));
+        return "my_film";
+    }
     @RequestMapping("/search")
     public String search(ModelMap model, @RequestParam(value = "keyword") String keyword) {
         model.addAttribute("user", user);
@@ -274,25 +300,33 @@ public class HomeController {
 
     //Login_Register
     @GetMapping("/")
-    public String showLoginPage() {
+    public String showLoginPage()throws Exception {
         user = null;
         return "login";
     }
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password, RedirectAttributes redirect) {
+                        @RequestParam("password") String password, RedirectAttributes redirect, HttpSession session) throws Exception{
         Account account = accountService.findAccountByUsernameAndPassword(username,password);
         System.out.println("password: " + password);
-//        if (account == null ||!account.isStatus()) {
-//            redirect.addFlashAttribute("message","Tài khoản không tồn tại hoặc bị khóa!");
-//            return "redirect:/";
-//        }
         if (account == null) {
             redirect.addFlashAttribute("message","Sai tài khoản hoặc mật khẩu!");
             return "redirect:/";
         }else{
-            user = account.getUser();
-            return "redirect:/home";
+            if(!account.isStatus()){
+                redirect.addFlashAttribute("message","Tài khoản của bạn đã bị khóa!");
+                return "redirect:/";
+            }else{
+                user = account.getUser();
+//                if(account.getRole().getRoleName().equals("Owner")){
+//                    dataSourceService.setRuntimeDataSource();
+//                    dataSourceService.updateDataSourceCredentials("runtime","webfilm","123456");
+//                }else{
+//                    dataSourceService.setRuntimeDataSource();
+//                    dataSourceService.updateDataSourceCredentials("runtime","viewers","123456");
+//                }
+                return "redirect:/home";
+            }
         }
 
     }
@@ -347,7 +381,7 @@ public class HomeController {
     @GetMapping("/confirm")
     public String confirmRegister() {
         codeConfirm = new Random().nextInt(900000) + 1;
-        mailService.sendSimpleMail(new EmailDetails(user.getEmail(), Integer.toString(codeConfirm), "Thư xác nhận"));
+        mailService.sendSimpleMail(new EmailDetails(user.getEmail(), "Mã xác nhận của bạn là: "+Integer.toString(codeConfirm), "Thư xác nhận"));
         return "confirmRegister";
     }
 

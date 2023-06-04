@@ -65,8 +65,9 @@
           </ul>
 
           <div class="header_option">
-              <div class="header_option-item header_option_notification">
-                  <i class="header_option-icon fa-regular fa-bell"></i>
+              <div class="header_option_point">
+<!--                  <i class="header_option-icon fa-regular fa-bell"></i>-->
+                  <span th:text="${user.totalPoint()} + ' FPoint'" style="font-size:1.4rem "></span>
               </div>
 
               <div class="header_option-item header_option-user">
@@ -91,12 +92,12 @@
                       <span class="user_role" th:text="${user.account.role.roleName}"></span>
                   </div>
                   <div class="navbar_user-header-tab">
-                      <div class="navbar_user-header-tab-item">
+                      <div class="navbar_user-header-tab-item navbar_user-header-tab--active">
                           THÔNG TIN
                       </div>
-                      <div class="navbar_user-header-tab-item ">
-                          THÔNG BÁO
-                      </div>
+<!--                      <div class="navbar_user-header-tab-item ">-->
+<!--                          THÔNG BÁO-->
+<!--                      </div>-->
                   </div>
               </div>
               <div class="navbar_user-body">
@@ -153,6 +154,12 @@
                           <a th:href="@{/follow}" class="navbar_user-item-link">
                               <i class="navbar_user-icon fas fa-regular fa-bell"></i>
                               <span>Phim đang theo dõi</span>
+                          </a>
+                      </li>
+                      <li class="navbar_user-item">
+                          <a th:href="@{/my-film}" class="navbar_user-item-link">
+                              <i class="navbar_user-icon fa-solid fa-film"></i>
+                              <span>Phim đã mua</span>
                           </a>
                       </li>
                       <li class="navbar_user-item">

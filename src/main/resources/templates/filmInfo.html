@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/film_info.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/management.css}">
+    <div th:replace="~{fragments::html_head}"></div>
+    <title th:text="'Thông tin phim '+ ${film.filmName}"> </title>
+</head>
+<body>
+<header th:replace="~{fragments::navbar}"></header>
+    <div class="info-page">
+        <div class="info-main">
+            <div class="info-container">
+                <div class="film-content">
+                    <div class="film-img" th:style="'background-image: url('+${film.imgTierList}+');'">
+                        <img th:src="${film.imgPath}" width="180" height="260" alt="" class="avatar">
+                        <div class="text">
+                            <span class="film-name" th:text="${film.filmName}"></span>
+                            <div class="film-option">
+                                <a th:href="@{/watch (id=${film.filmID}, ep=${film.episodeList[0].epID})}" class="option-link option-watch" th:if="${check}==1">
+                                    <i class="option-icon fa-solid fa-play" style="color: #fff"></i>
+                                    <span class="option-text">Xem phim</span>
+                                </a>
+                                <div  class="option-link option-buy" th:if="${check}==0">
+                                    <i class="option-icon fa-solid fa-credit-card" style="color: #fff"></i>
+                                    <span class="option-text">Mua phim</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film-info">
+                        <ul class="ep-list" th:if="${check == 0}">
+                            Danh sách tập
+                            <li th:each="data, dataStat: ${film.episodeList}">
+                                <a th:href="@{/watch (id=${film.filmID}, ep=${data.epID})}" class="ep-item disabled-link" th:text="${data.epNum}"></a>
+                            </li>
+                        </ul>
+                        <ul class="ep-list" th:if="${check == 1}">
+                            Danh sách tập
+                            <li th:each="data, dataStat: ${film.episodeList}">
+                                <a th:href="@{/watch (id=${film.filmID}, ep=${data.epID})}" th:text="${data.epNum}" class="ep-item"></a>
+                            </li>
+                        </ul>
+                        <ul class="film-category">
+                            Thể loại
+                            <li class="category-item" th:each="data, dataStat: ${film.categoryList}">
+                                <a th:href="@{/anime/{id}/page-1 (id = ${data.categoryName})}" class="category-link" th:text="${data.categoryName}"></a>,
+                            </li>
+                        </ul>
+                        <span class="film-type" th:text="'Loại: '+${film.type}"></span>
+                        <div class="film-description">
+                            <span class="des-head">Nội dung phim</span>
+                            <span class="des-content" th:text="${film.describe}">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+<script type="text/javascript" th:src="@{/js/user_navbar.js}"></script>
+<script th:inline="javascript">
+    const page = document.querySelector(".info-page")
+    const btnBuy = document.querySelector(".option-buy")
+    if(btnBuy!=null){
+                var name = [[${film.filmName}]]
+                var id = [[${film.filmID}]]
+                var price = [[${film.price}]]
+                var mypoint = [[${user.totalPoint()}]]
+                if(price>mypoint){
+                    btnBuy.onclick = () => {
+                        const dialog = document.createElement("div")
+                        dialog.classList.add("modal")
+                        dialog.innerHTML = `
+                     <div class="modal__overlay"></div>
+                    <div class="modal__body">
+                        <div class="app-dialog">
+                            <div class="app-dialog_main">
+                                <div class="app-dialog_header">
+                                    <span style="color: #ff0000">Thông báo</span>
+                                    <div class="btn_close">
+                                        <i class="fa-solid fa-close"></i>
+                                    </div>
+                                </div >
+                                <div class="app-dialog_container">
+                                    <div class="app-dialog_group">
+                                        Số FPoint của bạn không đủ. Bạn có muốn mua thêm FPoint không?
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-list">
+                                <a class = "btn-confirm" href="/buy">Có</a>
+                                <div class = "btn-exit" >Hủy</div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                        page.appendChild(dialog);
+                        var btnClose = document.querySelector(".btn_close")
+                        btnClose.onclick = () => {
+                            var dialog = document.querySelector(".modal")
+                            page.removeChild(dialog);
+                        }
+                        var btnExit = document.querySelector(".btn-exit")
+                        btnExit.onclick = () => {
+                            var dialog = document.querySelector(".modal")
+                            page.removeChild(dialog);
+                        }
+                    }
+                }else {
+                    btnBuy.onclick = () => {
+                        const dialog = document.createElement("div")
+                        dialog.classList.add("modal")
+                        dialog.innerHTML = `
+                     <div class="modal__overlay"></div>
+                    <div class="modal__body">
+                        <div class="app-dialog">
+                            <div class="app-dialog_main">
+                                <div class="app-dialog_header">
+                                    <span style="color: #ff0000">Xác nhận</span>
+                                    <div class="btn_close">
+                                        <i class="fa-solid fa-close"></i>
+                                    </div>
+                                </div >
+
+                                <div class="app-dialog_container">
+                                    <div class="app-dialog_group">
+                                        Bạn có thực sự muốn mua phim <strong>${name}</strong> với giá ${price} FPoint không?
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-list">
+                                <a class = "btn-confirm" href="/buy-film?id=${id}">Xác nhận</a>
+                                <div class = "btn-exit">Hủy</div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                        page.appendChild(dialog);
+                        var btnClose = document.querySelector(".btn_close")
+                        btnClose.onclick = () => {
+                            var dialog = document.querySelector(".modal")
+                            page.removeChild(dialog);
+                        }
+                        var btnExit = document.querySelector(".btn-exit")
+                        btnExit.onclick = () => {
+                            var dialog = document.querySelector(".modal")
+                            page.removeChild(dialog);
+                        }
+                    }
+                }
+
+    }
+
+</script>
+</body>
+
+</html>

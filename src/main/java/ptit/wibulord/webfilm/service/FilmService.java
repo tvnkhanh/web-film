@@ -183,4 +183,7 @@ public class FilmService {
         return filmRepository.searchByFilmName(keyword);
 
     }
+    public List<Film> getMyFilm(int id) {
+        return filmRepository.getMyFilm(id);
+    }
 }

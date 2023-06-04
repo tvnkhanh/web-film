@@ -1,5 +1,6 @@
 package ptit.wibulord.webfilm.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -33,7 +34,7 @@ public class ManagementController {
 
     StatisticService statisticService = new StatisticService();
     @GetMapping("")
-    public String managementPage(){
+    public String managementPage(HttpSession session){
         return "management/management";
     }
 
@@ -317,6 +318,7 @@ public class ManagementController {
             redirect.addFlashAttribute("message", "Cập nhật thông tin gói thành công!");
         }catch (Exception e){
             redirect.addFlashAttribute("message", "Cập nhật thông tin gói thất bại.");
+            e.printStackTrace();
         }
         return "redirect:/management/Premium";
     }

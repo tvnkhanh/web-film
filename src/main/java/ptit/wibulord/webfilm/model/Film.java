@@ -33,6 +33,8 @@ public class Film {
     private String describe;
     @Column(name = "LOAI")
     private String type;
+    @Column(name = "GIA")
+    private int price;
     @ManyToMany(mappedBy = "films")
     private Collection<WatchList> watchLists;
     @ManyToMany(mappedBy = "films")
@@ -40,6 +42,8 @@ public class Film {
 
     @OneToMany(mappedBy = "film")
     private Collection<Episode> episodeList;
+    @OneToMany(mappedBy = "film", fetch = FetchType.EAGER)
+    private Collection<BuyFilm> buyFilm;
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "CT_THELOAI",
             joinColumns = {@JoinColumn(name = "ID_PHIM")},

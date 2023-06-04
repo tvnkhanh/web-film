@@ -28,7 +28,8 @@ public interface FilmRepository extends JpaRepository<Film,Integer> {
     List<Film> searchByFilmName(String keyword);
     @Query("select count(f) from Film f")
     int countFilm();
-
+    @Query("select f from Film f, BuyFilm b where b.user.idUser = :id  and f.filmID = b.film.filmID")
+    List<Film> getMyFilm(int id);
 
 //    @Query(nativeQuery = true,
 //            value = "select top 24 p.f from (select f,  t.view  from Film f inner join  (select e.film.filmID as id , sum(e.view) as view from Episode e group by e.film.filmID) t where f.filmID = t.id order by t.view desc) p")

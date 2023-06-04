@@ -56,7 +56,7 @@ public class EpisodeService {
         try {
             Connection con = Databasehelper.openConnection();
             Statement stmt = con.createStatement();
-            String sql = "SELECT TOP 10 ID_PHIM, SUM(LUOTXEM) AS LUOTXEM FROM TAP GROUP BY ID_PHIM ORDER BY LUOTXEM DESC";
+            String sql = "SELECT TOP 9 ID_PHIM, SUM(LUOTXEM) AS LUOTXEM FROM TAP GROUP BY ID_PHIM ORDER BY LUOTXEM DESC";
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next()) {
                 topFilmIds.add(resultSet.getInt(1));

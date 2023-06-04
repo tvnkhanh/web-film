@@ -142,3 +142,7 @@
     font-weight: lighter;
     line-height: 22px;
 }
+
+.ep-active .ep-item {
+    background-color: rgb(248 74 74 / 20%);
+}

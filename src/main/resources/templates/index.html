@@ -11,11 +11,6 @@
         <!-- Header -->
         <header th:replace="~{fragments::navbar}"></header>
         <div class="web_container">
-            <!-- <section class="container_header">
-                <div class="container_slider">
-
-                </div>
-            </section> -->
             <section class="container_child container">
                 <div>
                     <a href="#" class="container_link">PHIM MỚI NHẤT</a>
@@ -56,7 +51,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <a th:href="@{/watch (id=${tierList[0].filmID}, ep=${tierList[0].episodeList[0].epID})}" class="film_link">
+                        <a th:href="@{/film-info (id = ${tierList[0].filmID})}" class="film_link">
                             <div class="film_item film--top">
                                 <div class="film_status">
                                     <span th:text="${1}"></span>
@@ -70,7 +65,7 @@
                     </div>
                     <div class="row col-8">
                         <div th:each="data, dataStat: ${tierList}" class="col-3" th:if="${dataStat.index != 0}">
-                            <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
+                            <a th:href="@{/film-info (id = ${data.filmID})}" class="film_link">
                                 <div class="film_item film--top">
                                     <div class="film_status">
                                         <span th:text="${dataStat.index + 1}"></span>
@@ -94,7 +89,7 @@
 
                 <div class="row">
                     <div class="col-2" th:each="data, dataStat : ${movie}">
-                        <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
+                        <a th:href="@{/film-info (id = ${data.filmID})}" class="film_link">
                             <div class="film_movie film--cm_soon">
 <!--                                <div class="film_status">-->
 <!--                                    <span>SẮP CHIẾU</span>-->
@@ -121,7 +116,8 @@
 
                 <div class="row">
                     <div class="col-2" th:each="data, dataStat : ${randomFilm}">
-                        <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.episodeList[0].epID})}" class="film_link">
+                        <a th:href="@{/film-info (id = ${data.filmID})}" class="film_link">
+<!--                            <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.episodeList[0].epID})}" class="film_link">-->
                             <div class="film_movie film--cm_soon">
 
                                 <img th:src="${data.getImgPath()}" alt="" class="film_item_thumb" style=" height: 300px">
