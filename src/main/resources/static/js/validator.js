@@ -20,23 +20,23 @@ function Validator(option){
         }
         return !errorMessage
     }
-    var formElement = document.querySelector(option.form);
     var formElement = document.querySelector(option.form)
     if(formElement){
         formElement.onsubmit = function(e){
             e.preventDefault();
             var isSubmit = true
-            option.rules.forEach(rule => {
+            option.rules.forEach((rule) => {
                 var inputElement =  formElement.querySelector(rule.selector);
                 // console.log(inputElement)
                 var isValid = validate(inputElement,rule);
                 if(!isValid){
                     isSubmit = false;
                 }
-                if(isSubmit){
-                    formElement.submit();
-                }
+
             });
+            if(isSubmit){
+                formElement.submit();
+            }
         }
     }
 
