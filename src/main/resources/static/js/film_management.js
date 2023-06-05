@@ -95,7 +95,7 @@ btnAdd.onclick = ()=>{
         rules: [
             Validator.isRequired("#name"),
             Validator.isRequired("#thumb"),
-            Validator.isRequired("#video")
+            Validator.isRequired("#thumb2")
         ]
     });
     `

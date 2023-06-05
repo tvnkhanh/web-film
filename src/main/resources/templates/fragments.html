@@ -133,8 +133,8 @@
                               <span>Đổi mật khẩu</span>
                           </a>
                       </li>
-                     <li class="navbar_user-item" th:if="${user.account.role.roleName} == 'Owner'"><!-- th:if="${user.}"-->
-                          <a th:href="@{/management(id = ${user.idUser})}" class="navbar_user-item-link">
+                     <li class="navbar_user-item" th:if="${user.account.role.roleName} == 'Owner'"><!---->
+                          <a th:href="@{/management(id = ${user.idUser})}"  class="navbar_user-item-link">
                               <i class=" navbar_user-icon fas fa-regular fa-list-check"></i>
                               <span>Quản lý</span>
                           </a>
