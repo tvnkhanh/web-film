@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.List;
 
 @Entity()
 @Table(name="PHIM")
@@ -44,7 +45,7 @@ public class Film {
     private Collection<Episode> episodeList;
     @OneToMany(mappedBy = "film", fetch = FetchType.EAGER)
     private Collection<BuyFilm> buyFilm;
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "CT_THELOAI",
             joinColumns = {@JoinColumn(name = "ID_PHIM")},
             inverseJoinColumns = {@JoinColumn(name = "ID_TL")})
@@ -75,6 +76,15 @@ public class Film {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int checkFilmInMyList(int id){
+        List<Film> myFilm = new FilmService().getMyFilm(id);
+        for(BuyFilm buy : buyFilm ){
+            if(buy.getFilm().getFilmID() == id)return 1;
+
         }
         return 0;
     }

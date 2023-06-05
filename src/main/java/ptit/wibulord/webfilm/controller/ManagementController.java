@@ -31,10 +31,15 @@ public class ManagementController {
     AccountService accountService;
     @Autowired
     PremiumService premiumService;
+    @Autowired
+            BuyFilmService buyFilmService;
+
+    User user;
 
     StatisticService statisticService = new StatisticService();
     @GetMapping("")
-    public String managementPage(HttpSession session){
+    public String managementPage(@RequestParam("id")int id){
+        user = userService.findUserById(id);
         return "management/management";
     }
 
@@ -109,6 +114,7 @@ public class ManagementController {
                           @RequestParam("thumb2")String thumbBXH,
                           @RequestParam("description")String des,
                           @RequestParam("charge")String type,
+                          @RequestParam("price")int price,
                           RedirectAttributes redirect){
         Film film = new Film();
         film.setFilmName(filmName);
@@ -116,12 +122,18 @@ public class ManagementController {
         film.setImgTierList(thumbBXH);
         film.setDescribe(des);
         film.setType(type);
+        film.setPrice(price);
         try{
             filmService.saveFilm(film);
             redirect.addFlashAttribute("message", "Thêm phim thành công!");
+            BuyFilm buy = new BuyFilm();
+            buy.setFilm(filmService.findFilmMaxID());
+            buy.setUser(user);
+            buyFilmService.save(buy);
             return "redirect:/management/Film/ChooseCategory/" + filmService.findMaxId();
         }catch(Exception e){
             redirect.addFlashAttribute("message", "Thêm phim thất bại.");
+            e.printStackTrace();
             return "redirect:/management/Film";
         }
     }
@@ -163,6 +175,7 @@ public class ManagementController {
                            @RequestParam("thumb2")String thumbBXH,
                            @RequestParam("description")String des,
                            @RequestParam("charge")String type,
+                           @RequestParam("price")int price,
                            RedirectAttributes redirect){
         Film film = filmService.getFilmById(id);
         film.setFilmName(filmName);
@@ -170,6 +183,7 @@ public class ManagementController {
         film.setImgPath(thumb);
         film.setDescribe(des);
         film.setType(type);
+        film.setPrice(price);
         try{
             filmService.saveFilm(film);
             redirect.addFlashAttribute("message", "Cập nhật thông tin phim thành công!!!");
@@ -182,10 +196,6 @@ public class ManagementController {
     public String deleteFilm(@PathVariable("idFilm")int id,
                            RedirectAttributes redirect){
         Film film = filmService.getFilmById(id);
-//        film.setCategoryList(null);
-//        film.setEpisodeList(null);
-//        film.setFavoriteLists(null);
-//        film.setWatchLists(null);
         try{
             filmService.deleteFilm(film);
             redirect.addFlashAttribute("message", "Xóa phim thành công!!!");

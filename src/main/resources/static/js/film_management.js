@@ -59,6 +59,13 @@ btnAdd.onclick = ()=>{
                     </div>
                     <div class="app-dialog_group">
                         <div class="app-dialog_item">
+                            <input id="price" name ="price" type="text" placeholder="Giá(Mặc định là 0 FPoint)"
+                                class="app-dialog_item-input" >
+                            <span class="input_message"></span>
+                        </div>
+                    </div>
+                    <div class="app-dialog_group">
+                        <div class="app-dialog_item">
                             <select name="charge" id="charge" class="app-dialog_item-input">
                                 <option value="MOVIE">MOVIE</option>
                                 <option value="TV-SERIES">TV-SERIES</option>

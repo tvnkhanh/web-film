@@ -133,8 +133,8 @@
                               <span>Đổi mật khẩu</span>
                           </a>
                       </li>
-                     <li class="navbar_user-item" ><!-- th:if="${user.}"-->
-                          <a th:href="@{/management}" class="navbar_user-item-link">
+                     <li class="navbar_user-item" th:if="${user.account.role.roleName} == 'Owner'"><!-- th:if="${user.}"-->
+                          <a th:href="@{/management(id = ${user.idUser})}" class="navbar_user-item-link">
                               <i class=" navbar_user-icon fas fa-regular fa-list-check"></i>
                               <span>Quản lý</span>
                           </a>
@@ -162,8 +162,8 @@
                               <span>Phim đã mua</span>
                           </a>
                       </li>
-                      <li class="navbar_user-item">
-                          <a th:href="@{/buy}" class="navbar_user-item-link">
+                      <li class="navbar_user-item" th:if="${user.account.role.roleName == 'Member'}">
+                          <a th:href="@{/buy}" class="navbar_user-item-link" >
                               <i class="navbar_user-icon fa-solid fa-coins"></i>
                               <span>Mua FPoint</span>
                           </a>

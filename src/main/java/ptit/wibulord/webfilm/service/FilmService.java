@@ -3,6 +3,7 @@ package ptit.wibulord.webfilm.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ptit.wibulord.webfilm.dto.Databasehelper;
+import ptit.wibulord.webfilm.model.BuyFilm;
 import ptit.wibulord.webfilm.model.Film;
 import ptit.wibulord.webfilm.repository.FilmRepository;
 
@@ -186,4 +187,8 @@ public class FilmService {
     public List<Film> getMyFilm(int id) {
         return filmRepository.getMyFilm(id);
     }
+    public Film findFilmMaxID(){
+        return filmRepository.findFilmByID(filmRepository.findMaxId());
+    }
+
 }

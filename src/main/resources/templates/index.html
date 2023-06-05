@@ -17,7 +17,27 @@
                 </div>
                 <div class="row">
                     <div th:each="data, dataStat : ${newestEp}" th:unless="${dataStat.index > 12}" class="col-3">
-                        <a th:href="@{/watch (id=${data.film.filmID}, ep=${data.epID})}" class="film_link">
+                        <a th:href="@{/watch (id=${data.film.filmID}, ep=${data.epID})}" th:if="${user.checkFilmInMyList(data.film.filmID) ==1}" class="film_link">
+                            <div class="film_item">
+                                <img th:src="${data.imgPath}" alt="" class="film_item_thumb">
+                                <div class="film_info film_info--blue">
+                                    <h3 class="film_name" th:text="${data.film.filmName}"></h3>
+                                    <div class="film_detail">
+                                        <span class="film_title">
+                                            Tập
+                                            <span class="film_title" th:text="${data.epNum}"></span>
+                                        </span>
+
+                                        <span class="film_title">
+                                            <span class="film_title" th:text="${data.view}"></span>
+                                            lượt xem
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                        <a th:href="@{/film-info (id=${data.film.filmID})}" th:if="${user.checkFilmInMyList(data.film.filmID) ==0}" class="film_link">
                             <div class="film_item">
                                 <img th:src="${data.imgPath}" alt="" class="film_item_thumb">
                                 <div class="film_info film_info--blue">

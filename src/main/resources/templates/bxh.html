@@ -27,7 +27,7 @@
             </div>
             <div class="row">
                 <div class="col-3" th:each="data, dataStat : ${list}">
-                    <a th:href="@{/watch (id=${data.filmID}, ep=${data.episodeList[0].epID})}" class="film_link">
+                    <a th:href="@{/film-info (id=${data.filmID})}" class="film_link">
                         <div class="film_item film--top">
                             <div class="film_status">
                                 <span th:text="${dataStat.index + 1}"></span>

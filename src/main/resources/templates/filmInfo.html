@@ -9,6 +9,14 @@
     <title th:text="'Thông tin phim '+ ${film.filmName}"> </title>
 </head>
 <body>
+<script th:inline="javascript">
+    /* Set message variable with Thymeleaf */
+    var message = [[${message}]];
+    if(message!==null){
+        showMessage(message)
+        // console.log(message)
+    }
+</script>
 <header th:replace="~{fragments::navbar}"></header>
     <div class="info-page">
         <div class="info-main">

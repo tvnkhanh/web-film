@@ -96,6 +96,7 @@
             <th>ID</th>
             <th>Tên phim</th>
             <th>Loại</th>
+            <th>Giá</th>
             <th>Thiết lập</th>
           </tr>
           <tbody class="app-main_table-body">
@@ -103,6 +104,7 @@
             <th th:id="${film.filmID}" class="obj_id" scope="row" th:text="${film.filmID}"></th>
             <td th:text="${film.filmName}"></td>
             <td th:text="${film.type}"></td>
+            <td th:text="${film.price} + ' FPoint'"></td>
             <td class="data-option">
               <a th:href="@{/management/Film/Info/{id}(id=${film.filmID})}">
                 <div class="data-option-info">

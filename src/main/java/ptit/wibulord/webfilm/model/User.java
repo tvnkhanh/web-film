@@ -3,8 +3,10 @@ package ptit.wibulord.webfilm.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ptit.wibulord.webfilm.service.FilmService;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity()
@@ -51,5 +53,11 @@ public class User {
     }
     public User(int idUser) {
         this.idUser = idUser;
+    }
+    public int checkFilmInMyList(int id){
+        for(BuyFilm buy : buyFilm ){
+            if(buy.getFilm().getFilmID() == id)return 1;
+        }
+        return 0;
     }
 }

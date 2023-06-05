@@ -116,9 +116,6 @@
       Validator.isRequired("#oldPass"),
       Validator.isRequired("#newPass"),
       Validator.isRequired("#reType"),
-      Validator.minLength("#oldPass",6),
-      Validator.minLength("#newPass",6),
-      Validator.minLength("#reType",6),
       Validator.isConfirmed("#reType",function(){
         return document.querySelector('#form-info #newPass').value
       },'Mật khẩu nhập lại không chính xác.'),

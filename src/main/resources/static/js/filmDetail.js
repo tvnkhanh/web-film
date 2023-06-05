@@ -271,6 +271,8 @@ btnEdit.onclick = (e) =>{
     var filmImg2 = document.querySelector(".film_detail-thumb2").src
     var filmDes = document.querySelector(".film_detail-info-description").textContent.trim() || document.querySelector(".film_detail-info-description").innerText.trim();
     var filmType = document.querySelector(".film_type").textContent.trim()
+    var filmPrice = document.querySelector(".film_price").textContent.trim()
+    filmPrice = filmPrice.substring(0,filmPrice.length-7)
     dialog.innerHTML = `
     <div class="modal__overlay">
     </div>
@@ -325,6 +327,13 @@ btnEdit.onclick = (e) =>{
                     </div>
                     <div class="app-dialog_group">
                         <div class="app-dialog_item">
+                            <input id="price" name ="price" type="text" placeholder="Giá( Mặc định là 0 FPoint)"
+                                class="app-dialog_item-input" value = "${filmPrice}">
+                            <span class="input_message"></span>
+                        </div>
+                    </div>
+                    <div class="app-dialog_group">
+                        <div class="app-dialog_item">
                             <select name="charge" id="charge" class="app-dialog_item-input">
                                 <option value="MOVIE">MOVIE</option>
                                 <option value="TV-SERIES">TV-SERIES</option>
@@ -334,7 +343,7 @@ btnEdit.onclick = (e) =>{
                     </div>
                 </div>
             </div>
-            <button class="btn_add">Thêm</button>
+            <button class="btn_add">Lưu</button>
         </form>
     </div>
     `;

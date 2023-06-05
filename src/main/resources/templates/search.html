@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-3" th:each="data, dataStat : ${filmList}">
-                <a th:href="@{/watch (id=${data.getFilmID()}, ep=${data.getEpisodeList()[0].getEpID()})}"
+                <a th:href="@{/film-info (id=${data.film.filmID})}"
                    class="film_link">
                     <div class="film_item film--top">
                         <img th:src="${data.getImgTierList()}" alt="" class="film_item_thumb">
