@@ -30,6 +30,7 @@
     padding: 4px 12px;
     border: 1px solid transparent;
     border-radius: 16px;
+    text-decoration: none;
     cursor: pointer;
 }
 

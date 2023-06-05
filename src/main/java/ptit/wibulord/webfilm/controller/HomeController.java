@@ -294,6 +294,45 @@ public class HomeController {
         return "search";
     }
 
+    @RequestMapping("/set-fav-film")
+    public String setFavFilm(@RequestParam(value = "favList") int idFavoriteList,
+                             @RequestParam(value = "favFilm") int idFilm,
+                             @RequestParam(value = "idEp") int idEp,
+                             RedirectAttributes redirect) {
+        try {
+            FavoriteList favoriteList = favoriteListService.findByID(idFavoriteList);
+            Film film = filmService.getFilmById(idFilm);
+            favoriteList.getFilms().add(film);
+            favoriteListService.addFavoriteList(favoriteList);
+
+            redirect.addFlashAttribute("message", "Đã thêm thành công phim " +
+                    film.getFilmName() + " vào danh sách yêu thích.");
+        }
+        catch (Exception ex) {
+            redirect.addFlashAttribute("message", "Phim đã có trong danh sách yêu thích.");
+        }
+        return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
+    }
+
+    @RequestMapping("/set-following-film")
+    public String setFollowingFilm(@RequestParam(value = "followingList") int idWatchList,
+                                 @RequestParam(value = "followingFilm") int idFilm,
+                                 @RequestParam(value = "idEp") int idEp,
+                                 RedirectAttributes redirect) {
+        try {
+            WatchList watchList = watchListService.findByID(idWatchList);
+            Film film = filmService.getFilmById(idFilm);
+            watchList.getFilms().add(film);
+            watchListService.addWatchList(watchList);
+
+            redirect.addFlashAttribute("message", "Đã thêm thành công phim " +
+                    film.getFilmName() + " vào danh sách theo dõi.");
+        } catch (Exception ex) {
+            redirect.addFlashAttribute("message", "Phim đã có trong danh sách theo dõi.");
+        }
+        return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
+    }
+
     ///login-register
 
 

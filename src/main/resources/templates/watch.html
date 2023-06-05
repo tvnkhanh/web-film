@@ -22,14 +22,18 @@
                 <div class="ep-film-view" th:text="${currentEp.getView()} + ' lượt xem'"></div>
 
                 <div class="film-action">
-                    <button class="favorite-btn">
+                    <a class="favorite-btn" th:href="@{/set-fav-film (favList=${user.getFavoriteList().getIdFavoriteList()},
+                        favFilm=${film.getFilmID()}, idEp=${currentEp.getEpID()}
+                    )}">
                         <i class="fa-solid fa-heart"></i>
                         thích
-                    </button>
-                    <button class="following-btn">
+                    </a>
+                    <a class="following-btn" th:href="@{/set-following-film (followingList=${user.getWatchList().getIdWatchList()},
+                        followingFilm=${film.getFilmID()}, idEp=${currentEp.getEpID()}
+                    )}">
                         <i class="fa-sharp fa-solid fa-bell"></i>
                         theo dõi
-                    </button>
+                    </a>
                 </div>
 
                 <div class="film-info">

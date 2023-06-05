@@ -1,6 +1,5 @@
 .page_container {
-    margin: 0 auto;
-    margin-top: 100px;
+    margin: 100px auto 0;
     max-width: 1200px;
 }
 
@@ -49,7 +48,6 @@
 }
 .movie-tv-link {
     text-decoration: none;
-    
 }
 
 .movie-tv-name {
@@ -62,9 +60,7 @@
 .pagination {
     list-style: none;
     display: flex;
-    margin: auto;
-    margin-top: 8px;
-    margin-bottom: 84px;
+    margin: 8px auto 84px;
     justify-content: center;
 }
 
