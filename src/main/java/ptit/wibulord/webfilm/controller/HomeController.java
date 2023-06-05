@@ -228,22 +228,27 @@ public class HomeController {
     }
     @GetMapping("/buy")
     public String loadPack(ModelMap model){
+        user = userService.findUserById(user.getIdUser());
         model.addAttribute("list", premiumService.getPremiumList());
         model.addAttribute("user",user);
         return "buy";
     }
     @GetMapping("/buy/get")
     public String buyPack(ModelMap model ,@RequestParam("id")int idpack, RedirectAttributes redirect){
-        DetailPurchase detail = new DetailPurchase();
-        detail.setUser(user);
-        Premium pack = premiumService.getPackById(idpack);
-        detail.setPremium(pack);
-        detail.setPoint(pack.getPoint());
-        detail.setDatePurchase(new java.util.Date());
-        detail.setPrice(pack.getPrice());
-        detailPurchaseService.save(detail);
-        user = userService.findUserById(user.getIdUser());
-        redirect.addFlashAttribute("message", "Mua gói thành công! Cảm ơn bạn đã ủng hộ.");
+        try{
+            DetailPurchase detail = new DetailPurchase();
+            detail.setUser(user);
+            Premium pack = premiumService.getPackById(idpack);
+            detail.setPremium(pack);
+            detail.setPoint(pack.getPoint());
+            detail.setDatePurchase(new java.util.Date());
+            detail.setPrice(pack.getPrice());
+            detailPurchaseService.save(detail);
+            redirect.addFlashAttribute("message", "Mua gói thành công! Cảm ơn bạn đã ủng hộ.");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return "redirect:/buy";
     }
     @RequestMapping("/watch")
@@ -259,6 +264,7 @@ public class HomeController {
 
     @RequestMapping("/film-info")
     public String filmInfoPage(@RequestParam("id")int id, ModelMap model){
+        user = userService.findUserById(user.getIdUser());
         model.addAttribute("user",user);
         model.addAttribute("film", filmService.getFilmById(id));
         model.addAttribute("check", buyFilmService.checkFilmInMyFilmList(id,user.getIdUser()));
@@ -272,7 +278,6 @@ public class HomeController {
             buy.setUser(user);
             buy.setPrice(filmService.getFilmById(id).getPrice());
             buyFilmService.save(buy);
-            user = userService.findUserById(user.getIdUser());
             redirect.addFlashAttribute("message", "Mua phim thành công! Chúc bạn thưởng thức phim vui vẻ.");
         }catch (Exception e){
             redirect.addFlashAttribute("message", "Xảy ra lỗi trong quá trình mua phim. Điểm đã giao dịch sẽ được hoàn trà.");
