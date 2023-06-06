@@ -20,7 +20,7 @@ public class WatchList {
     @JoinColumn(name = "ID_ND")
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "CT_THEODOI",
                 joinColumns = {@JoinColumn(name = "ID_DSTD")},
                 inverseJoinColumns = {@JoinColumn(name = "ID_PHIM")})

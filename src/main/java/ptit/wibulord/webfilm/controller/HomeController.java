@@ -304,18 +304,19 @@ public class HomeController {
                              @RequestParam(value = "favFilm") int idFilm,
                              @RequestParam(value = "idEp") int idEp,
                              RedirectAttributes redirect) {
-        try {
-            FavoriteList favoriteList = favoriteListService.findByID(idFavoriteList);
-            Film film = filmService.getFilmById(idFilm);
-            favoriteList.getFilms().add(film);
-            favoriteListService.addFavoriteList(favoriteList);
+        FavoriteList favoriteList = favoriteListService.findByID(idFavoriteList);
+        Film film = filmService.getFilmById(idFilm);
 
-            redirect.addFlashAttribute("message", "Đã thêm thành công phim " +
-                    film.getFilmName() + " vào danh sách yêu thích.");
+        for (Film f : favoriteList.getFilms()) {
+            if (f.getFilmID() == idFilm) {
+                favoriteList.getFilms().remove(film);
+                favoriteListService.addFavoriteList(favoriteList);
+                return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
+            }
         }
-        catch (Exception ex) {
-            redirect.addFlashAttribute("message", "Phim đã có trong danh sách yêu thích.");
-        }
+        favoriteList.getFilms().add(film);
+        favoriteListService.addFavoriteList(favoriteList);
+
         return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
     }
 
@@ -324,17 +325,19 @@ public class HomeController {
                                  @RequestParam(value = "followingFilm") int idFilm,
                                  @RequestParam(value = "idEp") int idEp,
                                  RedirectAttributes redirect) {
-        try {
-            WatchList watchList = watchListService.findByID(idWatchList);
-            Film film = filmService.getFilmById(idFilm);
-            watchList.getFilms().add(film);
-            watchListService.addWatchList(watchList);
+        WatchList watchList = watchListService.findByID(idWatchList);
+        Film film = filmService.getFilmById(idFilm);
 
-            redirect.addFlashAttribute("message", "Đã thêm thành công phim " +
-                    film.getFilmName() + " vào danh sách theo dõi.");
-        } catch (Exception ex) {
-            redirect.addFlashAttribute("message", "Phim đã có trong danh sách theo dõi.");
+        for (Film f : watchList.getFilms()) {
+            if (f.getFilmID() == idFilm) {
+                watchList.getFilms().remove(film);
+                watchListService.addWatchList(watchList);
+                return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
+            }
         }
+        watchList.getFilms().add(film);
+        watchListService.addWatchList(watchList);
+
         return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
     }
 
@@ -436,5 +439,4 @@ public class HomeController {
         redirect.addFlashAttribute("message","Mã nhập vào không khớp!");
         return "redirect:/confirm";
     }
-
 }
