@@ -69,7 +69,7 @@ public class HomeController {
             @RequestParam("type") String type,
             @RequestParam("page")int page,
             ModelMap model) {
-//        int numberPage = Integer.parseInt(page.substring(5));
+        //int numberPage = Integer.parseInt(page.substring(5));
         model.addAttribute("user",user);
         model.addAttribute("filmList",filmService.getFilmPageByType(page,type));
         model.addAttribute("categoryList", categoryService.getCategoryList());
@@ -311,11 +311,15 @@ public class HomeController {
             if (f.getFilmID() == idFilm) {
                 favoriteList.getFilms().remove(film);
                 favoriteListService.addFavoriteList(favoriteList);
+                redirect.addFlashAttribute("message", "Phim đã xóa khỏi danh sách yêu thích.");
+
                 return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
             }
         }
         favoriteList.getFilms().add(film);
         favoriteListService.addFavoriteList(favoriteList);
+        redirect.addFlashAttribute("message", "Đã thêm thành công phim " +
+                film.getFilmName() + " vào danh sách yêu thích.");
 
         return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
     }
@@ -332,11 +336,15 @@ public class HomeController {
             if (f.getFilmID() == idFilm) {
                 watchList.getFilms().remove(film);
                 watchListService.addWatchList(watchList);
+                redirect.addFlashAttribute("message", "Phim đã xóa khỏi danh sách theo dõi.");
+
                 return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
             }
         }
         watchList.getFilms().add(film);
         watchListService.addWatchList(watchList);
+        redirect.addFlashAttribute("message", "Đã thêm thành công phim " +
+                film.getFilmName() + " vào danh sách theo dõi.");
 
         return "redirect:/watch?id=" + idFilm + "&ep=" + idEp;
     }
@@ -420,8 +428,9 @@ public class HomeController {
 
     @GetMapping("/confirm")
     public String confirmRegister() {
-        codeConfirm = new Random().nextInt(900000) + 1;
-        mailService.sendSimpleMail(new EmailDetails(user.getEmail(), "Mã xác nhận của bạn là: "+Integer.toString(codeConfirm), "Thư xác nhận"));
+        codeConfirm = new Random().nextInt(999999);
+        mailService.sendSimpleMail(new EmailDetails(user.getEmail(),
+                "Mã xác nhận của bạn là: "+ String.format("%06d", codeConfirm), "Thư xác nhận"));
         return "confirmRegister";
     }
 

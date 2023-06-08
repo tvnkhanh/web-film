@@ -69,7 +69,8 @@ public class FilmService {
         try {
             Connection con = Databasehelper.openConnection();
             Statement stmt = con.createStatement();
-            String sql = "select ceiling(CONVERT(float,count(p.ID_PHIM))/24) from PHIM p, THELOAI t, CT_THELOAI ct where t.ID_TL = ct.ID_TL and p.ID_PHIM = ct.ID_PHIM and t.TEN_TL = '"+categoryName+"'";
+            String sql = "select ceiling(CONVERT(float,count(p.ID_PHIM))/24) from PHIM p, THELOAI t, CT_THELOAI ct " +
+                    "where t.ID_TL = ct.ID_TL and p.ID_PHIM = ct.ID_PHIM and t.TEN_TL = '"+categoryName+"'";
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next()) {
                 return resultSet.getInt(1);
@@ -86,7 +87,8 @@ public class FilmService {
             Connection con = Databasehelper.openConnection();
             Statement stmt = con.createStatement();
             String sql = "select * from \n" +
-                    "(select Row_Number() over (order by CT.ID_PHIM) as RowNumber, CT.ID_PHIM FROM CT_THELOAI CT, THELOAI TL WHERE CT.ID_TL = TL.ID_TL AND TL.TEN_TL = N'"+categoryName+"') as PagedTable\n" +
+                    "(select Row_Number() over (order by CT.ID_PHIM) as RowNumber, CT.ID_PHIM FROM CT_THELOAI CT, THELOAI TL " +
+                    "WHERE CT.ID_TL = TL.ID_TL AND TL.TEN_TL = N'"+categoryName+"') as PagedTable\n" +
                     "where RowNumber between "+(page*24-23)+" and "+page*24;
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next()) {
@@ -131,7 +133,8 @@ public class FilmService {
             Connection con = Databasehelper.openConnection();
             Statement stmt = con.createStatement();
             String sql = "select * from \n" +
-                    "(select Row_Number() over (order by ID_PHIM) as RowNumber, ID_PHIM from PHIM where LOAI = N'" + type+"') as PagedTable\n" +
+                    "(select Row_Number() over (order by ID_PHIM) as RowNumber, ID_PHIM from PHIM where LOAI = N'" + type+"') " +
+                    "as PagedTable\n" +
                     "where RowNumber between "+(page*24-23)+" and "+page*24;
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next()) {
